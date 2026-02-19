@@ -1,9 +1,15 @@
 #import "@local/doc_fac:0.1.0": *
 #import "@local/utils:0.1.0": *
 
-#show: doc_fac.with(title: "Cours AlgLin3", numbering: "I. 1. 1. a) i)")
+#let only-thms = false
 
-#let only-thms = true
+#show: doc_fac.with(
+  title: "Cours AlgLin3",
+  numbering: "I. 1. 1. a) i)",
+  show-examples: not only-thms,
+  show-exercises: not only-thms,
+  show-proofs: not only-thms,
+)
 
 #outline()
 
@@ -192,24 +198,24 @@ Dans ce chapitre, nous travaillerons uniquement sur des $RR$-ev.
   Se donner une forme bilinéaire sur $E$ équivaut à se donner une application linéaire de $E$ sur $E^*$.
 ]
 #proof[
-  Considérons 
+  Considérons
   $
-  L : application(BBB(E),Lin(E,E^*),f,L(f) : application(E,E^*,y,L(f)(y) : application(E,RR,x,f(x,y))))
+    L : application(BBB(E), Lin(E, E^*), f, L(f) : application(E, E^*, y, L(f)(y) : application(E, RR, x, f(x,y))))
   $
   $L$ est bien définie.
   + $forall y in E, L(f)(y)$ est une forme linéaire :
     $forall x,x' in E, forall lambda in RR, L(f)(y)(lambda x+x') = f(lambda x + x',y) = lambda f(x,y) + f(x',y) = lambda L(f)(y)(x) + L(f)(y)(x')$
   + $L(f)$ est linéaire :
-    
+
     $
-    forall y,y' in E, forall lambda in RR, forall x in E : underbrace(L(f)(lambda y + y'),in E)(x)= f(x,lambda y + y') \
-    = lambda f(x,y) + f(x,y') = lambda L(f)(y)(x) + L(f)(y')(x)
+      forall y,y' in E, forall lambda in RR, forall x in E : underbrace(L(f)(lambda y + y'), in E)(x)= f(x,lambda y + y') \
+      = lambda f(x,y) + f(x,y') = lambda L(f)(y)(x) + L(f)(y')(x)
     $
 ]
 
 #theorem[
   $
-  L : application(BBB(E),Lin(E,E^*),f,L(f) : application(E,E^*,y,L(f)(y) : application(E,RR,x,f(x,y))))
+    L : application(BBB(E), Lin(E, E^*), f, L(f) : application(E, E^*, y, L(f)(y) : application(E, RR, x, f(x,y))))
   $
   Est un isomorphisme.
 ]
@@ -218,9 +224,163 @@ Dans ce chapitre, nous travaillerons uniquement sur des $RR$-ev.
     $
       L(lambda f + g)(y)(x) = (lambda f + g)(x,y) = lambda f(x,y) + g(x,y) = lambda L(f)(y)(x) + L(g)(y)(x)
     $
-  - $L$ est bijective. Considérons 
+  - $L$ est bijective. Considérons
     $
-    psi : application(Lin(E,E^*),BBB(E),h,psi(h):application(E^2,RR,(x,y),psi(h)(x,y) = h(y)(x)))
-    $ 
-    $psi$ est l'application réciproque de $L$.
+      psi : application(Lin(E, E^*), BBB(E), h, psi(h):application(E^2, RR, (x,y), psi(h)(x,y) = h(y)(x)))
+    $
+    $psi$ est l'application réciproque de $L$ :
+
+    Montrons que $L compose psi = Id_(Lin(E, E^*))$ et $psi compose L = Id_(BBB(E))$
+
+    (#underline("Remarque :") $psi(h)$ est bien une forme bilinéaire sur $E$)
+
+    $
+      forall h in LL(E, E^*), forall x,y in E, [L compose psi(h)](y) = L(psi(h))(y)(x) = psi(h)(x,y) = h(y)(x)
+    $
+
+    Ainsi : $[L compose psi](h) = h$
+
+    Pour l'autre côté :
+    $
+      forall f in BBB(E), forall x,y in E
+      [psi compose L](f)(x,y) = L(f)(y)(x) = f(x,y)
+    $
+    D'où $[psi compose L](f) = f$. $phi$ est bien inversible donc un isomorphisme.
+]
+
+#definition("Produit scalaire")[
+  Une *forme bilinéaire* $f : application(E^2, RR, (x,y), f(x,y))$ est un produit scalaire sur $E$ si :
+  - $f$ est *symétrique* : $forall x,y in E : f(x,y) = f(y,x)$
+  - $f$ est *définie positive* : $forall x in E$, $f(x,x) >= 0$ et $f(x,x) = 0 <==> x = 0$
+]
+
+#notation[
+  si $f$ est un produit scalaire sur $E$, on notera $f(x,y) = scal2(x, y)$
+]
+
+#definition("Espaces Euclidiens, Préhilbertiens")[
+  Un $RR$-ev muni d'un produit scalaire est dit espace Préhilbertien réel. Si, de plus, il est de dimension finie, on dit que c'est un *espace Euclidien*
+]
+
+#example[
+  + $RR^n$ muni du produit scalaire usuel
+    $
+      scal2(., .) : (vec(x_1, vdots, x_n),vec(y_1, vdots, y_n)) |-> sum_(i = 1)^n x_i y_i
+    $
+    est un espace Euclidien car
+    c'est bien une forme bilinéaire symétrique définie positive
+
+  + $C^0([0,1],RR)$ est un espace Préhilbertien réel pour le produit scalaire $ scal2(., .) : (f,g) |-> integral_0^1 f(x)g(x)d x $
+    C'est une forme bilinéaire symétrique définie positive (par positivité de l'intégrale et critère de nullité)
+  + $MM_n (RR)$ muni du produit scalaire usuel $ scal2(., .) : (A,B) |-> Tr(transp(A)B) $
+    C'est bien une forme bilinéaire symétrique. Montrons que c'est défini positif :
+    Soit $A = (a_(i,j))_(1<=i,j<=n), B = (b_(i,j))_(1<=i,j<=n), transp(A)B = (c_(i,j))_(1<=i,j<=n)$,
+    Alors $c_(i,j) = sum_(k = 1)^n a_(k i) b_(k j)$
+
+    Donc $Tr(transp(A)B) = sum_(i = 1)^n c_(i i) = sum_(i = 1)^n sun_(j = 1)^n a_(k i)b_(k i) = sum_(1<=i,j<=n)a_(k i) b_(k i)$
+
+    Ainsi $scal2(A, A) = Tr(transp(A)A) = sum_(i,k=1)^n a_(k i)^2 >= 0$ et $scal2(A, A) = 0 <==> forall i,k in [|1,n|] : a_(k,i)^2 = 0 <==> A = 0$
+]
+
+Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x, x))$
+
+#remark[
+  - $norm(x) = 0 <==> x = 0_E$
+  - $forall lambda in RR, norm(lambda x) = sqrt(scal2(lambda x, lambda x)) = sqrt(lambda^2 scal2(x, x)) = |lambda|norm(x)$
+]
+
+#proposition("Formules de polarisation")[
+  $forall x,y in E :$
+  $
+    scal2(x, y) & = 1/2 (norm(x + y)^2 - norm(x)^2 - norm(y)^2) \
+    & = 1/4 (norm(x + y)^2 - norm(x - y)^2)
+  $
+
+  On a donc une relation entre la norme et le produit scalaire
+]
+
+#proof[
+  + $
+  norm(x + y) = scal2(x+y,x+y) = scal2(x,x+y) + scal2(y,x+y) = scal2(x,x) + scal2(x,y) + scal2(y,x) + scal2(y,y) = norm(x)^2 + 2scal2(x,y) + norm(y)^2
+  $
+  ce qui donne la première formule en isolant $scal2(x,y)$
+
+  + $
+    cases(norm(x + y) = norm(x)^2 + 2 scal2(x,y) + norm(y), norm(x-y) = norm(x)^2 - 2 scal2(x,y) + norm(y)^2)
+    $
+    On a donc le résultat en sommant et isolant $scal2(x,y)$
+]
+
+#corollary("Identité du parallélogramme")[
+  $forall x,y in E$ : $norm(x + y)^2 + norm(x-y)^2 = 2 (norm(x)^2 + norm(y)^2)$
+]
+
+#theorem("Inégalité de Cauchy-Schwarz")[
+  Soit $E$ un espace préhilbertien réel. Alors
+  $forall x,y in E :$
+  $
+  abs(scal2(x,y)) <= norm(x)norm(y)
+  $
+  avec égalité ssi $(x,y)$ liée.
+]
+
+#proof[
+  Si $x = 0$ ou $y = lambda x$, on a égalité :
+  $scal2(x,lambda x) = lambda norm(x)^2$
+
+  Supposons maintenant $(x,y)$ libre. Soit $lambda in RR$.
+
+  $norm(x + lambda y)^2 = scal2(x+lambda y,x+lambda y) = scal2(x,x+lambda y) + lambda scal2(y,x+lambda y) = scal2(x,x) + lambda scal2(x, y) + lambda^2 scal2(y,y) + lambda scal2(x,y) = norm(x)^2 + 2lambda scal2(x,y) + norm(y)^2$
+  C'est un polynôme de degré 2 en lambda qui ne s'annule pas, car à coefficients positifs. Ainsi son déterminant est $<= 0$. Donc :
+  $Delta = 4 scal2(x,y)^2 - 4 norm(x)norm(y) <= 0 <=> abs(scal2(x,y)) <= norm(x)norm(y)$
+
+  D'où l'inégalité.
+  Montrons que si l'on a égalité, $y = lambda x$.
+
+  Supposons $abs(scal2(x,y)) = norm(x)norm(y)$. Posons $alpha = scal2(x,y)/norm(x)^2$ (on suppose que $x !=0$ donc $norm(x) != 0$)
+
+  Ainsi :
+  $
+  scal2(y-alpha x, y - alpha x) = norm(y - alpha x)^2 = norm(y)^2 - 2alpha scal2(x,y) + alpha^2 norm(x) = norm(y)^2- 2 scal2(x,y)^2/norm(x^2) + scal2(x,y)^2/norm(x)^2 = norm(y)^2 - scal2(x,y)^2/norm(x)^2$.
+  Or par hypothèse : $norm(y)^2 = scal2(x,y)^2/norm(x)^2$ donc $norm(y - alpha x) = 0$ càd $y = alpha x$
+]
+
+#corollary("Inégalité de Minkowski")[
+  Soit $E$ un espace préhilbertien réel.
+
+  Pour tout $x,y in E$ : $norm(x + y) <= norm(x) + norm(y)$
+
+  avec égalité ssi $x,y$ sont positivement liés i.e. $x = 0$ ou $x = lambda y$ avec $lambda in RR^+$
+]
+#proof[
+  $norm(x + y)^2 = norm(x)^2 + 2 scal2(x,y) + norm(y)^2 <=^"C-S" norm(x^2) + norm(y)^2 + 2 norm(x)norm(y) = (norm(x)+norm(y))^2$
+
+  Par positivité de la norme :
+  $
+  norm(x + y) <= norm(x) + norm(y)
+  $
+
+  Si x = 0, facile
+  Si $y = lambda x$ avec $lambda in RR$ :
+  $norm(x+y) = (lambda+1) norm(x)$ d'où l'égalité.
+  
+  Réciproquement, si on a égalité, on a le cas d'égalité de Cauchy-Schwarz + $abs(scal2(x,y)) = scal2(x,y)$. D'où la liaison positive.
+]
+
+#corollary[
+  L'application $norm(.) : E -> RR$ est une norme, dite euclidienne, sur E.
+
+  On appelle Espace de Hilbert réel tout Espace Préhilbertien complet pour sa norme euclidienne.
+]
+
+#remark("Rappel sur la complétude")[
+  $(F,norm(.))$ est complet si toute suite convergente y est de cauchy pour $norm(.)$.
+]
+
+#remark[
+  Si $x,y$ deux vecteurs non-nuls de $E$, l'inégalité de Cauchy-Schwarz donne :
+  $
+  abs(scal2(x,y))/(norm(x)norm(y)) <= 1
+  $
+  Donc $exists! theta in [0,pi]$ tel que $cos theta = scal2(x,y)/(norm(x)norm(y))$. $theta$ est dit angle (non-orienté) entre les vecteurs $x$ et $y$.
 ]
