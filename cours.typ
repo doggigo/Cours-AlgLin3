@@ -119,6 +119,20 @@ Pour $j in [|1,n|]$, on définit $e_j^* : E -> K$ la forme linéaire définie pa
   Donc $transp(Q)P = I_n$ càd : $Q = transp(P^(-1))$
 ]
 
+#remark("Trouver une base duale/antéduale")[
+  En connaissant la base duale de la base canonique, on peut calculer la base duale de $(f_i)$ en prenant $M^* = transp(M^(-1))$ avec $M = Mat_((f_i),"b.c")(Id)$
+
+  #v(.5em)
+  
+  De même, pour trouver la base antéduale de $f_i^*$, on peut prendre la transposée de $Mat_((f_i^*),"b.c.")(Id)$
+]
+
+#remark("2nde méthode")[
+  On a : $ e_i^*(x) = 1/det(M) det(e_1, dots, e_(i-1),x,e_(i+1),dots,e_n) $
+  
+  qui est bien une application et vaut $delta_(i j)$ c'est-à-dire $cases(1 "si" x = e_i, 0 "sinon")$
+]
+
 #corollary[
   Toute base de $E^*$ est une base duale. Autrement dit, si $EEE'$ est une base de $E^*$, il existe une base $EEE$ de $E$ telle que $EEE' = EEE^*$ la base duale de $EEE$.
 
