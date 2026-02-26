@@ -123,13 +123,13 @@ Pour $j in [|1,n|]$, on définit $e_j^* : E -> K$ la forme linéaire définie pa
   En connaissant la base duale de la base canonique, on peut calculer la base duale de $(f_i)$ en prenant $M^* = transp(M^(-1))$ avec $M = Mat_((f_i),"b.c")(Id)$
 
   #v(.5em)
-  
+
   De même, pour trouver la base antéduale de $f_i^*$, on peut prendre la transposée de $Mat_((f_i^*),"b.c.")(Id)$
 ]
 
 #remark("2nde méthode")[
-  On a : $ e_i^*(x) = 1/det(M) det(e_1, dots, e_(i-1),x,e_(i+1),dots,e_n) $
-  
+  On a : $ e_i^*(x) = 1/det(M) det(e_1, dots, e_(i-1), x, e_(i+1), dots, e_n) $
+
   qui est bien une application et vaut $delta_(i j)$ c'est-à-dire $cases(1 "si" x = e_i, 0 "sinon")$
 ]
 
@@ -307,7 +307,7 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
   $forall x,y in E :$
   $
     scal2(x, y) & = 1/2 (norm(x + y)^2 - norm(x)^2 - norm(y)^2) \
-    & = 1/4 (norm(x + y)^2 - norm(x - y)^2)
+                & = 1/4 (norm(x + y)^2 - norm(x - y)^2)
   $
 
   On a donc une relation entre la norme et le produit scalaire
@@ -315,14 +315,14 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 
 #proof[
   + $
-  norm(x + y) = scal2(x+y,x+y) = scal2(x,x+y) + scal2(y,x+y) = scal2(x,x) + scal2(x,y) + scal2(y,x) + scal2(y,y) = norm(x)^2 + 2scal2(x,y) + norm(y)^2
-  $
-  ce qui donne la première formule en isolant $scal2(x,y)$
+      norm(x + y) = scal2(x+y, x+y) = scal2(x, x+y) + scal2(y, x+y) = scal2(x, x) + scal2(x, y) + scal2(y, x) + scal2(y, y) = norm(x)^2 + 2scal2(x, y) + norm(y)^2
+    $
+  ce qui donne la première formule en isolant $scal2(x, y)$
 
   + $
-    cases(norm(x + y) = norm(x)^2 + 2 scal2(x,y) + norm(y), norm(x-y) = norm(x)^2 - 2 scal2(x,y) + norm(y)^2)
+      cases(norm(x + y) = norm(x)^2 + 2 scal2(x, y) + norm(y), norm(x-y) = norm(x)^2 - 2 scal2(x, y) + norm(y)^2)
     $
-    On a donc le résultat en sommant et isolant $scal2(x,y)$
+    On a donc le résultat en sommant et isolant $scal2(x, y)$
 ]
 
 #corollary("Identité du parallélogramme")[
@@ -333,30 +333,29 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
   Soit $E$ un espace préhilbertien réel. Alors
   $forall x,y in E :$
   $
-  abs(scal2(x,y)) <= norm(x)norm(y)
+    abs(scal2(x, y)) <= norm(x)norm(y)
   $
   avec égalité ssi $(x,y)$ liée.
 ]
 
 #proof[
   Si $x = 0$ ou $y = lambda x$, on a égalité :
-  $scal2(x,lambda x) = lambda norm(x)^2$
+  $scal2(x, lambda x) = lambda norm(x)^2$
 
   Supposons maintenant $(x,y)$ libre. Soit $lambda in RR$.
 
-  $norm(x + lambda y)^2 = scal2(x+lambda y,x+lambda y) = scal2(x,x+lambda y) + lambda scal2(y,x+lambda y) = scal2(x,x) + lambda scal2(x, y) + lambda^2 scal2(y,y) + lambda scal2(x,y) = norm(x)^2 + 2lambda scal2(x,y) + norm(y)^2$
+  $norm(x + lambda y)^2 = scal2(x+lambda y, x+lambda y) = scal2(x, x+lambda y) + lambda scal2(y, x+lambda y) = scal2(x, x) + lambda scal2(x, y) + lambda^2 scal2(y, y) + lambda scal2(x, y) = norm(x)^2 + 2lambda scal2(x, y) + norm(y)^2$
   C'est un polynôme de degré 2 en lambda qui ne s'annule pas, car à coefficients positifs. Ainsi son déterminant est $<= 0$. Donc :
-  $Delta = 4 scal2(x,y)^2 - 4 norm(x)norm(y) <= 0 <=> abs(scal2(x,y)) <= norm(x)norm(y)$
+  $Delta = 4 scal2(x, y)^2 - 4 norm(x)norm(y) <= 0 <=> abs(scal2(x, y)) <= norm(x)norm(y)$
 
   D'où l'inégalité.
   Montrons que si l'on a égalité, $y = lambda x$.
 
-  Supposons $abs(scal2(x,y)) = norm(x)norm(y)$. Posons $alpha = scal2(x,y)/norm(x)^2$ (on suppose que $x !=0$ donc $norm(x) != 0$)
+  Supposons $abs(scal2(x, y)) = norm(x)norm(y)$. Posons $alpha = scal2(x, y)/norm(x)^2$ (on suppose que $x !=0$ donc $norm(x) != 0$)
 
   Ainsi :
-  $
-  scal2(y-alpha x, y - alpha x) = norm(y - alpha x)^2 = norm(y)^2 - 2alpha scal2(x,y) + alpha^2 norm(x) = norm(y)^2- 2 scal2(x,y)^2/norm(x^2) + scal2(x,y)^2/norm(x)^2 = norm(y)^2 - scal2(x,y)^2/norm(x)^2$.
-  Or par hypothèse : $norm(y)^2 = scal2(x,y)^2/norm(x)^2$ donc $norm(y - alpha x) = 0$ càd $y = alpha x$
+  $scal2(y-alpha x, y - alpha x) = norm(y - alpha x)^2 = norm(y)^2 - 2alpha scal2(x, y) + alpha^2 norm(x) = norm(y)^2- 2 scal2(x, y)^2/norm(x^2) + scal2(x, y)^2/norm(x)^2 = norm(y)^2 - scal2(x, y)^2/norm(x)^2$.
+  Or par hypothèse : $norm(y)^2 = scal2(x, y)^2/norm(x)^2$ donc $norm(y - alpha x) = 0$ càd $y = alpha x$
 ]
 
 #corollary("Inégalité de Minkowski")[
@@ -367,18 +366,18 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
   avec égalité ssi $x,y$ sont positivement liés i.e. $x = 0$ ou $x = lambda y$ avec $lambda in RR^+$
 ]
 #proof[
-  $norm(x + y)^2 = norm(x)^2 + 2 scal2(x,y) + norm(y)^2 <=^"C-S" norm(x^2) + norm(y)^2 + 2 norm(x)norm(y) = (norm(x)+norm(y))^2$
+  $norm(x + y)^2 = norm(x)^2 + 2 scal2(x, y) + norm(y)^2 <=^"C-S" norm(x^2) + norm(y)^2 + 2 norm(x)norm(y) = (norm(x)+norm(y))^2$
 
   Par positivité de la norme :
   $
-  norm(x + y) <= norm(x) + norm(y)
+    norm(x + y) <= norm(x) + norm(y)
   $
 
   Si x = 0, facile
   Si $y = lambda x$ avec $lambda in RR$ :
   $norm(x+y) = (lambda+1) norm(x)$ d'où l'égalité.
-  
-  Réciproquement, si on a égalité, on a le cas d'égalité de Cauchy-Schwarz + $abs(scal2(x,y)) = scal2(x,y)$. D'où la liaison positive.
+
+  Réciproquement, si on a égalité, on a le cas d'égalité de Cauchy-Schwarz + $abs(scal2(x, y)) = scal2(x, y)$. D'où la liaison positive.
 ]
 
 #corollary[
@@ -394,7 +393,207 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 #remark[
   Si $x,y$ deux vecteurs non-nuls de $E$, l'inégalité de Cauchy-Schwarz donne :
   $
-  abs(scal2(x,y))/(norm(x)norm(y)) <= 1
+    abs(scal2(x, y))/(norm(x)norm(y)) <= 1
   $
-  Donc $exists! theta in [0,pi]$ tel que $cos theta = scal2(x,y)/(norm(x)norm(y))$. $theta$ est dit angle (non-orienté) entre les vecteurs $x$ et $y$.
+  Donc $exists! theta in [0,pi]$ tel que $cos theta = scal2(x, y)/(norm(x)norm(y))$. $theta$ est dit angle (non-orienté) entre les vecteurs $x$ et $y$.
+]
+
+#pagebreak()
+
+= Réduction de Gauss
+Donnons-nous un $RR$-ev muni d'une base $(e_1,dots,e_n)$. Soient $x = sum_(i = 1)^n x_i e_i, y = sum_(i = 1)^n y_i e_i$
+
+Soit $f$ une forme #underline("bilinéaire") sur $E$.
+
+Alors :
+$
+  f(x,y) = f(sum_(i=1)^n x_i e_i,sum_(i=1)^n y_i e_i) = sum_(i=1)^n x_i f(e_i, sum_(j=1)^n y_j e_j) = sum_(i=1)^n sum_(j=1)^n x_i y_j f(e_i,e_j)
+$
+
+Si on note $a_(i j) = f(e_i,e_j)$ :
+$
+  f(x,y) = sum_(i,j=1)^n a_(i j)x_i y_j
+$
+
+Maintenant, si $f$ est symétrique :
+$
+  a_(i j) = f(e_i, e_j) = f(e_j, e_i) = a_(j i)
+$
+Donc $f(x,x) = underbrace([sum_(i = 1)^n a_(i i)x_i^2], "terme carré") + underbrace([2 sum_(1 <= i < j <= n) a_(i j) x_i x_j], "terme rectangle")$
+
+Donc se donner une norme euclidienne revient à se donner un polynôme homogène de degré 2 en les $x_i$, $i = 1 ... n$ (pourvu que $f$ soit définie positive).
+
+En particulier, $norm(lambda x)^2 = lambda^2 norm(x)^2 quad forall lambda in RR$
+
+La forme polaire d'une forme bilinéaire symétrique s'obtient en #underline(["polarisant les monômes"]).
++ Les termes carrés $a_(i i) x_i^2$ deviennent $a_(i i)x_i y_i$
++ Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_i j x_i y_j + a_(i j) x_j y_i)$
+
+#example[
+  $E = RR^3, thick f(x,x) = x_1^2 + 2x_2^2 + 3x_3^2 + 4 x_1 x_2 + x_1 x_3$
+
+  Soit $x = (x_1,x_2,x_3)$, $y = (y_1,y_2,y_3)$
+
+  $
+    f(x,y) & = x_1 y_1 + 2 x_2y_2 + 3x_3y_3 + 1/2 ( 4 (x_1 y_2 + x_2 y_1) + (x_1y_3 + x_3y_1)) \
+           & = x_1 y_1 + 2 x_2y_2 + 3x_3y_3 + 2 (x_1y_2 + x_2 y_1) + 1/2 (x_1 y_3 + x_3 y_1)
+  $
+]
+
+La réduction de Gauss est un algorithme permettant de décomposer tout polynôme homogène de degré $2$ en somme de carrés de formes linéaires indépendantes. Elle repose sur les identités :
+$
+       a^2 + 2a b = (a+b)^2 - b^2 quad & (A) \
+  a b = 1/4 (a+b)^2 - 1/4 (a-b)^2 quad & (B)
+$
+
+On utilisera, dans ce chapitre, uniquement $(A)$. $(B)$ servira surtout plus tard.
+
+Il faut choisir en priorité les termes carrés, et si possible de coefficient $+-1$. Voir les exemples
+
+#example[
+  $E = RR^3, thick (e_1,e_2,e_3) "la b.c."$, et $ f(x,x) = x_1^2 + 2 x_2^2 + 5 x_3^2 + 2x_1x_2 - 4x_2x_3 $
+
+  Choisissons le terme $x_1^2$
+
+  Alors $ f(x,x) & = (x_1^2 + 2x_1x_2) + 2x_2^2 + 5 x_3^2 - 4x_2x_3 \
+         & =^((A)) [(x_1+x_2)^2 - x_2^2] + 2x_2^2 + 5x_3^2 - 4x_2x_3 \
+         & = (x_1+x_2)^2 + x_2^2 + 5x_3^2 - 4x_2x_3 $
+  Choisissons le terme $x_2^2$
+  Alors $ f(x,x) & = (x_1 + x_2)^2 + (x_2^2 - 4 x_2 x_3) + 5 x_3^2 \
+         & =^((A)) (x_1 + x_2)^2 + [(x_2-2x_3)^2 - 4x_3^2] + 5x_3^2 \
+         & = (x_1 + x_2)^2 + (x_2 - 2x_3)^2 + x_3^2 >= 0 $
+
+  $f(x,x) = 0 <==> cases(x_1 + x_2 = 0, x_2 - 2x_3 = 0, x_3 = 0) <==> x = (0,0,0)$
+
+  $f$ est un produit scalaire sur $RR^3$.
+
+  On n'aura pas besoin de prouver que $f(x,x) = 0 => x = 0$ par véracité de l'algorithme.
+
+
+  Les formes linéaires obtenues sont indépendantes. Posons $ l_1(x) = x_1 + x_2, & "soit" l_1 = e_1^* + e_2^* \
+  l_2(x) = x_2 - 2x_3 & "soit" l_2 = e_2^* - 2e_3^* \
+         l_3(x) = x_3 & "soit" l_3 = e_3^* $
+
+  $(l_1,l_2,l_3)$ est libre car det(l_1,l_2,l_3) = 1 != 0, d'où $(l_1,l_2,l_3)$ base de $(RR^3)^*$
+]
+
+#example[
+  $E = RR^3, x = (x_1,x_2, x_3), quad f(x,x) = x_1 x_2 + x_1 x_3 + x_2 x_3$
+
+  Choisissons le terme $x_1 x_2$
+
+  Alors $ f(x,x) & = underbrace((x_1 + x_3), a)underbrace((x_2+x_3), b) - x_3^2 \
+         & =^((B))1/4 (x_1 + x_2 + 3x_3)^2 - 1/4 (x_1 + x_2 + 2x_3)^2 - 1/4 (x_1 - x_2)^2 - x_3^2 $
+  n'est pas positive, $f((-2,0,1),(-2,0,1)) = -1-1 = -2 < 0$ donc $f$ n'est pas un produit scalaire.
+
+  Si on pose $l_1 = e_1^* + e_2^*, l_2 = e_1^* - e_2^*, l_3 = e_3^*$, alors $(l_1,l_2,l_3)$ est libre.
+]
+
+#example[
+  $E = RR^3, quad x = (x_1,x_2,x_3)$
+
+  $
+    f(x,x) & = x_1^2 + 5x_2^2 + 2x_3^2 + 4x_1x_2 - 2x_1x_3 - 2x_2x_3 \
+           & = (x_1^2 + 4x_1x_2 - 2x_1x_3) + 5x_2^2 + 2x_3^2 - 2x_2x_3 \
+           & = [x_1 + 2x_1(2x_2 - x_3)] + 5x_2^2 + 2x_3^2 - 2x_2x_3 \
+           & =^((A)) [(x_1 + 2x_2 - x_3)^2 - (2x_2 - x_3)^2] + 5x_2_2x_3^2 - 2x_2x_3 \
+           & = (x_1 + 2x_2 - x_3)^2 + x_2^2 + x_3^2 + 2 x_2 x_3 \
+           & = (x_1 + 2x_2 - x_3)^2 + (x_2 + x_3)^2 >= 0
+  $
+
+  Si on pose $l_1 = e_1^* + 2e_2^* - e_3^*, l_2 = e_2^* + e_3^*$.
+  $(l_1, l_2)$ est libre, mais ne forme pas une base de $E^*$, c'est-à-dire que $f(x,x) = 0$ est une équation à 3 inconnues et 2 équations, donc admet une infinité de solutions (Cramer etc..), ainsi $f$ n'est pas un produit scalaire.
+]
+
+#theorem("Réduction de Gauss")[
+  Soit $E$ un $KK$-ev de dimension finie,
+  alors il existe un algorithme permettant de décomposer tout polynôme de degré 2 sur $E$ en une combinaison linéaire de carrés de formes linéaires.
+]
+
+#proof([Pt. 1 : Énonciation de la récurrence et cas avec terme carré])[
+  La démonstration se fait par récurrence sur $n = dim E$.
+
+  On suppose que $f$ est une forme bilinéaire symétrique non-nulle.
+  + Si $n = 1, f(x,x) = a x^2, a in RR^*$, rien à dire.
+  + Supposons que pour tout $p < n$, on ait un algorithme permettant de décomposer tout polynôme de degré 2 sur un espace de dimension $p$ en une combinaison linéaire de carrés de formes linéaires indépendantes.
+
+    Soit $E$ de dimension $n$, muni d'une base $(e_i)_(1<=i<=n)$ et d'une forme bilinéaire symétrique non-nulle. Soit $x = sum_(i = 1)^n x_i e_i$
+
+    + Supposons que $f(x,x)$ possède un terme carré que l'on peut supposer être $a x_1^2, a in RR^*$
+      $f(x,x) = a x_1^2 + x_1 L(x_2, dots, x_n) + f_1 (x_2, dots, x_n)$ où $L$ est une forme linéaire en $x_2, dots, x_n$ et $f_1$ est un polynôme homogène de degré 2 en $x_2, dots x_n$.
+      
+      $
+      f(x,x) &= a[x_1^2 + 2x_1 L(x_2,dots,x_n)/(2a)] + f_1 (x_2,dots,x_n) \
+      &=^((A)) a[(x_1 + L(x_1, dots, x_n)/(2a)) - L(x_2, dots,x_n)^2/(4 a^2)] + f_1(x_2,dots,x_n) \
+      &= a(x_1 + L(x_2, dots,x_n)/(2a))^2 + q(x_2, dots, x_n) quad "où" q(x_1,dots,x_n) \
+      &= -L(x_2,dots,x_n)^2/(4 a) + f(x_2,dots,x_n)  
+      $
+      c'est un polynôme de degré 2 où n'apparaît pas $x_1$
+
+      On applique l'hypothèse de récurrence à $Vect(e_2,dots,e_n)$ muni de $q$ si $q != 0$. Rq : si $q = 0$, on a fini.
+
+      On a : $q(x_2, dots, x_n) = sum_(i =2)^r a_i l_i^2 (x_2,dots,x_n)$ où $(l_2, dots,l_r)$ est une famille libre de $Vect(e_2,dots,e_n)^*$.
+
+      Si $x = sum_(i = 1)^n x_i e_i in E$, notons $phi_j(x_1,dots,x_n) = phi_j (x_1,dots,x_n) = phi_j (x_2,dots,x_n)$, pour $j = 2,...,r$ et $phi_1 (x_1,dots,x_n) = x_1 + L(x_2, dots, x_n)/(2 a)$
+
+      $f(x,x) = a phi_1^2(x_1, dots, x_n) + sum_(j = 2)^r a_j phi_j (x_1,dots,x_n)^2$. Il reste à montrer que $(phi_1, dots, phi_r)$ est libre dans $E^*$. Soit l'équation $sum_(i = 1)^r lambda_i phi_i = 0$. En particulier $sum_(i=1)^r lambda_i phi_i (e_1) = lambda_1 phi_1(e_1) = lambda_1 = 0$.
+
+      Pour $j = 2, dots, r, sum_(i = 1)^r lambda_i phi_i (e_j) = sum_(i = 2)^r lambda_i phi_i (e_j) = 0$, alors $lambda_i = 0 forall i in [|2,r|]$ car $(phi_2, dots, phi_r)$ libre.
+]
+
+#proof([Cas où aucun terme carré (on travaille avec les termes rectangles)])[
+
+  Si $f$ ne contient  aucun terme carré, donnons-nous une forme rectangle, par exemple $a  x_1 x_2, a in RR^*$
+  $
+  f(x,x) = a x_1 x_2 + x_1 L(x_3, dots, x_n) + x_2 L_2 (x_3, dots, x_n) + f_2(x_3,dots,x_n)
+  $
+  où $L_1,L_2$ sont des formes linéaires en $x_3,dots,x_n$ et $f_2$ un polynôme homogène en $x_3, dots, x_n$.
+  $
+  f(x,x) &= a[x_1x_2 + X_1 L_1(x_3, dots, x_n)/a + x_2 L_2 (x_3, dots, x_n)/a] + f_2 (x_3, dots, x_n \
+  &= a[(x_1 + (L_2(x_3, dots, x_n))/a)(x_2 + (L_1(x_3,dots,x_n))/a) - (L_1 (x_3,dots,x_n)L_2(x_3,dots,x_n))/a^2] + f_2 (x_3,dots,x_n) \
+  &=^((B)) a[1/4 (x_1 + x_2 + (L_1(x_3,dots,x_n))/a + (L_2(x_3,dots,x_n))/a)^2 - 1/4 (x_1-x_2+ ((L_2(x_3,dots,x_n)-L_1(x_3,dots,_n))/a)^2 )] \
+  &- (L_1(x_3,dots,x_n)L_2(x_3,dots,x_n))/a + f_2 (x_3,dots,x_n) 
+  $
+
+  $q(x_3,dots,x_n) = - (L_1(x_3,dots,x_n)L_2(x_3,dots,x_n))/a + f_2 (x_3,dots,x_n)$ est un polynôme homogène de degré $2$ sur $Vect(e_3,dots,e_n)$.
+
+  Si $q = 0$, c'est fini, si $q != 0$, on applique l'hypothèse de récurrence à $q$ sur $Vect(e_3, dots,e_n)$.
+
+  $q(x_3,dots,x_n) = sum_( i = 3)^s a_i l_i (x_3,dots,x_n)^2$ avec $(l_3,dots,l_s)$ libre dans $Vect(e_3,dots,e_n)^*$
+
+  Posons $
+  phi_1(x_1,dots,x_n) = x_1 + x_2 + (L_1(x_3,dots,x_n) + L_2(x_3,dots,x_n))/a \
+  phi_2(x_1,dots,x_n) = x_1 + x_2 + (L_2(x_3,dots,x_n) - L_1(x_3,dots,x_n))/a \
+  forall i = 3,dots,s,phi_i(x_1,dots,x_n) = l_i (x_3,dots,x_n)
+  $
+
+  Il reste à montrer que $phi_1,dots,phi_s$ est libre dans $E^*$
+
+  Soit l'équation $sum_(i = 1)^n phi_i = 0$
+
+  En particulier
+  $
+  sum_(i = 1)^s lambda_i phi_i (e_i) lambda_1 phi_1(e_i) + lambda_2 phi_2(e_1) = lambda_1 + lambda_2 = 0 \
+  sum_(i = 1)^s lambda_i phi_i (e_2) = lambda_1 phi_1(e_2) + lambda_2 phi_2 (e_2) = lambda_1 - lambda_2 = 0
+  $
+  d'où $cases(lambda_1 + lambda_2 = 0, lambda_1 - lambda_2 = 0) => lambda_1 = lambda_2 = 0$
+
+  On termine comme dans le premier cas pour déduire les autres coefficients.
+]
+
+#remark[
+  L'algorithme de réduction de Gauss n'est pas unique mais il permet d'obtenir une famille libre sur $E^*$.
+]
+
+#theorem[
+  Soit $f$ une forme bilinéaire symétrique sur un $RR$-ev de dimension finie $n$. Alors :
+  
+  $f$ est définie positive (i.e. produit scalaire) sur $E$ si, et seulement si la réduction de Gauss de $f$ est une combinaison linéaire de $n$ carrés de formes linéaires (indépendantes) à coefficients strictement positifs.
+]
+
+#proof[
+  Notons qu'il est nécessaire d'avoir un terme carré à chaque étape de la réduction pour que $f$ soit positive. Si la réduction de Gauss donne une combinaison linéaire de $n$ carrés à coefficients strictement positifs, $f$ sera positive et $f(x,x) = 0$ donne un système homogène de $n$ équations à $n$ inconnues qui est échelonné (puisqu'on enlève une variable à chaque étape). Ce système admet une unique solution qui va être nulle. Donc $f$ est définie. 
+  
+  Réciproquement :
+  Si la réduction de Gauss contient strictement moins de $n$ carrés, le système donné par $f(x,x) = 0$ admettra des solutions non-nulles car il y a moins d'équations indépendantes que d'inconnues. (rq : $f: RR^n -> RR^p, p < n$ n'est jamais injective)
 ]
