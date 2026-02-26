@@ -431,7 +431,7 @@ En particulier, $norm(lambda x)^2 = lambda^2 norm(x)^2 quad forall lambda in RR$
 #method("Polarisation")[
   La forme polaire $(f(x,y))$ d'une forme bilinéaire symétrique s'obtient à partir de la forme quadratique en #underline(["polarisant les monômes"]).
 + Les termes carrés $a_(i i) x_i^2$ deviennent $a_(i i)x_i y_i$
-+ Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_(i j) x_i y_j + a_(i j) x_j y_i)$
++ Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_(i j) x_i y_j + a_(j i) x_j y_i)$
 
 ]
 
