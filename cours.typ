@@ -428,9 +428,12 @@ Donc se donner une norme euclidienne revient à se donner un polynôme homogène
 
 En particulier, $norm(lambda x)^2 = lambda^2 norm(x)^2 quad forall lambda in RR$
 
-La forme polaire d'une forme bilinéaire symétrique s'obtient en #underline(["polarisant les monômes"]).
+#method("Polarisation")[
+  La forme polaire $(f(x,y))$ d'une forme bilinéaire symétrique s'obtient à partir de la forme quadratique en #underline(["polarisant les monômes"]).
 + Les termes carrés $a_(i i) x_i^2$ deviennent $a_(i i)x_i y_i$
 + Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_(i j) x_i y_j + a_(i j) x_j y_i)$
+
+]
 
 #example[
   $E = RR^3, thick f(x,x) = x_1^2 + 2x_2^2 + 3x_3^2 + 4 x_1 x_2 + x_1 x_3$
