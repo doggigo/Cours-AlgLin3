@@ -1,7 +1,8 @@
 #import "@local/doc_fac:0.1.0": *
 #import "@local/utils:0.1.0": *
 
-#let only-thms = false
+
+#let only-thms = sys.inputs.at("only-thms",default: "false") == "true"
 
 #show: doc_fac.with(
   title: "Cours AlgLin3",
@@ -9,6 +10,8 @@
   show-examples: not only-thms,
   show-exercises: not only-thms,
   show-proofs: not only-thms,
+  page-numbering: "1"
+
 )
 
 #outline()
