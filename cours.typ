@@ -19,7 +19,7 @@ $KK$ désigne un corps $(KK = RR "ou" CC)$, $E$ sera un $KK-$ev
 == Dual
 
 #definition[
-  On appelle forme linéaire sur $E$ toute applicatio linéaire de $E$ à valeur dans $KK$.
+  On appelle forme linéaire sur $E$ toute application linéaire de $E$ à valeur dans $KK$.
 
   On appelle *dual* de $E$, noté $E^*$ (ou $E^checkmark$) le $KK$-ev formé des formes linéaires sur $E$, $E = Lin(E, KK)$.
 ]
@@ -119,7 +119,7 @@ Pour $j in [|1,n|]$, on définit $e_j^* : E -> K$ la forme linéaire définie pa
   Donc $transp(Q)P = I_n$ càd : $Q = transp(P^(-1))$
 ]
 
-#remark("Trouver une base duale/antéduale")[
+#method("Trouver une base duale/antéduale")[
   En connaissant la base duale de la base canonique, on peut calculer la base duale de $(f_i)$ en prenant $M^* = transp(M^(-1))$ avec $M = Mat_((f_i),"b.c")(Id)$
 
   #v(.5em)
@@ -127,7 +127,7 @@ Pour $j in [|1,n|]$, on définit $e_j^* : E -> K$ la forme linéaire définie pa
   De même, pour trouver la base antéduale de $f_i^*$, on peut prendre la transposée de $Mat_((f_i^*),"b.c.")(Id)$
 ]
 
-#remark("2nde méthode")[
+#method("2nde méthode")[
   On a : $ e_i^*(x) = 1/det(M) det(e_1, dots, e_(i-1), x, e_(i+1), dots, e_n) $
 
   qui est bien une application et vaut $delta_(i j)$ c'est-à-dire $cases(1 "si" x = e_i, 0 "sinon")$
@@ -427,7 +427,7 @@ En particulier, $norm(lambda x)^2 = lambda^2 norm(x)^2 quad forall lambda in RR$
 
 La forme polaire d'une forme bilinéaire symétrique s'obtient en #underline(["polarisant les monômes"]).
 + Les termes carrés $a_(i i) x_i^2$ deviennent $a_(i i)x_i y_i$
-+ Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_i j x_i y_j + a_(i j) x_j y_i)$
++ Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_(i j) x_i y_j + a_(i j) x_j y_i)$
 
 #example[
   $E = RR^3, thick f(x,x) = x_1^2 + 2x_2^2 + 3x_3^2 + 4 x_1 x_2 + x_1 x_3$
@@ -442,11 +442,11 @@ La forme polaire d'une forme bilinéaire symétrique s'obtient en #underline(["p
 
 La réduction de Gauss est un algorithme permettant de décomposer tout polynôme homogène de degré $2$ en somme de carrés de formes linéaires indépendantes. Elle repose sur les identités :
 $
-       a^2 + 2a b = (a+b)^2 - b^2 quad & (A) \
-  a b = 1/4 (a+b)^2 - 1/4 (a-b)^2 quad & (B)
+  cases(a^2 + 2a b = (a+b)^2 - b^2 quad & (A),
+  a b = 1/4 (a+b)^2 - 1/4 (a-b)^2 quad & (B))
 $
 
-On utilisera, dans ce chapitre, uniquement $(A)$. $(B)$ servira surtout plus tard.
+On utilisera, dans ce chapitre, majoritairement $(A)$. $(B)$ servira surtout plus tard.
 
 Il faut choisir en priorité les termes carrés, et si possible de coefficient $+-1$. Voir les exemples
 
@@ -474,7 +474,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   l_2(x) = x_2 - 2x_3 & "soit" l_2 = e_2^* - 2e_3^* \
          l_3(x) = x_3 & "soit" l_3 = e_3^* $
 
-  $(l_1,l_2,l_3)$ est libre car det(l_1,l_2,l_3) = 1 != 0, d'où $(l_1,l_2,l_3)$ base de $(RR^3)^*$
+  $(l_1,l_2,l_3)$ est libre car $det(l_1,l_2,l_3) = 1 != 0$, d'où $(l_1,l_2,l_3)$ base de $(RR^3)^*$
 ]
 
 #example[
@@ -493,7 +493,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   $E = RR^3, quad x = (x_1,x_2,x_3)$
 
   $
-    f(x,x) & = x_1^2 + 5x_2^2 + 2x_3^2 + 4x_1x_2 - 2x_1x_3 - 2x_2x_3 \
+    f(x,x) & = underbracket(x_1^2) + 5x_2^2 + 2x_3^2 + 4x_1x_2 - 2x_1x_3 - 2x_2x_3 \
            & = (x_1^2 + 4x_1x_2 - 2x_1x_3) + 5x_2^2 + 2x_3^2 - 2x_2x_3 \
            & = [x_1 + 2x_1(2x_2 - x_3)] + 5x_2^2 + 2x_3^2 - 2x_2x_3 \
            & =^((A)) [(x_1 + 2x_2 - x_3)^2 - (2x_2 - x_3)^2] + 5x_2_2x_3^2 - 2x_2x_3 \
@@ -505,9 +505,28 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   $(l_1, l_2)$ est libre, mais ne forme pas une base de $E^*$, c'est-à-dire que $f(x,x) = 0$ est une équation à 3 inconnues et 2 équations, donc admet une infinité de solutions (Cramer etc..), ainsi $f$ n'est pas un produit scalaire.
 ]
 
-#theorem("Réduction de Gauss")[
+#proposition("Réduction de Gauss")[
   Soit $E$ un $KK$-ev de dimension finie,
-  alors il existe un algorithme permettant de décomposer tout polynôme de degré 2 sur $E$ en une combinaison linéaire de carrés de formes linéaires.
+  alors il existe un algorithme permettant de décomposer toute forme quadratique sur $E$ en une combinaison linéaire de carrés de formes linéaires.
+]
+
+#method("Réduction de Gauss")[
+  Soit $E$ un $KK$-ev, $f in BBB(E)$. L'algorithme de Gauss s'effectue de cette manière :
+  + Se ramener à $f(x,x) = sum_(i = 1)^n a_(i i)x_i^2 + 2 sum_(1 <= i < j <= n) a_(i j) x_i x_j$ avec $a_(i,j) = f(e_i,e_j)$
+  +  Choisir un terme, de préférence carré s'il existe, sinon rectangle.
+    -  Si le terme est un carré $a x_i^2$ rassembler tous les $x_i$ sous la forme : $
+      a x_i^2 + 2 x_i L(x_1,dots,x_(i-1),x_(i+1),x_n) = a[x_i^2 + (2x_i L)/a]
+      $
+      avec $L$ forme linéaire ne dépendant pas de $x_i$, $q$ forme bilinéaire n'en dépendant pas non plus.
+      
+      Puis remarquer l'identité $(A)$ :
+      $
+        a[x_i^2 + (2x_i L)/a] = a[(x_i + L/a)^2 - (L/a)^2]
+      $
+        
+    - Si le terme est un rectangle $x_i x_j$, utiliser $x_i x_j = 1/4 (x_i + x_j)^2 - 1/4 (x_i - x_j)^2$ puis appliquer le cas carré
+  + Répéter sur les termes qui ne sont pas isolés.
+
 ]
 
 #proof([Pt. 1 : Énonciation de la récurrence et cas avec terme carré])[
