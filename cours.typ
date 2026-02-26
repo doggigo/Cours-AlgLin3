@@ -1,10 +1,32 @@
-#import "@local/doc_fac:0.1.0": *
 #import "@local/utils:0.1.0": *
+#import "@local/doc_fac:0.1.0" as theme_colors
+#import "@local/doc_cours_nb:0.1.0" as theme_nb
 
+#let theme_default = "colors"
+
+#let theme_name = sys.inputs.at("theme", default: theme_default)
+
+
+#let theme = if theme_name == "colors" { theme_colors } else { theme_nb }
+
+// On "sort" les fonctions du module pour les mettre dans le scope global
+#let theorem = theme.theorem
+#let corollary = theme.corollary
+#let lemma = theme.lemma
+#let property = theme.property
+#let proposition = theme.proposition
+#let exercice = theme.exercice
+#let example = theme.example
+#let notation = theme.notation
+#let remark = theme.remark
+#let method = theme.method
+#let definition = theme.definition
+#let vocabulary = theme.vocabulary
+#let proof = theme.proof
 
 #let only-thms = sys.inputs.at("only-thms",default: "false") == "true"
 
-#show: doc_fac.with(
+#show: theme.doc_fac.with(
   title: "Cours AlgLin3",
   numbering: "I. 1. 1. a) i)",
   show-examples: not only-thms,
@@ -318,7 +340,9 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 
 #proof[
   + $
-      norm(x + y) = scal2(x+y, x+y) = scal2(x, x+y) + scal2(y, x+y) = scal2(x, x) + scal2(x, y) + scal2(y, x) + scal2(y, y) = norm(x)^2 + 2scal2(x, y) + norm(y)^2
+      norm(x + y) = scal2(x+y, x+y) &= scal2(x, x+y) + scal2(y, x+y)
+      = scal2(x, x) + scal2(x, y) + scal2(y, x) + scal2(y, y)  \
+      &= norm(x)^2 + 2scal2(x, y) + norm(y)^2
     $
   ce qui donne la première formule en isolant $scal2(x, y)$
 
@@ -376,7 +400,7 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
     norm(x + y) <= norm(x) + norm(y)
   $
 
-  Si x = 0, facile
+  Si $x = 0$, facile
   Si $y = lambda x$ avec $lambda in RR$ :
   $norm(x+y) = (lambda+1) norm(x)$ d'où l'égalité.
 
