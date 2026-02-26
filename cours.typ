@@ -528,9 +528,9 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
       Puis remarquer l'identité $(A)$ :
       $
         a[x_i^2 + (2x_i L)/a] = a[(x_i + L/a)^2 - (L/a)^2] = a(x_i+L/a)^2 - L^2/a
-      $ et enfin, développer $-L^2/a$
+      $ et enfin, développer la partie négative
         
-    - Si le terme est un rectangle $x_i x_j$, utiliser $x_i x_j = 1/4 (x_i + x_j)^2 - 1/4 (x_i - x_j)^2$ puis appliquer le cas carré
+    - Si le terme est un rectangle $x_i x_j$, utiliser l'identité (B) : $x_i x_j = 1/4 (x_i + x_j)^2 - 1/4 (x_i - x_j)^2$ puis développer la partie négative et continuer
   + Répéter sur les termes qui ne sont pas isolés.
 
 ]
