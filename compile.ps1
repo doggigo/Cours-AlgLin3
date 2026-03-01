@@ -1,5 +1,5 @@
 typst compile "./cours.typ" "./cours-only-thms.pdf" --input only-thms=true 
 typst compile "./cours.typ" "./cours.pdf"
-typst compile "./cours.typ" "./cours-only-thms-bw.pdf" --input only-thms=true theme=bw
+typst compile "./cours.typ" "./cours-only-thms-bw.pdf" --input only-thms=true --input theme=bw
 typst compile "./cours.typ" "./cours-bw.pdf" --input theme=bw
 echo "Documents compilés avec succès"
