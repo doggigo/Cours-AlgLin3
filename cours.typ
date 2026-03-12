@@ -9,7 +9,6 @@
 
 #let theme = if theme_name == "colors" { theme_colors } else { theme_nb }
 
-// On "sort" les fonctions du module pour les mettre dans le scope global
 #let theorem = theme.theorem
 #let corollary = theme.corollary
 #let lemma = theme.lemma
@@ -84,7 +83,7 @@ $KK$ désigne un corps $(KK = RR "ou" CC)$, $E$ sera un $KK-$ev
 ]
 
 #example[
-  + $H = {A in M_n (KK) | Tr(A) = 0}$ est un hyperplan de $MMM_n (KK)$. Tr est non-nulle : $Tr(I_n) = n$ par ex
+  + $H = {A in M_n (KK) | Tr(A) = 0}$ est un hyperplan de $M_n (KK)$. Tr est non-nulle : $Tr(I_n) = n$ par ex
   + $H = {(x,y,z) in RR^3 | 3 x - y + 2 z = 0}$ est un hyperplan.
   + $H = {P in KK[Z] | P(1) = 0}$ est un hyperplan car l'application n'est pas nulle.
 ]
@@ -156,6 +155,10 @@ Pour $j in [|1,n|]$, on définit $e_j^* : E -> K$ la forme linéaire définie pa
   On a : $ e_i^*(x) = 1/det(M) det(e_1, dots, e_(i-1), x, e_(i+1), dots, e_n) $
 
   qui est bien une application et vaut $delta_(i j)$ c'est-à-dire $cases(1 "si" x = e_i, 0 "sinon")$
+]
+
+#remark("Sur la méthode")[
+  En général on part d'un ev $E$ muni d'une base canonique
 ]
 
 #corollary[
@@ -644,5 +647,258 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   Notons qu'il est nécessaire d'avoir un terme carré à chaque étape de la réduction pour que $f$ soit positive. Si la réduction de Gauss donne une combinaison linéaire de $n$ carrés à coefficients strictement positifs, $f$ sera positive et $f(x,x) = 0$ donne un système homogène de $n$ équations à $n$ inconnues qui est échelonné (puisqu'on enlève une variable à chaque étape). Ce système admet une unique solution qui va être nulle. Donc $f$ est définie. 
   
   Réciproquement :
-  Si la réduction de Gauss contient strictement moins de $n$ carrés, le système donné par $f(x,x) = 0$ admettra des solutions non-nulles car il y a moins d'équations indépendantes que d'inconnues. (rq : $f: RR^n -> RR^p, p < n$ n'est jamais injective)
+  Si la réduction de Gauss contient strictement moins de $n$ carrés, le système donné par $f(x,x) = 0$ admettra des solutions non-nulles car il y a moins d'équations indépendantes que d'inconnues. (rq : $f in Lin(RR^n,RR^p), p < n$ n'est jamais injective)
 ]
+
+
+= Représentation matricielle d'une forme bilinéaire
+
+Soit $E$ un $RR$-ev de dimension $n$, $B in BBB(E)$, $(e_1,dots,e_n)$ une base de $E$.
+
+Prenons $x = sum_(i = 1)^n x_i e_i$, $y = sum_(j = 1^n)y_j e_j$
+
+Par bilinearité, $B(x,y) = sum_(i,j=1)^n x_i y_j B(e_i,e_j)$
+Si on pose $a_(i j) = B(e_i,e_j)$, $A = (a_(i j))_(1<=i,j<=n) in M_n (RR)$ est appelée matrice de la forme bilinéaire $B$ dans la base $(e_1,dots,e_n)$.
+
+Maintenant si $X = vec(x_1,vdots,x_n)$, $Y = vec(y_1,vdots,y_n)$, alors :
+$
+B(x,y) = transp(X)A Y
+$
+
+#example[
+  $B(x,y) = 5x_1y_1 - 2x_2y_2 + 4x_3y_3 + 7x_1y_2 + 6x_1y_3 + 6x_3y_1 + 7x_2y_1$
+
+  dans $RR^3, quad x = (x_1,x_2,x_3), y = (y_1,y_2,y_3)$.
+
+  Dans la base canonique de $RR^3$, la matrice de $B$ est :
+  $
+  A = mat(
+    5,7,6;
+    7,-2,0;
+    6,0,4 
+  )
+  $
+]
+
+#remark[
+  Si $B$ est symétrique, $A$ est symétrique : $forall i,j in [|1,n|] : a_(i j) = B(e_i,e_j) = B(e_j,e_i) = a_(j i)$
+]
+
+#theorem("Changement de base")[
+  Si $EEE,EEE'$ sont deux bases de $E$, notons $P$ la matrice de passage de $EEE$ à $EEE'$, $A$ la matrice d'une forme bilinéaire $B in BBB(E)$ dans la base $EEE$.
+
+  Alors la matrice de $B$ dans la base $EEE'$ est $transp(P)A P$
+]
+
+#remark[
+  Attention, il ne faut pas confondre avec le changement de base d'un endomorphisme ($P^(-1) A P$).
+
+  En particulier, $det(transp(P)A P) = det(P)^2 det(A)$ donc on ne peut pas parler de "déterminant d'une application bilinéaire".
+]
+
+#proof[
+  Notons $A'$ la matrice de $B$ dans la base $EEE' = (f_1,dots,f_n)$ et $EEE = (e_1,dots,e_n)$, si $x = sum_(i = 1)^n x_i e_i = sum_(i = 1)^n x^'_i f_i$ et $y = sum_(j = 1)^n y_j e_j = sum_(j = 1)^n y^'_j f_j$
+  $
+  X = vec(x_1,vdots,x_n) quad X^' = vec(x^'_1,vdots,x^'_n) quad Y = vec(y_1,vdots,y_n) quad Y^' = vec(y^'_1,vdots,y^'_n)
+  $
+
+  On a $X = P X^'$ et $Y = P Y^'$
+  $
+  forall X,Y in M_n (RR) \
+  B(x,y) = transp(X)A Y = transp(P X')A transp(P Y') = transp(X')transp(P)A P Y' = transp(X') A' Y'\
+  "Donc "A' = transp(P)A P
+  $
+
+  Cette dernière égalité a lieu car l'égalité est vraie pour tout $(x,y) in E^2$. En effet :
+  
+  Si : $forall X in RR^n, thick M X = 0$ alors $M = 0$
+
+  $
+  (forall X,Y in RR^n, transp(x) M)Y = 0 <==> transp(X) M = 0 <==> transp(transp(X)M) = X transp(M) = 0 \
+  <==> transp(M) = 0 = M \
+  M = transp(P)A P - A^'
+  $
+]
+
+= Orthogonalité
+Soit $(E,scal2(.,.))$ un espace euclidien.
+
+#definition[
+  Soit $A subset E$ quelconque, on pose :
+  $A^perp = {x in E | scal2(x,y) = 0 forall y in A}$
+
+  $A^perp$ est un sous-espace vectoriel de $E$ (même si $A$ ne l'est pas) appelé "orthogonal de $A$"
+]
+
+#proof[
+  Soient $x,x' in A^perp, lambda in RR$. ALors pour tout $y in A$ : 
+  $scal2(lambda x + x',y) = lambda scal2(x,y) + scal2(x',y) = 0$
+
+  D'où $lambda x + x' in A^perp$
+]
+
+#proposition[
+  Pour tout #underline([sous-espace vectoriel $F$]) de $E$, on a :
+  + $dim F + dim F^transp = dim E$
+  + $E = F operp2 F^perp$
+  + $(F^perp)^perp = F$
+]
+
+#proof[
+  On se donne $(v_1,dots,v_p)$ une base de $F$, on la complète en une base $(v_1,dots,v_n)$ de $E$. Si On note $A = (a_(i j))_(1<=i,j<=n)$ la matrice de $scal2(.,.)$ dans cette base.
+
+  Si $x = sum_(i = 1)^n x_i v_i, y = sum_(j = 1)^n y_j v_j$. Alors : $scal2(x,y) = sum_(i,j=1)^n a_(i,j) x_i y_j$
+
+  $x in F^perp <==>^"exo" forall j in [|1,p|] , underbrace(scal2(x,v_j),=transp(X)A V_j) = 0$
+
+  $
+  cases(scal2(v_1,x) = 0,vdots,scal2(v_p,x) = 0) <==> cases(sum_(j = 1)a_(1 j) x_j = 0,vdots,sum_(j=1)^n a_(p j) x_j = 0) <==> cases(a_(1 1)x_1 + dots + a_(1 n) x_n = 0,vdots, a_(p 1) x_1 + dots + a_(p n) x+n = 0)
+  $
+
+  Ainsi $x in F^perp$ ssi ses coordonnées $(x_1,dots,x_n)$ sont solutions de ce système à $p$ équations, $n$ inconnues.
+
+  Ces équations sont linéairement indépendantes, car $det(A) != 0$ (on a un produit scalaire). En effet, si $A X = 0, transp(X)A X = scal2(X,X) = 0 ==>^(scal2(.,.) "défini") X = 0$
+
+  Le rang du système est $p$ donc l'ensemble des solutions est  l'intersection de $p$ hyperplans linéairement indépendants et est donc de dimension $n-p$. Donc $dim(F^perp) = n-p$ d'où la première partie.
+
+  Pour la 2nde, Il suffit de montrer que $F inter F^perp = {0_E}$. Soit $x in F inter F^perp$, $scal2(x,x) = 0$. Par définition de $scal2(.,.)$, $x = 0$.
+
+  Pour la 3e, on a $F subset (F^perp)^perp$ car si $x in F$, alors $scal2(x,y) = 0 forall y in F^perp$. Alors $x in (F^perp)^perp$
+  et on a :
+  $
+  dim((F^perp)^perp) = dim(E) - dim(F^perp) = dim(E) - dim(E) + dim(F) = dim(F)
+  $
+  d'où l'égalité.
+]
+
+#example[
+  Soit $SSS$ (resp $AAA$) le sev de $M_n (RR)$ formé des matrices symétriques (resp. antisymétriques). On sait que $M_n (RR)$ formé des matrices symétriques (resp. antisymétriques).
+
+  On sait que $M_n (RR) = SSS osum AAA$ ($M = 1/2 underbrace((transp(M) - M), in SSS) + 1/2 underbrace((M - transp(P)),in AAA)$). De plus, $AAA = SSS^perp$ pour le produit scalaire standard de $MM_n (RR)$ :
+  $
+  scal2(M,N) = Tr(transp(M)M)
+  $
+  Prenons $M in SSS, N in AAA$ :
+  $
+  scal2(M,N) = Tr(transp(M)N) = Tr(M N) = Tr(N M)= Tr(-transp(N) M) = - Tr(transp(N)M) = - scal2(M,N)
+  $
+  Donc $scal2(M,N) = 0$.
+]
+
+#property[
+  Soient $F,G$ deux sous-espaces vectoriels d'un espace euclidien $E$.
+  + $F subset G ==> F^perp supset G^perp$
+  + $(F + G)^perp = F^perp inter G^perp$
+  + $(F inter G)^perp = F^perp + G^perp$
+]
+
+#proof[
+  + Soit $y in G, scal2(y,x) = 0 forall x in G supset F$, donc $scal2(y,x) forall x in F, y in F^perp$.
+  + $F subset F + G$ donc $(F + G)^perp subset F^perp$ et $G subset F + G$ donc $(F + G)^perp subset G^perp$
+  
+    Soit : $(F + G)^perp subset F^perp inter G^perp$
+
+    Pour l'inclusion inverse : soient $x in F^perp inter G^perp$, $y + z in F + G$.
+    $
+    scal2(x,y+z) = underbrace(scal2(x,y),x in F^perp) + underbrace(scal2(x,z),x in G^perp) = 0
+    $
+    donc $x in (F+G)^perp$
+  + On applique la 2nde à $F^perp$ et $G^perp$. $(F^perp + G^perp)^perp = F^(perp perp) inter G ^(perp perp) = F inter G$ et $(F inter G)^perp = (F^perp + G^perp)^(perp perp)$
+]
+
+#theorem("De Pythagore")[
+  Soit $E$ un espace espace préhilbertien réel.
+
+  Les vecteurs $x,y$ de $E$ sont orthogonaux si, et seulement si, $norm(x + y)^2 = norm(x)^2 + norm(y)^2$
+]
+
+#proof[
+  $norm(x + y)^2 = norm(x)^2 + norm(y)^2 + 2 scal2(x,y) <==> norm(x + y)^2 = norm(x)^2 + norm(y)^2$
+]
+
+= Bases orthonormales
+
+
+#definition[
+  Une base $(e_1,dots,e_n)$ d'un espace euclidien $E$ est dite orthogonale si :
+  $
+  forall i,j in [|1,n|] quad i != j => scal2(e_i,e_j) = 0
+  $
+  On dit, de plus, qu'elle est orthonormale si :
+  $
+  forall i,j in [|1,n|] quad scal2(e_i,e_j) = delta_(i,j)
+  $
+]
+
+#remark("Orale")[
+  Dans le cours, on utilisera beaucoup les bases orthonormales, mais le processus d'orthonormalisation étant long, les exercices de TD n'appliqueront généralement que des bases orthogonales.
+]
+
+#remark[
+  + La matrice d'un produit scalaire dans une base orthogonale est diagonale, et est $I_n$ dans une base orthonormale.
+  + Si $(e_1,dots,e_n)$ est une base orthogonale de $E$, alors $(e_1/norm(e_1),dots,e_n/norm(e_n))$ est une base orthonormale de $E$.
+  + Toute famille orthogonale formée de vecteurs non-nuls est libre.
+] <rq3>
+
+#proof("De la 3e")[
+  Soit $(v_1,dots,v_p)$ orthogonale de vecteurs non-nulles.
+  Considérons l'équation $sum_(i = 1)^p lambda_i v_i = 0$.
+
+  Alors $forall j in [|1,p|] : scal2(sum_(i = 1)^p lambda_i v_i, v_j) = sum_(i = 1)^p lambda_i scal2(v_i,v_j) = lambda_j scal2(v_j,v_j) = lambda_j norm(v_j)^2 => lambda_j = 0$
+
+  d'où la liberté.
+]
+
+#v(3em)
+
+#example[
+  La base canonique de $RR^n$ est orthogonale pour le produit scalaire standard. 
+]
+
+#example[
+  Considérons $E = C^0([0,2 pi],RR)$. On munit $E$ du produit scalaire $scal2(f,g) = 1/pi integral_0^(2pi) f(t)g(t)d t$.
+
+  Notons $f_k : x |-> sin(k x)$ pour $k in NN^*$
+
+  La famille $(f_k)_(k in NN^*)$ est orthonormale :
+
+  $
+  scal2(f_k,f_l) = 1/pi integral_0^(2 pi) sin(k t)sin (l t) d t = 1/(2 pi) integral_0^(2 pi) cos((k-l) t) - cos((k+l)t)d t
+  $
+
+  Si $k != l$, $scal2(f_k,f_l) = 0$.
+  Si $k = l$ :
+  $
+  scal2(f_k,f_k) = norm(f_k)^2 = 1/pi integral_0^(2pi)sin^2(k t) d t = 1/(2pi) integral_0^(2pi) 1-cos(2k t) d t = 1
+  $
+
+]
+
+#example[
+  conséquences du premier exemple :
+  La base canonique $(E_(i j))_(1<=i,j<=n)$ de $M_n (RR)$ (formée par les matrices élémentaires) est orthogonale pour le produit scalaire standard $scal2(M,N) = Tr(transp(M)N)$.
+
+  On rappelle que $E_(i j) = (delta_(i r) delta_(j s))_(1<=r,s<=n)$.
+  $
+  scal2(E_(i j), E_(k l)) = Tr(E_(j i) E_(k l)) = delta_(i k) delta_(k l)
+  $
+
+  Donc non-nul et vaut 1 ssi $(i,j) = (k,l)$ càd $(E_(i j))$ orthonormale.
+]
+
+#theorem[
+  Un espace euclidien admet toujours une base orthnoormale.
+]
+
+#proof[
+  Il suffit de construire une base orthogonale (cf @rq3). Montrons que tout espace euclidien non-trivial $E$ admet une base orthogonale par récurrence sur dim(E) = n.
+
+  + $n = 1$, rien à dire.
+
+  + Supposons le théorème vérifié pour tout ev de dimension $n-1$.
+    
+    Soient $E$ de dimension $n$ et $v != 0 in E$, ainsi $dim(Vect(v))^perp = n-1$
+
+    Par hypothèse de récurrence, $Vect(v)^perp$ admet une base $(EEE_1,dots,EEE_(n-1))$ orthogonale, $v != Vect(v)^perp$, donc $(EEE_1,dots,EEE_(n-1),v)$ est une base orthogonale de $E$.
+]
+
