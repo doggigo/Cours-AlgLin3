@@ -739,7 +739,7 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 
 #proposition[
   Pour tout #underline([sous-espace vectoriel $F$]) de $E$, on a :
-  + $dim F + dim F^transp = dim E$
+  + $dim F + dim F^perp = dim E$
   + $E = F operp2 F^perp$
   + $(F^perp)^perp = F$
 ]
