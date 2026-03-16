@@ -157,10 +157,6 @@ Pour $j in [|1,n|]$, on définit $e_j^* : E -> K$ la forme linéaire définie pa
   qui est bien une application et vaut $delta_(i j)$ c'est-à-dire $cases(1 "si" x = e_i, 0 "sinon")$
 ]
 
-#remark("Sur la méthode")[
-  En général on part d'un ev $E$ muni d'une base canonique
-]
-
 #corollary[
   Toute base de $E^*$ est une base duale. Autrement dit, si $EEE'$ est une base de $E^*$, il existe une base $EEE$ de $E$ telle que $EEE' = EEE^*$ la base duale de $EEE$.
 
@@ -417,7 +413,7 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 ]
 
 #remark("Rappel sur la complétude")[
-  $(F,norm(.))$ est complet si toute suite convergente y est de cauchy pour $norm(.)$.
+  $(F,norm(.))$ est complet si toute suite convergente y est de Cauchy pour $norm(.)$.
 ]
 
 #remark[
@@ -650,6 +646,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   Si la réduction de Gauss contient strictement moins de $n$ carrés, le système donné par $f(x,x) = 0$ admettra des solutions non-nulles car il y a moins d'équations indépendantes que d'inconnues. (rq : $f in Lin(RR^n,RR^p), p < n$ n'est jamais injective)
 ]
 
+#pagebreak()
 
 = Représentation matricielle d'une forme bilinéaire
 
@@ -719,6 +716,8 @@ $
   M = transp(P)A P - A^'
   $
 ]
+
+#pagebreak()
 
 = Orthogonalité
 Soit $(E,scal2(.,.))$ un espace euclidien.
@@ -816,6 +815,8 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
   $norm(x + y)^2 = norm(x)^2 + norm(y)^2 + 2 scal2(x,y) <==> norm(x + y)^2 = norm(x)^2 + norm(y)^2$
 ]
 
+#pagebreak()
+
 = Bases orthonormales
 
 
@@ -887,11 +888,11 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 ]
 
 #theorem[
-  Un espace euclidien admet toujours une base orthnoormale.
+  Un espace euclidien admet toujours une base orthonormale.
 ]
 
 #proof[
-  Il suffit de construire une base orthogonale (cf @rq3). Montrons que tout espace euclidien non-trivial $E$ admet une base orthogonale par récurrence sur dim(E) = n.
+  Il suffit de construire une base orthogonale (cf @rq3). Montrons que tout espace euclidien non-trivial $E$ admet une base orthogonale par récurrence sur $dim(E) = n$.
 
   + $n = 1$, rien à dire.
 
@@ -900,5 +901,8 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
     Soient $E$ de dimension $n$ et $v != 0 in E$, ainsi $dim(Vect(v))^perp = n-1$
 
     Par hypothèse de récurrence, $Vect(v)^perp$ admet une base $(EEE_1,dots,EEE_(n-1))$ orthogonale, $v != Vect(v)^perp$, donc $(EEE_1,dots,EEE_(n-1),v)$ est une base orthogonale de $E$.
+
+  
+  D'après le théorème de récurrence, la propriété est vérifiée pour tout ev de dimension $n >= 1$
 ]
 
