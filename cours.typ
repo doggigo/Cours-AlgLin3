@@ -50,7 +50,7 @@ $KK$ désigne un corps $(KK = RR "ou" CC)$, $E$ sera un $KK-$ev
 
 #example[
   + L'application nulle : $0 : application(E, KK, x, 0)$
-  + $ application(RR^3, RR, (x,y,z), 3x-u+2z) $ est une fome linéaire sur $RR^3$
+  + $ application(RR^3, RR, (x,y,z), 3x-y+2z) $ est une fome linéaire sur $RR^3$
   + L'évaluation d'un polynôme en $a in KK$ :
     $ e v_a : application(KK[X], KK, P, P(a)) $ est une forme linéaire sur $KK[X]$
   + Pour $E = C^0([0,1],RR)$, $application(E, RR, f, integral_0^1 f(t) d t)$ est une forme linéaire dans $E$.
@@ -724,23 +724,23 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 
 #definition[
   Soit $A subset E$ quelconque, on pose :
-  $A^perp = {x in E | scal2(x,y) = 0 forall y in A}$
+  $A^ortho = {x in E | scal2(x,y) = 0 forall y in A}$
 
-  $A^perp$ est un sous-espace vectoriel de $E$ (même si $A$ ne l'est pas) appelé "orthogonal de $A$"
+  $A^ortho$ est un sous-espace vectoriel de $E$ (même si $A$ ne l'est pas) appelé "orthogonal de $A$"
 ]
 
 #proof[
-  Soient $x,x' in A^perp, lambda in RR$. ALors pour tout $y in A$ : 
+  Soient $x,x' in A^ortho, lambda in RR$. ALors pour tout $y in A$ : 
   $scal2(lambda x + x',y) = lambda scal2(x,y) + scal2(x',y) = 0$
 
-  D'où $lambda x + x' in A^perp$
+  D'où $lambda x + x' in A^ortho$
 ]
 
 #proposition[
   Pour tout #underline([sous-espace vectoriel $F$]) de $E$, on a :
-  + $dim F + dim F^perp = dim E$
-  + $E = F operp2 F^perp$
-  + $(F^perp)^perp = F$
+  + $dim F + dim F^ortho = dim E$
+  + $E = F operp2 F^ortho$
+  + $(F^ortho)^ortho = F$
 ]
 
 #proof[
@@ -748,24 +748,24 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 
   Si $x = sum_(i = 1)^n x_i v_i, y = sum_(j = 1)^n y_j v_j$. Alors : $scal2(x,y) = sum_(i,j=1)^n a_(i,j) x_i y_j$
 
-  $x in F^perp <==>^"exo" forall j in [|1,p|] , underbrace(scal2(x,v_j),=transp(X)A V_j) = 0$
+  $x in F^ortho <==>^"exo" forall j in [|1,p|] , underbrace(scal2(x,v_j),=transp(X)A V_j) = 0$
 
   $
   cases(scal2(v_1,x) = 0,vdots,scal2(v_p,x) = 0) <==> cases(sum_(j = 1)a_(1 j) x_j = 0,vdots,sum_(j=1)^n a_(p j) x_j = 0) <==> cases(a_(1 1)x_1 + dots + a_(1 n) x_n = 0,vdots, a_(p 1) x_1 + dots + a_(p n) x+n = 0)
   $
 
-  Ainsi $x in F^perp$ ssi ses coordonnées $(x_1,dots,x_n)$ sont solutions de ce système à $p$ équations, $n$ inconnues.
+  Ainsi $x in F^ortho$ ssi ses coordonnées $(x_1,dots,x_n)$ sont solutions de ce système à $p$ équations, $n$ inconnues.
 
   Ces équations sont linéairement indépendantes, car $det(A) != 0$ (on a un produit scalaire). En effet, si $A X = 0, transp(X)A X = scal2(X,X) = 0 ==>^(scal2(.,.) "défini") X = 0$
 
-  Le rang du système est $p$ donc l'ensemble des solutions est  l'intersection de $p$ hyperplans linéairement indépendants et est donc de dimension $n-p$. Donc $dim(F^perp) = n-p$ d'où la première partie.
+  Le rang du système est $p$ donc l'ensemble des solutions est  l'intersection de $p$ hyperplans linéairement indépendants et est donc de dimension $n-p$. Donc $dim(F^ortho) = n-p$ d'où la première partie.
 
-  Pour la 2nde, Il suffit de montrer que $F inter F^perp = {0_E}$. Soit $x in F inter F^perp$, $scal2(x,x) = 0$. Par définition de $scal2(.,.)$, $x = 0$.
+  Pour la 2nde, Il suffit de montrer que $F inter F^ortho = {0_E}$. Soit $x in F inter F^ortho$, $scal2(x,x) = 0$. Par définition de $scal2(.,.)$, $x = 0$.
 
-  Pour la 3e, on a $F subset (F^perp)^perp$ car si $x in F$, alors $scal2(x,y) = 0 forall y in F^perp$. Alors $x in (F^perp)^perp$
+  Pour la 3e, on a $F subset (F^ortho)^ortho$ car si $x in F$, alors $scal2(x,y) = 0 forall y in F^ortho$. Alors $x in (F^ortho)^ortho$
   et on a :
   $
-  dim((F^perp)^perp) = dim(E) - dim(F^perp) = dim(E) - dim(E) + dim(F) = dim(F)
+  dim((F^ortho)^ortho) = dim(E) - dim(F^ortho) = dim(E) - dim(E) + dim(F) = dim(F)
   $
   d'où l'égalité.
 ]
@@ -773,7 +773,7 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #example[
   Soit $SSS$ (resp $AAA$) le sev de $M_n (RR)$ formé des matrices symétriques (resp. antisymétriques). On sait que $M_n (RR)$ formé des matrices symétriques (resp. antisymétriques).
 
-  On sait que $M_n (RR) = SSS osum AAA$ ($M = 1/2 underbrace((transp(M) - M), in SSS) + 1/2 underbrace((M - transp(P)),in AAA)$). De plus, $AAA = SSS^perp$ pour le produit scalaire standard de $MM_n (RR)$ :
+  On sait que $M_n (RR) = SSS osum AAA$ ($M = 1/2 underbrace((transp(M) - M), in SSS) + 1/2 underbrace((M - transp(P)),in AAA)$). De plus, $AAA = SSS^ortho$ pour le produit scalaire standard de $MM_n (RR)$ :
   $
   scal2(M,N) = Tr(transp(M)M)
   $
@@ -786,23 +786,23 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 
 #property[
   Soient $F,G$ deux sous-espaces vectoriels d'un espace euclidien $E$.
-  + $F subset G ==> F^perp supset G^perp$
-  + $(F + G)^perp = F^perp inter G^perp$
-  + $(F inter G)^perp = F^perp + G^perp$
+  + $F subset G ==> F^ortho supset G^ortho$
+  + $(F + G)^ortho = F^ortho inter G^ortho$
+  + $(F inter G)^ortho = F^ortho + G^ortho$
 ]
 
 #proof[
-  + Soit $y in G, scal2(y,x) = 0 forall x in G supset F$, donc $scal2(y,x) forall x in F, y in F^perp$.
-  + $F subset F + G$ donc $(F + G)^perp subset F^perp$ et $G subset F + G$ donc $(F + G)^perp subset G^perp$
+  + Soit $y in G, scal2(y,x) = 0 forall x in G supset F$, donc $scal2(y,x) forall x in F, y in F^ortho$.
+  + $F subset F + G$ donc $(F + G)^ortho subset F^ortho$ et $G subset F + G$ donc $(F + G)^ortho subset G^ortho$
   
-    Soit : $(F + G)^perp subset F^perp inter G^perp$
+    Soit : $(F + G)^ortho subset F^ortho inter G^ortho$
 
-    Pour l'inclusion inverse : soient $x in F^perp inter G^perp$, $y + z in F + G$.
+    Pour l'inclusion inverse : soient $x in F^ortho inter G^ortho$, $y + z in F + G$.
     $
-    scal2(x,y+z) = underbrace(scal2(x,y),x in F^perp) + underbrace(scal2(x,z),x in G^perp) = 0
+    scal2(x,y+z) = underbrace(scal2(x,y),x in F^ortho) + underbrace(scal2(x,z),x in G^ortho) = 0
     $
-    donc $x in (F+G)^perp$
-  + On applique la 2nde à $F^perp$ et $G^perp$. $(F^perp + G^perp)^perp = F^(perp perp) inter G ^(perp perp) = F inter G$ et $(F inter G)^perp = (F^perp + G^perp)^(perp perp)$
+    donc $x in (F+G)^ortho$
+  + On applique la 2nde à $F^ortho$ et $G^ortho$. $(F^ortho + G^ortho)^ortho = F^(perp perp) inter G ^(perp perp) = F inter G$ et $(F inter G)^ortho = (F^ortho + G^ortho)^(perp perp)$
 ]
 
 #theorem("De Pythagore")[
@@ -898,11 +898,244 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 
   + Supposons le théorème vérifié pour tout ev de dimension $n-1$.
     
-    Soient $E$ de dimension $n$ et $v != 0 in E$, ainsi $dim(Vect(v))^perp = n-1$
+    Soient $E$ de dimension $n$ et $v != 0 in E$, ainsi $dim(Vect(v))^ortho = n-1$
 
-    Par hypothèse de récurrence, $Vect(v)^perp$ admet une base $(EEE_1,dots,EEE_(n-1))$ orthogonale, $v != Vect(v)^perp$, donc $(EEE_1,dots,EEE_(n-1),v)$ est une base orthogonale de $E$.
+    Par hypothèse de récurrence, $Vect(v)^ortho$ admet une base $(EEE_1,dots,EEE_(n-1))$ orthogonale, $v != Vect(v)^ortho$, donc $(EEE_1,dots,EEE_(n-1),v)$ est une base orthogonale de $E$.
 
   
   D'après le théorème de récurrence, la propriété est vérifiée pour tout ev de dimension $n >= 1$
 ]
 
+#theorem("Procéde d'orthonormalisation de Gram-Schmidt")[
+  Soit $(f_i)_(1<=i<=d)$ une famille libre d'un espace euclidien $(E,scal2(.,.))$
+
+  Posons $e_1 = f_1$ et pour tout $k = 1,...,d-1$, $e_(k+1) = f_(k+1) - sum_(i=1)^k scal2(e_i,f_(k+1))/norm(e_i)^2 e_i$
+
+  La famille $(e_i)_(1<=i<=d)$ est orthogonale et pour $k = 1,...,d$, $Vect(e_1,dots,e_k) = Vect(f_1,dots,f_k)$
+]
+
+#proof[
+  Par récurrence sur $d$ :
+  + $d = 1$ : Rien à faire
+  + Supposons la construction des $e_1,dots,e_k$ effectuée
+
+    Comme $Vect(e_1,dots,e_k) = Vect(f_1,dots,f_k)$, on a $norm(e_i)^2 = scal2(e_i,e_i) != 0$ pour $i = 1,dots,k$
+    et $e_(k+1)$ est bien défini.
+
+    Pour $j = 1,dots,k$ : 
+    $
+    scal2(e_i,e_(k+1)) &= scal2(e_i,f_(k+1)-sum_(j=1)^n scal2(e_j,f_(k+1))/norm(e_j)^2 e_j) = scal2(e_i,f_(k+1)) - sum_(j=1)^k scal2(e_j,f_(k+1))/norm(e_j)^2 scal2(e_i,e_j)\
+    &= scal2(e_i,f_(k+1)) - scal2(e_i,f_(k+1))/norm(e_i)^2scal2(e_i,e_i) = 0
+    $
+    $(e_1,dots,e_(k+1))$ est une famille orthogonale.
+    $e_(k+1)in Vect(f_(k+1),e_1,dots,e_k) = Vect(f_(k+1), f_i,dots,f_k)$
+
+    Ainsi $Vect(e_1,dots,e_(k+1)) subset Vect(f_1,dots,f_(k+1))$ et donc l'égalité.
+]
+
+#example[
+  dans $RR^4$ :
+  $v_1 = (1,1,0,0) quad v_2 = (1,0,-1,1),v_3 = (0,1,1,1)$
+  
+  $Delta_(1,1) = matdet(1,0,0;0,-1,1;1,1,1) = -2 != 0$ d'où la liberté
+
+  Posons $e_1 = v_1$ et $norm(v_1) = sqrt(2)$
+
+  $
+  e_2 &= v_2 - scal2(v_2,e_1)/norm(e_1)^2 e_1 quad scal2(v_2,e_1) = 1 \
+  &= v_2 - 1/2 e_1 = (1,0,-1,1) - 1/2 (1,1,0,0) \
+  &= (1/2,-1/2,-1,1)
+  $
+
+  #underline([Remarques :])
+  + On peut prendre $e_2 = (1,-1,-2,2) = 2 e_2$.
+    Si $scal2(u,e_2) = 0$, alors $forall lambda in RR, scal2(u,lambda e_2) = 0$
+  + On pose $e_2 = v_2 + lambda e_1$ et on écrit $scal2(e_2,e_1) = 0$. On a :
+
+    $scal2(e_2,e_1) = scal2(e_1,v_2) + lambda scal2(e_1,e_1) = 0$ donc $lambda = - scal2(e_1,v_2)/norm(e_1)^2$
+
+  On pose $e_3 = v_3 - scal2(v_3,e_1)/norm(e_1)^2 e_1 - scal2(v_3,e^'_2)/norm(e_2)^2 e^'_2$
+
+  $scal2(v_3,e_1) = 1, quad norm(e^'_2)^2 = 10, quad scal2(v_3,e^'_2) = -1$
+
+  Donc :
+  $
+  e_3 = (0,1,1,1) - 1/2 (1,1,0,0) + 1/10 (1,-1,-2,2) = 1/10 (-4,4,8,12) = 1/5 (-2,2,4,6) \
+  "(On peut prendre" e^'_3 = (-1,1,2,3) " mais ça ne sera pas orthonormal)"
+  $
+  Posons $
+  epsilon_1 = e_1 / norm(e_1) = 1/sqrt(2) (1,1,0,0) \ epsilon_2 = e^'_2/norm(e^'_2) = 1/sqrt(10)(1,-1,-2,2) \ epsilon_3 = e^'_3/norm(e^'_3) = 1/sqrt(15)(-1,1,2,3) 
+  $ alors $(epsilon_1,epsilon_2,epsilon_3)$ est une famille orthonormale.
+
+  #underline("Remarque"): On peut poser $e_3 = v_3 + lambda e_1 + mu e^'_2$ et on écrit $cases(scal2(e_3,e_1) = 0,scal2(e_3,e^'_2) = 0)$ qu'on peut résoudre pour retrouver la formule (qu'il faut apprendre, de toute façon.)
+]
+
+#remark[
+  Ce procédé redémontre le fait que tout espace euclidien possède des bases orthonormées.
+]
+
+= Projections et symétries orthogonales
+
+#theorem[
+  Soient $(E,scal2(.,.))$ un espace euclidien, $x in E$, $F$ un sev de $E$. Il existe un unique vecteur de $F$ noté $p_F (x)$ tel que $x - p_F (x) in F^ortho$. On a de plus :
+  + Dans une base $(e_1,dots,e_p)$ *orthonormale* de $F$ :
+    $
+    p_F (x) = sum_(i=1)^p scal2(x,e_i)e_i
+    $
+  + L'application $p_F : application(E,F,x,p_F (x))$ est linéaire
+  + $norm(x-p_F (x)) = min { norm(x-z), z in F}$
+]
+
+#definition[
+  - Le vecteur $p_F (x)$ est appelé *projeté orthogonal* de $x$ sur $F$
+  - L'application linéaire $p_F$ est la *projection orthogonale* sur $F$
+  - On appelle *distance* de $x$ à $F$ le scalaire $norm(x-p_F (x))$ noté $d(x,F)$
+]
+
+#remark[
+  +$E = F oortho F^ortho$
+
+    $x = p_F (x) + (x-p_F (x))$
+
+    Le théoreme de Pythagore donne $norm(x)^2 - norm(p_F (x))^2 + norm(x-p_F (x))^2$
+
+    d'où $d(x,F)^2 = norm(x)^2 - norm(p_F (x))^2$
+
+  + Si $(f_1,dots,f_p)$ est une base orthogonale de $F$ :
+    $ p_F = sum_(i=1)^p scal2(x,f_i)/norm(f_i)^2 f_i $
+
+    Dans le procédé d'orthogonalisation de Schmidt, $(f_1,dots,f_p)$ est libre,
+    
+    $
+    e_1 &= f_i \
+    e_2 &= f_2 - p_(Vect(e_1)) in Vect(e_1)^ortho \
+    vdots \
+    e_(k+1) &= f_(k+1) - p_(Vect(e_1,dots,e_k)) (f_(k+1))
+    $
+    C'est-à-dire que le procédé n'est qu'une projection échelonnée.
+]
+
+#proof("du théorème")[
+  + Soit $y = sum_(i=1)^p y_i e_i in F$
+
+    Écrire que $x-y in F^perp$ est équivalent à écrire $scal2(x-y,e_i) = 0, forall i in [|1,p|]$
+
+    ou encore $scal2(x,e_i) = scal2(y,e_i), forall i in [|1,p|]$
+    $
+    scal2(y,e_i) = scal2(sum_(j=1)^p y_j e_j,e_i) = sum_(j=1)^p y_j scal2(e_j,e_i)
+    $
+    $(e_1,dots,e_p)$ est orthonormale, $scal2(y,e_i) = y_i scal2(e_i,e_i) = y_i$
+
+    Donc $y = sum_(i=1)^p scal2(x,e_i)e_i$ d'où l'unicité et l'existence de $p_F (x)$ et la première formule.
+  + La linéarité de $p_F$ découle de la bilinéarité du produit scalaire dans la formule
+  + Soit $z in F$. $
+  norm(x-z)^2 = norm(x-p_F (x) + (p_F (x) - z))^2 = norm(x-p_F (x))^2 + norm(p_F (x) - z)^2 >= norm(x-p_F (x))^2
+  $ par le théorème de Pythagore.
+
+    avec égalité ssi $z = p_F (x)$
+]
+
+#property[
+  Avec les mêmes notations :
+  + $p_F compose p_F = p_F$, $Im(p_F) = F$, $Ker(p_F) = F^perp$
+  + $p_F + p_(F^ortho) = Id_E$, $p_F compose p_(F^ortho) = p_(F^ortho) compose p_F = 0_(Lin(E))$
+  + $forall x in E, norm(p_F (x)) <= norm(x)$
+]
+
+#proof[
+  + $(p_F compose p_F)(x) = sum_(i = 1)^p scal2(p_F (x),e_i)e_i$ où $(e_1,dots,e_p)$ est une base orthonormale de $F$.
+  
+    Or $scal2(p_F (x),e_i) = scal2(sum_(j=1)^p scal2(x,e_j)e_j,e_i) = sum_(j=1)^p scal2(x,e_j) underbrace(scal2(e_j,e_i),delta_(i j)) = scal2(x,e_i)$
+
+    Donc $(p_F compose p_F)(x) = sum_(i=1)^p scal2(x,e_i)e_i = p_F (x)$
+
+    Si $x in Ker p_F$, càd $p_F (x) = 0_E$ alors $x - p_F (x) = x in F^perp$. La réciproque est triviale : $Ker p_F = F^perp$
+
+    Enfin si $x in F, x = p_F (x)$.
+    $x = sum_(i=1)^p x_i e_i = sum_(i=1)^p scal2(x,e_i)e_i$
+
+    $scal2(x,e_j) = x_j thick forall j in [|1,p|]$. Donc $Im p_F = F$
+  + $E = F operp2 F^perp = F^perp operp (F^perp)^perp$ 
+    
+    $x = p_F (x) + (x-p_F (x)) = p_(F^perp)(x) + underbrace((x - p_(F^perp)(x)),in (F^perp)^perp = F)$
+
+    Donc $x - p_(F^perp)(x) = p_F (x)$ et $x - p_F (x) = p_(F^perp) (x)$ et $p_F + p_(F^perp) = Id_E$
+
+    $p_F (x-p_(F^perp)(x)) = p_F (x) - (p_F compose p_(F^perp))(x)$
+
+    Mais $x - p_(F^perp)(x) = p_F (x)$ car on vient de voir que $p_F + p_(F^perp) = Id_E$.
+
+    $p_F (x-p_(F^perp)(x)) = p_(F)(p_(F)(x)) = p_(F)(x)$ d'où $p_F compose p_(F^perp) = 0$
+
+    De même pour $p_(F^perp) compose p_F$
+  + Si $x in E$, $scal2(x-p_(F)(x),p_(F)(x)) = 0$
+
+    Donc $scal2(x,p_(F)(x)) = scal2(p_F (x),p_F (x)) = norm(p_F (x))^2$
+
+    Ainsi $
+    0 <= norm(x-p_F (x))^2 = scal2(x-p_(F)(x),x-p_(F)(x)) =^pi norm(x)^2 - norm(p_F (x))^2 \
+    <==> norm(x)^2 >= norm(p_F (x))^2
+    $
+]
+
+#definition[
+  Soit $F$ un sev d'un espace euclidien $(E,scal2(.,.))$.
+
+  On appelle *symétrie orthogonale* par rapport à $F$ l'application linéaire :
+  $s_F = p_F - p_(F^perp) = 2 p_F - Id_E = Id_E - 2 p_(F^perp)$
+]
+
+#property[
+  + $x in F <==> s_F (x) = x quad x in F^perp <==> s_F (x) = -x$
+  + $s_F compose s_F = Id_E$
+  + $s_F + s_(F^perp) = 0, s_F compose s_(F^perp) = s_(F^perp) compose s_F = -Id_E$
+]
+#proof[
+  Découlent des pptés de $p_F$
+]
+
+#example[
+  $F = R v = Vect(v)$, $v != 0 in RR^n$
+
+  $p_F (x) = scal2(x,v)/norm(v)^2 v$
+
+  $p_(F^perp)(x) = x - scal2(x,v)/norm(v)^2 v$
+
+  $s_F (x) = 2 p_F (x) - Id_E(x) = 2scal2(x,v)/norm(v)^2v-x$
+]
+
+#remark[
+  Lorsque $F$ est un hyperplan, $p_(F^perp)$ est une droite, c'est facile en utilisant $s_F = Id_E - S_(F^perp)$.
+]
+
+= Morphismes adjoints
+
+Soit $(E,scal2(.,.))$ un espace euclidien.
+
+Notons $j : application(E, E^*,y,j(y) : application(E,RR,x,scal2(x,y)))$
+
+$j$ est bien définie : $forall y in E, j(y)$ est linéaire car $scal2(.,.)$ est bilinéaire.
+
+#theorem("de représentation de Riesz")[
+  Soit $(E,scal2(.,.))$ un espace euclidien, l'application $j$ ci-dessus est  un isomorphisme.
+]
+
+#proof[
+  $j$ est linéaire (déjà vu) car le produit scalaire est bilinéaire. Comme $dim(E) = dim(E^*)$, il suffit de montrer que $j$ est injective.
+
+  Soit $y in E$ tel que $j(y) = 0_(Lin(E,RR))$
+
+  $forall x in E, j(y)(x) = scal2(x,y) = 0$
+
+  En particulier pour $x = y$ : $scal2(x,y) = 0$ càd $y = 0$.
+
+  Donc $Ker(j) = {0}$ càd $j$ injective donc bijective.
+]
+
+#corollary[
+  Si $EEE = (e_1,dots,e_n)$ est une base *orthonormale* d'un espace euclidien $(E,scal2(.,.))$
+
+  La base duale de $EEE$ est $EEE^* = (scal2(.,e_1),dots,scal2(.,e_n))$ et $forall x in E, x = sum_(i = 1)^n scal2(x,e_i)e_i$
+
+  $forall phi in E^*$, $phi = sum_(i=1)^n phi(e_i) scal2(.,e_i)$
+]
