@@ -23,7 +23,7 @@
 #let vocabulary = theme.vocabulary
 #let proof = theme.proof
 
-#let only-thms = sys.inputs.at("only-thms",default: "false") == "true"
+#let only-thms = sys.inputs.at("only-thms", default: "false") == "true"
 
 #show: theme.doc_fac.with(
   title: "Cours AlgLin3",
@@ -31,8 +31,7 @@
   show-examples: not only-thms,
   show-exercises: not only-thms,
   show-proofs: not only-thms,
-  page-numbering: "1"
-
+  page-numbering: "1",
 )
 
 #outline()
@@ -339,9 +338,9 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 
 #proof[
   + $
-      norm(x + y) = scal2(x+y, x+y) &= scal2(x, x+y) + scal2(y, x+y)
-      = scal2(x, x) + scal2(x, y) + scal2(y, x) + scal2(y, y)  \
-      &= norm(x)^2 + 2scal2(x, y) + norm(y)^2
+      norm(x + y) = scal2(x+y, x+y) & = scal2(x, x+y) + scal2(y, x+y)
+                                      = scal2(x, x) + scal2(x, y) + scal2(y, x) + scal2(y, y) \
+                                    & = norm(x)^2 + 2scal2(x, y) + norm(y)^2
     $
   ce qui donne la première formule en isolant $scal2(x, y)$
 
@@ -453,8 +452,8 @@ En particulier, $norm(lambda x)^2 = lambda^2 norm(x)^2 quad forall lambda in RR$
 
 #method("Polarisation")[
   La forme polaire $(f(x,y))$ d'une forme bilinéaire symétrique s'obtient à partir de la forme quadratique en #underline(["polarisant les monômes"]).
-+ Les termes carrés $a_(i i) x_i^2$ deviennent $a_(i i)x_i y_i$
-+ Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_(i j) x_i y_j + a_(j i) x_j y_i)$
+  + Les termes carrés $a_(i i) x_i^2$ deviennent $a_(i i)x_i y_i$
+  + Les termes rectangles $a_(i j)x_i x_j$ deviennent $1/2 (a_(i j) x_i y_j + a_(j i) x_j y_i)$
 
 ]
 
@@ -471,8 +470,10 @@ En particulier, $norm(lambda x)^2 = lambda^2 norm(x)^2 quad forall lambda in RR$
 
 La réduction de Gauss est un algorithme permettant de décomposer tout polynôme homogène de degré $2$ en somme de carrés de formes linéaires indépendantes. Elle repose sur les identités :
 $
-  cases(a^2 + 2a b = (a+b)^2 - b^2 quad & (A),
-  a b = 1/4 (a+b)^2 - 1/4 (a-b)^2 quad & (B))
+  cases(
+    a^2 + 2a b = (a+b)^2 - b^2 quad & (A),
+    a b = 1/4 (a+b)^2 - 1/4 (a-b)^2 quad & (B)
+  )
 $
 
 On utilisera, dans ce chapitre, majoritairement $(A)$. $(B)$ servira surtout plus tard.
@@ -503,7 +504,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   l_2(x) = x_2 - 2x_3 & "soit" l_2 = e_2^* - 2e_3^* \
          l_3(x) = x_3 & "soit" l_3 = e_3^* $
 
-  $(l_1,l_2,l_3)$ est libre car $det(l_1,l_2,l_3) = 1 != 0$, d'où $(l_1,l_2,l_3)$ base de $(RR^3)^*$
+  $(l_1,l_2,l_3)$ est libre car $det(l_1, l_2, l_3) = 1 != 0$, d'où $(l_1,l_2,l_3)$ base de $(RR^3)^*$
 ]
 
 #example[
@@ -542,17 +543,13 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
 #method("Réduction de Gauss")[
   Soit $E$ un $KK$-ev, $f in BBB(E)$. L'algorithme de Gauss s'effectue de cette manière :
   + Se ramener à $f(x,x) = sum_(i = 1)^n a_(i i)x_i^2 + 2 sum_(1 <= i < j <= n) a_(i j) x_i x_j$ avec $a_(i,j) = f(e_i,e_j)$
-  +  Choisir un terme, de préférence carré s'il existe, sinon rectangle.
-    -  Si le terme est un carré $a x_i^2$ rassembler tous les $x_i$ sous la forme : $
-      a x_i^2 + 2 x_i L(x_1,dots,x_(i-1),x_(i+1),x_n) = a[x_i^2 + (2x_i L)/a]
-      $
+  + Choisir un terme, de préférence carré s'il existe, sinon rectangle.
+    - Si le terme est un carré $a x_i^2$ rassembler tous les $x_i$ sous la forme : $ a x_i^2 + 2 x_i L(x_1,dots,x_(i-1),x_(i+1),x_n) = a[x_i^2 + (2x_i L)/a] $
       avec $L$ forme linéaire ne dépendant pas de $x_i$, $q$ forme bilinéaire n'en dépendant pas non plus.
-      
+
       Puis remarquer l'identité $(A)$ :
-      $
-        a[x_i^2 + (2x_i L)/a] = a[(x_i + L/a)^2 - (L/a)^2] = a(x_i+L/a)^2 - L^2/a
-      $ et enfin, développer la partie négative
-        
+      $ a[x_i^2 + (2x_i L)/a] = a[(x_i + L/a)^2 - (L/a)^2] = a(x_i+L/a)^2 - L^2/a $ et enfin, développer la partie négative
+
     - Si le terme est un rectangle $x_i x_j$, utiliser l'identité (B) : $x_i x_j = 1/4 (x_i + x_j)^2 - 1/4 (x_i - x_j)^2$ puis développer la partie négative et continuer
   + Répéter sur les termes qui ne sont pas isolés.
 
@@ -569,18 +566,18 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
 
     + Supposons que $f(x,x)$ possède un terme carré que l'on peut supposer être $a x_1^2, a in RR^*$
       $f(x,x) = a x_1^2 + x_1 L(x_2, dots, x_n) + f_1 (x_2, dots, x_n)$ où $L$ est une forme linéaire en $x_2, dots, x_n$ et $f_1$ est un polynôme homogène de degré 2 en $x_2, dots x_n$.
-      
+
       $
-      f(x,x) &= a[x_1^2 + 2x_1 L(x_2,dots,x_n)/(2a)] + f_1 (x_2,dots,x_n) \
-      &=^((A)) a[(x_1 + L(x_1, dots, x_n)/(2a)) - L(x_2, dots,x_n)^2/(4 a^2)] + f_1(x_2,dots,x_n) \
-      &= a(x_1 + L(x_2, dots,x_n)/(2a))^2 + q(x_2, dots, x_n) quad "où" q(x_1,dots,x_n) \
-      &= -L(x_2,dots,x_n)^2/(4 a) + f(x_2,dots,x_n)  
+        f(x,x) & = a[x_1^2 + 2x_1 L(x_2,dots,x_n)/(2a)] + f_1 (x_2,dots,x_n) \
+               & =^((A)) a[(x_1 + L(x_1, dots, x_n)/(2a)) - L(x_2, dots,x_n)^2/(4 a^2)] + f_1(x_2,dots,x_n) \
+               & = a(x_1 + L(x_2, dots,x_n)/(2a))^2 + q(x_2, dots, x_n) quad "où" q(x_1,dots,x_n) \
+               & = -L(x_2,dots,x_n)^2/(4 a) + f(x_2,dots,x_n)
       $
       c'est un polynôme de degré 2 où n'apparaît pas $x_1$
 
-      On applique l'hypothèse de récurrence à $Vect(e_2,dots,e_n)$ muni de $q$ si $q != 0$. Rq : si $q = 0$, on a fini.
+      On applique l'hypothèse de récurrence à $Vect(e_2, dots, e_n)$ muni de $q$ si $q != 0$. Rq : si $q = 0$, on a fini.
 
-      On a : $q(x_2, dots, x_n) = sum_(i =2)^r a_i l_i^2 (x_2,dots,x_n)$ où $(l_2, dots,l_r)$ est une famille libre de $Vect(e_2,dots,e_n)^*$.
+      On a : $q(x_2, dots, x_n) = sum_(i =2)^r a_i l_i^2 (x_2,dots,x_n)$ où $(l_2, dots,l_r)$ est une famille libre de $Vect(e_2, dots, e_n)^*$.
 
       Si $x = sum_(i = 1)^n x_i e_i in E$, notons $phi_j(x_1,dots,x_n) = phi_j (x_1,dots,x_n) = phi_j (x_2,dots,x_n)$, pour $j = 2,...,r$ et $phi_1 (x_1,dots,x_n) = x_1 + L(x_2, dots, x_n)/(2 a)$
 
@@ -591,29 +588,27 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
 
 #proof([Cas où aucun terme carré (on travaille avec les termes rectangles)])[
 
-  Si $f$ ne contient  aucun terme carré, donnons-nous une forme rectangle, par exemple $a  x_1 x_2, a in RR^*$
+  Si $f$ ne contient  aucun terme carré, donnons-nous une forme rectangle, par exemple $a x_1 x_2, a in RR^*$
   $
-  f(x,x) = a x_1 x_2 + x_1 L(x_3, dots, x_n) + x_2 L_2 (x_3, dots, x_n) + f_2(x_3,dots,x_n)
+    f(x,x) = a x_1 x_2 + x_1 L(x_3, dots, x_n) + x_2 L_2 (x_3, dots, x_n) + f_2(x_3,dots,x_n)
   $
   où $L_1,L_2$ sont des formes linéaires en $x_3,dots,x_n$ et $f_2$ un polynôme homogène en $x_3, dots, x_n$.
   $
-  f(x,x) &= a[x_1x_2 + X_1 L_1(x_3, dots, x_n)/a + x_2 L_2 (x_3, dots, x_n)/a] + f_2 (x_3, dots, x_n \
-  &= a[(x_1 + (L_2(x_3, dots, x_n))/a)(x_2 + (L_1(x_3,dots,x_n))/a) - (L_1 (x_3,dots,x_n)L_2(x_3,dots,x_n))/a^2] + f_2 (x_3,dots,x_n) \
-  &=^((B)) a[1/4 (x_1 + x_2 + (L_1(x_3,dots,x_n))/a + (L_2(x_3,dots,x_n))/a)^2 - 1/4 (x_1-x_2+ ((L_2(x_3,dots,x_n)-L_1(x_3,dots,_n))/a)^2 )] \
-  &- (L_1(x_3,dots,x_n)L_2(x_3,dots,x_n))/a + f_2 (x_3,dots,x_n) 
+    f(x,x) &= a[x_1x_2 + X_1 L_1(x_3, dots, x_n)/a + x_2 L_2 (x_3, dots, x_n)/a] + f_2 (x_3, dots, x_n \
+    &= a[(x_1 + (L_2(x_3, dots, x_n))/a)(x_2 + (L_1(x_3,dots,x_n))/a) - (L_1 (x_3,dots,x_n)L_2(x_3,dots,x_n))/a^2] + f_2 (x_3,dots,x_n) \
+    &=^((B)) a[1/4 (x_1 + x_2 + (L_1(x_3,dots,x_n))/a + (L_2(x_3,dots,x_n))/a)^2 - 1/4 (x_1-x_2+ ((L_2(x_3,dots,x_n)-L_1(x_3,dots,_n))/a)^2 )] \
+    &- (L_1(x_3,dots,x_n)L_2(x_3,dots,x_n))/a + f_2 (x_3,dots,x_n)
   $
 
-  $q(x_3,dots,x_n) = - (L_1(x_3,dots,x_n)L_2(x_3,dots,x_n))/a + f_2 (x_3,dots,x_n)$ est un polynôme homogène de degré $2$ sur $Vect(e_3,dots,e_n)$.
+  $q(x_3,dots,x_n) = - (L_1(x_3,dots,x_n)L_2(x_3,dots,x_n))/a + f_2 (x_3,dots,x_n)$ est un polynôme homogène de degré $2$ sur $Vect(e_3, dots, e_n)$.
 
-  Si $q = 0$, c'est fini, si $q != 0$, on applique l'hypothèse de récurrence à $q$ sur $Vect(e_3, dots,e_n)$.
+  Si $q = 0$, c'est fini, si $q != 0$, on applique l'hypothèse de récurrence à $q$ sur $Vect(e_3, dots, e_n)$.
 
-  $q(x_3,dots,x_n) = sum_( i = 3)^s a_i l_i (x_3,dots,x_n)^2$ avec $(l_3,dots,l_s)$ libre dans $Vect(e_3,dots,e_n)^*$
+  $q(x_3,dots,x_n) = sum_( i = 3)^s a_i l_i (x_3,dots,x_n)^2$ avec $(l_3,dots,l_s)$ libre dans $Vect(e_3, dots, e_n)^*$
 
-  Posons $
-  phi_1(x_1,dots,x_n) = x_1 + x_2 + (L_1(x_3,dots,x_n) + L_2(x_3,dots,x_n))/a \
+  Posons $ phi_1(x_1,dots,x_n) = x_1 + x_2 + (L_1(x_3,dots,x_n) + L_2(x_3,dots,x_n))/a \
   phi_2(x_1,dots,x_n) = x_1 + x_2 + (L_2(x_3,dots,x_n) - L_1(x_3,dots,x_n))/a \
-  forall i = 3,dots,s,phi_i(x_1,dots,x_n) = l_i (x_3,dots,x_n)
-  $
+  forall i = 3,dots,s,phi_i(x_1,dots,x_n) = l_i (x_3,dots,x_n) $
 
   Il reste à montrer que $phi_1,dots,phi_s$ est libre dans $E^*$
 
@@ -621,8 +616,8 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
 
   En particulier
   $
-  sum_(i = 1)^s lambda_i phi_i (e_i) lambda_1 phi_1(e_i) + lambda_2 phi_2(e_1) = lambda_1 + lambda_2 = 0 \
-  sum_(i = 1)^s lambda_i phi_i (e_2) = lambda_1 phi_1(e_2) + lambda_2 phi_2 (e_2) = lambda_1 - lambda_2 = 0
+    sum_(i = 1)^s lambda_i phi_i (e_i) lambda_1 phi_1(e_i) + lambda_2 phi_2(e_1) = lambda_1 + lambda_2 = 0 \
+    sum_(i = 1)^s lambda_i phi_i (e_2) = lambda_1 phi_1(e_2) + lambda_2 phi_2 (e_2) = lambda_1 - lambda_2 = 0
   $
   d'où $cases(lambda_1 + lambda_2 = 0, lambda_1 - lambda_2 = 0) => lambda_1 = lambda_2 = 0$
 
@@ -635,15 +630,15 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
 
 #theorem[
   Soit $f$ une forme bilinéaire symétrique sur un $RR$-ev de dimension finie $n$. Alors :
-  
+
   $f$ est définie positive (i.e. produit scalaire) sur $E$ si, et seulement si la réduction de Gauss de $f$ est une combinaison linéaire de $n$ carrés de formes linéaires (indépendantes) à coefficients strictement positifs.
 ]
 
 #proof[
-  Notons qu'il est nécessaire d'avoir un terme carré à chaque étape de la réduction pour que $f$ soit positive. Si la réduction de Gauss donne une combinaison linéaire de $n$ carrés à coefficients strictement positifs, $f$ sera positive et $f(x,x) = 0$ donne un système homogène de $n$ équations à $n$ inconnues qui est échelonné (puisqu'on enlève une variable à chaque étape). Ce système admet une unique solution qui va être nulle. Donc $f$ est définie. 
-  
+  Notons qu'il est nécessaire d'avoir un terme carré à chaque étape de la réduction pour que $f$ soit positive. Si la réduction de Gauss donne une combinaison linéaire de $n$ carrés à coefficients strictement positifs, $f$ sera positive et $f(x,x) = 0$ donne un système homogène de $n$ équations à $n$ inconnues qui est échelonné (puisqu'on enlève une variable à chaque étape). Ce système admet une unique solution qui va être nulle. Donc $f$ est définie.
+
   Réciproquement :
-  Si la réduction de Gauss contient strictement moins de $n$ carrés, le système donné par $f(x,x) = 0$ admettra des solutions non-nulles car il y a moins d'équations indépendantes que d'inconnues. (rq : $f in Lin(RR^n,RR^p), p < n$ n'est jamais injective)
+  Si la réduction de Gauss contient strictement moins de $n$ carrés, le système donné par $f(x,x) = 0$ admettra des solutions non-nulles car il y a moins d'équations indépendantes que d'inconnues. (rq : $f in Lin(RR^n, RR^p), p < n$ n'est jamais injective)
 ]
 
 #pagebreak()
@@ -657,9 +652,9 @@ Prenons $x = sum_(i = 1)^n x_i e_i$, $y = sum_(j = 1^n)y_j e_j$
 Par bilinearité, $B(x,y) = sum_(i,j=1)^n x_i y_j B(e_i,e_j)$
 Si on pose $a_(i j) = B(e_i,e_j)$, $A = (a_(i j))_(1<=i,j<=n) in M_n (RR)$ est appelée matrice de la forme bilinéaire $B$ dans la base $(e_1,dots,e_n)$.
 
-Maintenant si $X = vec(x_1,vdots,x_n)$, $Y = vec(y_1,vdots,y_n)$, alors :
+Maintenant si $X = vec(x_1, vdots, x_n)$, $Y = vec(y_1, vdots, y_n)$, alors :
 $
-B(x,y) = transp(X)A Y
+  B(x,y) = transp(X)A Y
 $
 
 #example[
@@ -669,11 +664,11 @@ $
 
   Dans la base canonique de $RR^3$, la matrice de $B$ est :
   $
-  A = mat(
-    5,7,6;
-    7,-2,0;
-    6,0,4 
-  )
+    A = mat(
+      5, 7, 6;
+      7, -2, 0;
+      6, 0, 4
+    )
   $
 ]
 
@@ -696,42 +691,42 @@ $
 #proof[
   Notons $A'$ la matrice de $B$ dans la base $EEE' = (f_1,dots,f_n)$ et $EEE = (e_1,dots,e_n)$, si $x = sum_(i = 1)^n x_i e_i = sum_(i = 1)^n x^'_i f_i$ et $y = sum_(j = 1)^n y_j e_j = sum_(j = 1)^n y^'_j f_j$
   $
-  X = vec(x_1,vdots,x_n) quad X^' = vec(x^'_1,vdots,x^'_n) quad Y = vec(y_1,vdots,y_n) quad Y^' = vec(y^'_1,vdots,y^'_n)
+    X = vec(x_1, vdots, x_n) quad X^' = vec(x^'_1, vdots, x^'_n) quad Y = vec(y_1, vdots, y_n) quad Y^' = vec(y^'_1, vdots, y^'_n)
   $
 
   On a $X = P X^'$ et $Y = P Y^'$
   $
-  forall X,Y in M_n (RR) \
-  B(x,y) = transp(X)A Y = transp(P X')A transp(P Y') = transp(X')transp(P)A P Y' = transp(X') A' Y'\
-  "Donc "A' = transp(P)A P
+    forall X,Y in M_n (RR) \
+    B(x,y) = transp(X)A Y = transp(P X')A transp(P Y') = transp(X')transp(P)A P Y' = transp(X') A' Y'\
+    "Donc "A' = transp(P)A P
   $
 
   Cette dernière égalité a lieu car l'égalité est vraie pour tout $(x,y) in E^2$. En effet :
-  
+
   Si : $forall X in RR^n, thick M X = 0$ alors $M = 0$
 
   $
-  (forall X,Y in RR^n, transp(x) M)Y = 0 <==> transp(X) M = 0 <==> transp(transp(X)M) = X transp(M) = 0 \
-  <==> transp(M) = 0 = M \
-  M = transp(P)A P - A^'
+    (forall X,Y in RR^n, transp(x) M)Y = 0 <==> transp(X) M = 0 <==> transp(transp(X)M) = X transp(M) = 0 \
+    <==> transp(M) = 0 = M \
+    M = transp(P)A P - A^'
   $
 ]
 
 #pagebreak()
 
 = Orthogonalité
-Soit $(E,scal2(.,.))$ un espace euclidien.
+Soit $(E,scal2(., .))$ un espace euclidien.
 
 #definition[
   Soit $A subset E$ quelconque, on pose :
-  $A^ortho = {x in E | scal2(x,y) = 0 forall y in A}$
+  $A^ortho = {x in E | scal2(x, y) = 0 forall y in A}$
 
   $A^ortho$ est un sous-espace vectoriel de $E$ (même si $A$ ne l'est pas) appelé "orthogonal de $A$"
 ]
 
 #proof[
-  Soient $x,x' in A^ortho, lambda in RR$. ALors pour tout $y in A$ : 
-  $scal2(lambda x + x',y) = lambda scal2(x,y) + scal2(x',y) = 0$
+  Soient $x,x' in A^ortho, lambda in RR$. ALors pour tout $y in A$ :
+  $scal2(lambda x + x', y) = lambda scal2(x, y) + scal2(x', y) = 0$
 
   D'où $lambda x + x' in A^ortho$
 ]
@@ -744,28 +739,28 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 ]
 
 #proof[
-  On se donne $(v_1,dots,v_p)$ une base de $F$, on la complète en une base $(v_1,dots,v_n)$ de $E$. Si On note $A = (a_(i j))_(1<=i,j<=n)$ la matrice de $scal2(.,.)$ dans cette base.
+  On se donne $(v_1,dots,v_p)$ une base de $F$, on la complète en une base $(v_1,dots,v_n)$ de $E$. Si On note $A = (a_(i j))_(1<=i,j<=n)$ la matrice de $scal2(., .)$ dans cette base.
 
-  Si $x = sum_(i = 1)^n x_i v_i, y = sum_(j = 1)^n y_j v_j$. Alors : $scal2(x,y) = sum_(i,j=1)^n a_(i,j) x_i y_j$
+  Si $x = sum_(i = 1)^n x_i v_i, y = sum_(j = 1)^n y_j v_j$. Alors : $scal2(x, y) = sum_(i,j=1)^n a_(i,j) x_i y_j$
 
-  $x in F^ortho <==>^"exo" forall j in [|1,p|] , underbrace(scal2(x,v_j),=transp(X)A V_j) = 0$
+  $x in F^ortho <==>^"exo" forall j in [|1,p|] , underbrace(scal2(x, v_j), =transp(X)A V_j) = 0$
 
   $
-  cases(scal2(v_1,x) = 0,vdots,scal2(v_p,x) = 0) <==> cases(sum_(j = 1)a_(1 j) x_j = 0,vdots,sum_(j=1)^n a_(p j) x_j = 0) <==> cases(a_(1 1)x_1 + dots + a_(1 n) x_n = 0,vdots, a_(p 1) x_1 + dots + a_(p n) x+n = 0)
+    cases(scal2(v_1, x) = 0, vdots, scal2(v_p, x) = 0) <==> cases(sum_(j = 1)a_(1 j) x_j = 0, vdots, sum_(j=1)^n a_(p j) x_j = 0) <==> cases(a_(1 1)x_1 + dots + a_(1 n) x_n = 0, vdots, a_(p 1) x_1 + dots + a_(p n) x+n = 0)
   $
 
   Ainsi $x in F^ortho$ ssi ses coordonnées $(x_1,dots,x_n)$ sont solutions de ce système à $p$ équations, $n$ inconnues.
 
-  Ces équations sont linéairement indépendantes, car $det(A) != 0$ (on a un produit scalaire). En effet, si $A X = 0, transp(X)A X = scal2(X,X) = 0 ==>^(scal2(.,.) "défini") X = 0$
+  Ces équations sont linéairement indépendantes, car $det(A) != 0$ (on a un produit scalaire). En effet, si $A X = 0, transp(X)A X = scal2(X, X) = 0 ==>^(scal2(., .) "défini") X = 0$
 
   Le rang du système est $p$ donc l'ensemble des solutions est  l'intersection de $p$ hyperplans linéairement indépendants et est donc de dimension $n-p$. Donc $dim(F^ortho) = n-p$ d'où la première partie.
 
-  Pour la 2nde, Il suffit de montrer que $F inter F^ortho = {0_E}$. Soit $x in F inter F^ortho$, $scal2(x,x) = 0$. Par définition de $scal2(.,.)$, $x = 0$.
+  Pour la 2nde, Il suffit de montrer que $F inter F^ortho = {0_E}$. Soit $x in F inter F^ortho$, $scal2(x, x) = 0$. Par définition de $scal2(., .)$, $x = 0$.
 
-  Pour la 3e, on a $F subset (F^ortho)^ortho$ car si $x in F$, alors $scal2(x,y) = 0 forall y in F^ortho$. Alors $x in (F^ortho)^ortho$
+  Pour la 3e, on a $F subset (F^ortho)^ortho$ car si $x in F$, alors $scal2(x, y) = 0 forall y in F^ortho$. Alors $x in (F^ortho)^ortho$
   et on a :
   $
-  dim((F^ortho)^ortho) = dim(E) - dim(F^ortho) = dim(E) - dim(E) + dim(F) = dim(F)
+    dim((F^ortho)^ortho) = dim(E) - dim(F^ortho) = dim(E) - dim(E) + dim(F) = dim(F)
   $
   d'où l'égalité.
 ]
@@ -773,15 +768,15 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #example[
   Soit $SSS$ (resp $AAA$) le sev de $M_n (RR)$ formé des matrices symétriques (resp. antisymétriques). On sait que $M_n (RR)$ formé des matrices symétriques (resp. antisymétriques).
 
-  On sait que $M_n (RR) = SSS osum AAA$ ($M = 1/2 underbrace((transp(M) - M), in SSS) + 1/2 underbrace((M - transp(P)),in AAA)$). De plus, $AAA = SSS^ortho$ pour le produit scalaire standard de $MM_n (RR)$ :
+  On sait que $M_n (RR) = SSS osum AAA$ ($M = 1/2 underbrace((transp(M) - M), in SSS) + 1/2 underbrace((M - transp(P)), in AAA)$). De plus, $AAA = SSS^ortho$ pour le produit scalaire standard de $MM_n (RR)$ :
   $
-  scal2(M,N) = Tr(transp(M)M)
+    scal2(M, N) = Tr(transp(M)M)
   $
   Prenons $M in SSS, N in AAA$ :
   $
-  scal2(M,N) = Tr(transp(M)N) = Tr(M N) = Tr(N M)= Tr(-transp(N) M) = - Tr(transp(N)M) = - scal2(M,N)
+    scal2(M, N) = Tr(transp(M)N) = Tr(M N) = Tr(N M)= Tr(-transp(N) M) = - Tr(transp(N)M) = - scal2(M, N)
   $
-  Donc $scal2(M,N) = 0$.
+  Donc $scal2(M, N) = 0$.
 ]
 
 #property[
@@ -792,17 +787,17 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 ]
 
 #proof[
-  + Soit $y in G, scal2(y,x) = 0 forall x in G supset F$, donc $scal2(y,x) forall x in F, y in F^ortho$.
+  + Soit $y in G, scal2(y, x) = 0 forall x in G supset F$, donc $scal2(y, x) forall x in F, y in F^ortho$.
   + $F subset F + G$ donc $(F + G)^ortho subset F^ortho$ et $G subset F + G$ donc $(F + G)^ortho subset G^ortho$
-  
+
     Soit : $(F + G)^ortho subset F^ortho inter G^ortho$
 
     Pour l'inclusion inverse : soient $x in F^ortho inter G^ortho$, $y + z in F + G$.
     $
-    scal2(x,y+z) = underbrace(scal2(x,y),x in F^ortho) + underbrace(scal2(x,z),x in G^ortho) = 0
+      scal2(x, y+z) = underbrace(scal2(x, y), x in F^ortho) + underbrace(scal2(x, z), x in G^ortho) = 0
     $
     donc $x in (F+G)^ortho$
-  + On applique la 2nde à $F^ortho$ et $G^ortho$. $(F^ortho + G^ortho)^ortho = F^(perp perp) inter G ^(perp perp) = F inter G$ et $(F inter G)^ortho = (F^ortho + G^ortho)^(perp perp)$
+  + On applique la 2nde à $F^ortho$ et $G^ortho$. $(F^ortho + G^ortho)^ortho = F^(perp perp) inter G^(perp perp) = F inter G$ et $(F inter G)^ortho = (F^ortho + G^ortho)^(perp perp)$
 ]
 
 #theorem("De Pythagore")[
@@ -812,7 +807,7 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 ]
 
 #proof[
-  $norm(x + y)^2 = norm(x)^2 + norm(y)^2 + 2 scal2(x,y) <==> norm(x + y)^2 = norm(x)^2 + norm(y)^2$
+  $norm(x + y)^2 = norm(x)^2 + norm(y)^2 + 2 scal2(x, y) <==> norm(x + y)^2 = norm(x)^2 + norm(y)^2$
 ]
 
 #pagebreak()
@@ -823,11 +818,11 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #definition[
   Une base $(e_1,dots,e_n)$ d'un espace euclidien $E$ est dite orthogonale si :
   $
-  forall i,j in [|1,n|] quad i != j => scal2(e_i,e_j) = 0
+    forall i,j in [|1,n|] quad i != j => scal2(e_i, e_j) = 0
   $
   On dit, de plus, qu'elle est orthonormale si :
   $
-  forall i,j in [|1,n|] quad scal2(e_i,e_j) = delta_(i,j)
+    forall i,j in [|1,n|] quad scal2(e_i, e_j) = delta_(i,j)
   $
 ]
 
@@ -845,7 +840,7 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
   Soit $(v_1,dots,v_p)$ orthogonale de vecteurs non-nulles.
   Considérons l'équation $sum_(i = 1)^p lambda_i v_i = 0$.
 
-  Alors $forall j in [|1,p|] : scal2(sum_(i = 1)^p lambda_i v_i, v_j) = sum_(i = 1)^p lambda_i scal2(v_i,v_j) = lambda_j scal2(v_j,v_j) = lambda_j norm(v_j)^2 => lambda_j = 0$
+  Alors $forall j in [|1,p|] : scal2(sum_(i = 1)^p lambda_i v_i, v_j) = sum_(i = 1)^p lambda_i scal2(v_i, v_j) = lambda_j scal2(v_j, v_j) = lambda_j norm(v_j)^2 => lambda_j = 0$
 
   d'où la liberté.
 ]
@@ -853,35 +848,35 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #v(3em)
 
 #example[
-  La base canonique de $RR^n$ est orthogonale pour le produit scalaire standard. 
+  La base canonique de $RR^n$ est orthogonale pour le produit scalaire standard.
 ]
 
 #example[
-  Considérons $E = C^0([0,2 pi],RR)$. On munit $E$ du produit scalaire $scal2(f,g) = 1/pi integral_0^(2pi) f(t)g(t)d t$.
+  Considérons $E = C^0([0,2 pi],RR)$. On munit $E$ du produit scalaire $scal2(f, g) = 1/pi integral_0^(2pi) f(t)g(t)d t$.
 
   Notons $f_k : x |-> sin(k x)$ pour $k in NN^*$
 
   La famille $(f_k)_(k in NN^*)$ est orthonormale :
 
   $
-  scal2(f_k,f_l) = 1/pi integral_0^(2 pi) sin(k t)sin (l t) d t = 1/(2 pi) integral_0^(2 pi) cos((k-l) t) - cos((k+l)t)d t
+    scal2(f_k, f_l) = 1/pi integral_0^(2 pi) sin(k t)sin (l t) d t = 1/(2 pi) integral_0^(2 pi) cos((k-l) t) - cos((k+l)t)d t
   $
 
-  Si $k != l$, $scal2(f_k,f_l) = 0$.
+  Si $k != l$, $scal2(f_k, f_l) = 0$.
   Si $k = l$ :
   $
-  scal2(f_k,f_k) = norm(f_k)^2 = 1/pi integral_0^(2pi)sin^2(k t) d t = 1/(2pi) integral_0^(2pi) 1-cos(2k t) d t = 1
+    scal2(f_k, f_k) = norm(f_k)^2 = 1/pi integral_0^(2pi)sin^2(k t) d t = 1/(2pi) integral_0^(2pi) 1-cos(2k t) d t = 1
   $
 
 ]
 
 #example[
   conséquences du premier exemple :
-  La base canonique $(E_(i j))_(1<=i,j<=n)$ de $M_n (RR)$ (formée par les matrices élémentaires) est orthogonale pour le produit scalaire standard $scal2(M,N) = Tr(transp(M)N)$.
+  La base canonique $(E_(i j))_(1<=i,j<=n)$ de $M_n (RR)$ (formée par les matrices élémentaires) est orthogonale pour le produit scalaire standard $scal2(M, N) = Tr(transp(M)N)$.
 
   On rappelle que $E_(i j) = (delta_(i r) delta_(j s))_(1<=r,s<=n)$.
   $
-  scal2(E_(i j), E_(k l)) = Tr(E_(j i) E_(k l)) = delta_(i k) delta_(k l)
+    scal2(E_(i j), E_(k l)) = Tr(E_(j i) E_(k l)) = delta_(i k) delta_(k l)
   $
 
   Donc non-nul et vaut 1 ssi $(i,j) = (k,l)$ càd $(E_(i j))$ orthonormale.
@@ -897,21 +892,21 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
   + $n = 1$, rien à dire.
 
   + Supposons le théorème vérifié pour tout ev de dimension $n-1$.
-    
+
     Soient $E$ de dimension $n$ et $v != 0 in E$, ainsi $dim(Vect(v))^ortho = n-1$
 
     Par hypothèse de récurrence, $Vect(v)^ortho$ admet une base $(EEE_1,dots,EEE_(n-1))$ orthogonale, $v != Vect(v)^ortho$, donc $(EEE_1,dots,EEE_(n-1),v)$ est une base orthogonale de $E$.
 
-  
+
   D'après le théorème de récurrence, la propriété est vérifiée pour tout ev de dimension $n >= 1$
 ]
 
 #theorem("Procéde d'orthonormalisation de Gram-Schmidt")[
-  Soit $(f_i)_(1<=i<=d)$ une famille libre d'un espace euclidien $(E,scal2(.,.))$
+  Soit $(f_i)_(1<=i<=d)$ une famille libre d'un espace euclidien $(E,scal2(., .))$
 
-  Posons $e_1 = f_1$ et pour tout $k = 1,...,d-1$, $e_(k+1) = f_(k+1) - sum_(i=1)^k scal2(e_i,f_(k+1))/norm(e_i)^2 e_i$
+  Posons $e_1 = f_1$ et pour tout $k = 1,...,d-1$, $e_(k+1) = f_(k+1) - sum_(i=1)^k scal2(e_i, f_(k+1))/norm(e_i)^2 e_i$
 
-  La famille $(e_i)_(1<=i<=d)$ est orthogonale et pour $k = 1,...,d$, $Vect(e_1,dots,e_k) = Vect(f_1,dots,f_k)$
+  La famille $(e_i)_(1<=i<=d)$ est orthogonale et pour $k = 1,...,d$, $Vect(e_1, dots, e_k) = Vect(f_1, dots, f_k)$
 ]
 
 #proof[
@@ -919,55 +914,53 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
   + $d = 1$ : Rien à faire
   + Supposons la construction des $e_1,dots,e_k$ effectuée
 
-    Comme $Vect(e_1,dots,e_k) = Vect(f_1,dots,f_k)$, on a $norm(e_i)^2 = scal2(e_i,e_i) != 0$ pour $i = 1,dots,k$
+    Comme $Vect(e_1, dots, e_k) = Vect(f_1, dots, f_k)$, on a $norm(e_i)^2 = scal2(e_i, e_i) != 0$ pour $i = 1,dots,k$
     et $e_(k+1)$ est bien défini.
 
-    Pour $j = 1,dots,k$ : 
+    Pour $j = 1,dots,k$ :
     $
-    scal2(e_i,e_(k+1)) &= scal2(e_i,f_(k+1)-sum_(j=1)^n scal2(e_j,f_(k+1))/norm(e_j)^2 e_j) = scal2(e_i,f_(k+1)) - sum_(j=1)^k scal2(e_j,f_(k+1))/norm(e_j)^2 scal2(e_i,e_j)\
-    &= scal2(e_i,f_(k+1)) - scal2(e_i,f_(k+1))/norm(e_i)^2scal2(e_i,e_i) = 0
+      scal2(e_i, e_(k+1)) &= scal2(e_i, f_(k+1)-sum_(j=1)^n scal2(e_j, f_(k+1))/norm(e_j)^2 e_j) = scal2(e_i, f_(k+1)) - sum_(j=1)^k scal2(e_j, f_(k+1))/norm(e_j)^2 scal2(e_i, e_j)\
+      &= scal2(e_i, f_(k+1)) - scal2(e_i, f_(k+1))/norm(e_i)^2scal2(e_i, e_i) = 0
     $
     $(e_1,dots,e_(k+1))$ est une famille orthogonale.
-    $e_(k+1)in Vect(f_(k+1),e_1,dots,e_k) = Vect(f_(k+1), f_i,dots,f_k)$
+    $e_(k+1)in Vect(f_(k+1), e_1, dots, e_k) = Vect(f_(k+1), f_i, dots, f_k)$
 
-    Ainsi $Vect(e_1,dots,e_(k+1)) subset Vect(f_1,dots,f_(k+1))$ et donc l'égalité.
+    Ainsi $Vect(e_1, dots, e_(k+1)) subset Vect(f_1, dots, f_(k+1))$ et donc l'égalité.
 ]
 
 #example[
   dans $RR^4$ :
   $v_1 = (1,1,0,0) quad v_2 = (1,0,-1,1),v_3 = (0,1,1,1)$
-  
-  $Delta_(1,1) = matdet(1,0,0;0,-1,1;1,1,1) = -2 != 0$ d'où la liberté
+
+  $Delta_(1,1) = matdet(1, 0, 0; 0, -1, 1; 1, 1, 1) = -2 != 0$ d'où la liberté
 
   Posons $e_1 = v_1$ et $norm(v_1) = sqrt(2)$
 
   $
-  e_2 &= v_2 - scal2(v_2,e_1)/norm(e_1)^2 e_1 quad scal2(v_2,e_1) = 1 \
-  &= v_2 - 1/2 e_1 = (1,0,-1,1) - 1/2 (1,1,0,0) \
-  &= (1/2,-1/2,-1,1)
+    e_2 & = v_2 - scal2(v_2, e_1)/norm(e_1)^2 e_1 quad scal2(v_2, e_1) = 1 \
+        & = v_2 - 1/2 e_1 = (1,0,-1,1) - 1/2 (1,1,0,0) \
+        & = (1/2,-1/2,-1,1)
   $
 
   #underline([Remarques :])
   + On peut prendre $e_2 = (1,-1,-2,2) = 2 e_2$.
-    Si $scal2(u,e_2) = 0$, alors $forall lambda in RR, scal2(u,lambda e_2) = 0$
-  + On pose $e_2 = v_2 + lambda e_1$ et on écrit $scal2(e_2,e_1) = 0$. On a :
+    Si $scal2(u, e_2) = 0$, alors $forall lambda in RR, scal2(u, lambda e_2) = 0$
+  + On pose $e_2 = v_2 + lambda e_1$ et on écrit $scal2(e_2, e_1) = 0$. On a :
 
-    $scal2(e_2,e_1) = scal2(e_1,v_2) + lambda scal2(e_1,e_1) = 0$ donc $lambda = - scal2(e_1,v_2)/norm(e_1)^2$
+    $scal2(e_2, e_1) = scal2(e_1, v_2) + lambda scal2(e_1, e_1) = 0$ donc $lambda = - scal2(e_1, v_2)/norm(e_1)^2$
 
-  On pose $e_3 = v_3 - scal2(v_3,e_1)/norm(e_1)^2 e_1 - scal2(v_3,e^'_2)/norm(e_2)^2 e^'_2$
+  On pose $e_3 = v_3 - scal2(v_3, e_1)/norm(e_1)^2 e_1 - scal2(v_3, e^'_2)/norm(e_2)^2 e^'_2$
 
-  $scal2(v_3,e_1) = 1, quad norm(e^'_2)^2 = 10, quad scal2(v_3,e^'_2) = -1$
+  $scal2(v_3, e_1) = 1, quad norm(e^'_2)^2 = 10, quad scal2(v_3, e^'_2) = -1$
 
   Donc :
   $
-  e_3 = (0,1,1,1) - 1/2 (1,1,0,0) + 1/10 (1,-1,-2,2) = 1/10 (-4,4,8,12) = 1/5 (-2,2,4,6) \
-  "(On peut prendre" e^'_3 = (-1,1,2,3) " mais ça ne sera pas orthonormal)"
+    e_3 = (0,1,1,1) - 1/2 (1,1,0,0) + 1/10 (1,-1,-2,2) = 1/10 (-4,4,8,12) = 1/5 (-2,2,4,6) \
+    "(On peut prendre" e^'_3 = (-1,1,2,3) " mais ça ne sera pas orthonormal)"
   $
-  Posons $
-  epsilon_1 = e_1 / norm(e_1) = 1/sqrt(2) (1,1,0,0) \ epsilon_2 = e^'_2/norm(e^'_2) = 1/sqrt(10)(1,-1,-2,2) \ epsilon_3 = e^'_3/norm(e^'_3) = 1/sqrt(15)(-1,1,2,3) 
-  $ alors $(epsilon_1,epsilon_2,epsilon_3)$ est une famille orthonormale.
+  Posons $ epsilon_1 = e_1 / norm(e_1) = 1/sqrt(2) (1,1,0,0) \ epsilon_2 = e^'_2/norm(e^'_2) = 1/sqrt(10)(1,-1,-2,2) \ epsilon_3 = e^'_3/norm(e^'_3) = 1/sqrt(15)(-1,1,2,3) $ alors $(epsilon_1,epsilon_2,epsilon_3)$ est une famille orthonormale.
 
-  #underline("Remarque"): On peut poser $e_3 = v_3 + lambda e_1 + mu e^'_2$ et on écrit $cases(scal2(e_3,e_1) = 0,scal2(e_3,e^'_2) = 0)$ qu'on peut résoudre pour retrouver la formule (qu'il faut apprendre, de toute façon.)
+  #underline("Remarque"): On peut poser $e_3 = v_3 + lambda e_1 + mu e^'_2$ et on écrit $cases(scal2(e_3, e_1) = 0, scal2(e_3, e^'_2) = 0)$ qu'on peut résoudre pour retrouver la formule (qu'il faut apprendre, de toute façon.)
 ]
 
 #remark[
@@ -977,12 +970,12 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 = Projections et symétries orthogonales
 
 #theorem[
-  Soient $(E,scal2(.,.))$ un espace euclidien, $x in E$, $F$ un sev de $E$. Il existe un unique vecteur de $F$ noté $p_F (x)$ tel que $x - p_F (x) in F^ortho$. On a de plus :
+  Soient $(E,scal2(., .))$ un espace euclidien, $x in E$, $F$ un sev de $E$. Il existe un unique vecteur de $F$ noté $p_F (x)$ tel que $x - p_F (x) in F^ortho$. On a de plus :
   + Dans une base $(e_1,dots,e_p)$ *orthonormale* de $F$ :
     $
-    p_F (x) = sum_(i=1)^p scal2(x,e_i)e_i
+      p_F (x) = sum_(i=1)^p scal2(x, e_i)e_i
     $
-  + L'application $p_F : application(E,F,x,p_F (x))$ est linéaire
+  + L'application $p_F : application(E, F, x, p_F (x))$ est linéaire
   + $norm(x-p_F (x)) = min { norm(x-z), z in F}$
 ]
 
@@ -995,22 +988,22 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #remark[
   +$E = F oortho F^ortho$
 
-    $x = p_F (x) + (x-p_F (x))$
+  $x = p_F (x) + (x-p_F (x))$
 
-    Le théoreme de Pythagore donne $norm(x)^2 - norm(p_F (x))^2 + norm(x-p_F (x))^2$
+  Le théorème de Pythagore donne $norm(x)^2 - norm(p_F (x))^2 + norm(x-p_F (x))^2$
 
-    d'où $d(x,F)^2 = norm(x)^2 - norm(p_F (x))^2$
+  d'où $d(x,F)^2 = norm(x)^2 - norm(p_F (x))^2$
 
   + Si $(f_1,dots,f_p)$ est une base orthogonale de $F$ :
-    $ p_F = sum_(i=1)^p scal2(x,f_i)/norm(f_i)^2 f_i $
+    $ p_F = sum_(i=1)^p scal2(x, f_i)/norm(f_i)^2 f_i $
 
     Dans le procédé d'orthogonalisation de Schmidt, $(f_1,dots,f_p)$ est libre,
-    
+
     $
-    e_1 &= f_i \
-    e_2 &= f_2 - p_(Vect(e_1)) in Vect(e_1)^ortho \
-    vdots \
-    e_(k+1) &= f_(k+1) - p_(Vect(e_1,dots,e_k)) (f_(k+1))
+          e_1 & = f_i \
+          e_2 & = f_2 - p_(Vect(e_1)) in Vect(e_1)^ortho \
+        vdots \
+      e_(k+1) & = f_(k+1) - p_(Vect(e_1, dots, e_k)) (f_(k+1))
     $
     C'est-à-dire que le procédé n'est qu'une projection échelonnée.
 ]
@@ -1018,19 +1011,17 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #proof("du théorème")[
   + Soit $y = sum_(i=1)^p y_i e_i in F$
 
-    Écrire que $x-y in F^perp$ est équivalent à écrire $scal2(x-y,e_i) = 0, forall i in [|1,p|]$
+    Écrire que $x-y in F^perp$ est équivalent à écrire $scal2(x-y, e_i) = 0, forall i in [|1,p|]$
 
-    ou encore $scal2(x,e_i) = scal2(y,e_i), forall i in [|1,p|]$
+    ou encore $scal2(x, e_i) = scal2(y, e_i), forall i in [|1,p|]$
     $
-    scal2(y,e_i) = scal2(sum_(j=1)^p y_j e_j,e_i) = sum_(j=1)^p y_j scal2(e_j,e_i)
+      scal2(y, e_i) = scal2(sum_(j=1)^p y_j e_j, e_i) = sum_(j=1)^p y_j scal2(e_j, e_i)
     $
-    $(e_1,dots,e_p)$ est orthonormale, $scal2(y,e_i) = y_i scal2(e_i,e_i) = y_i$
+    $(e_1,dots,e_p)$ est orthonormale, $scal2(y, e_i) = y_i scal2(e_i, e_i) = y_i$
 
-    Donc $y = sum_(i=1)^p scal2(x,e_i)e_i$ d'où l'unicité et l'existence de $p_F (x)$ et la première formule.
+    Donc $y = sum_(i=1)^p scal2(x, e_i)e_i$ d'où l'unicité et l'existence de $p_F (x)$ et la première formule.
   + La linéarité de $p_F$ découle de la bilinéarité du produit scalaire dans la formule
-  + Soit $z in F$. $
-  norm(x-z)^2 = norm(x-p_F (x) + (p_F (x) - z))^2 = norm(x-p_F (x))^2 + norm(p_F (x) - z)^2 >= norm(x-p_F (x))^2
-  $ par le théorème de Pythagore.
+  + Soit $z in F$. $ norm(x-z)^2 = norm(x-p_F (x) + (p_F (x) - z))^2 = norm(x-p_F (x))^2 + norm(p_F (x) - z)^2 >= norm(x-p_F (x))^2 $ par le théorème de Pythagore.
 
     avec égalité ssi $z = p_F (x)$
 ]
@@ -1043,21 +1034,21 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 ]
 
 #proof[
-  + $(p_F compose p_F)(x) = sum_(i = 1)^p scal2(p_F (x),e_i)e_i$ où $(e_1,dots,e_p)$ est une base orthonormale de $F$.
-  
-    Or $scal2(p_F (x),e_i) = scal2(sum_(j=1)^p scal2(x,e_j)e_j,e_i) = sum_(j=1)^p scal2(x,e_j) underbrace(scal2(e_j,e_i),delta_(i j)) = scal2(x,e_i)$
+  + $(p_F compose p_F)(x) = sum_(i = 1)^p scal2(p_F (x), e_i)e_i$ où $(e_1,dots,e_p)$ est une base orthonormale de $F$.
 
-    Donc $(p_F compose p_F)(x) = sum_(i=1)^p scal2(x,e_i)e_i = p_F (x)$
+    Or $scal2(p_F (x), e_i) = scal2(sum_(j=1)^p scal2(x, e_j)e_j, e_i) = sum_(j=1)^p scal2(x, e_j) underbrace(scal2(e_j, e_i), delta_(i j)) = scal2(x, e_i)$
+
+    Donc $(p_F compose p_F)(x) = sum_(i=1)^p scal2(x, e_i)e_i = p_F (x)$
 
     Si $x in Ker p_F$, càd $p_F (x) = 0_E$ alors $x - p_F (x) = x in F^perp$. La réciproque est triviale : $Ker p_F = F^perp$
 
     Enfin si $x in F, x = p_F (x)$.
-    $x = sum_(i=1)^p x_i e_i = sum_(i=1)^p scal2(x,e_i)e_i$
+    $x = sum_(i=1)^p x_i e_i = sum_(i=1)^p scal2(x, e_i)e_i$
 
-    $scal2(x,e_j) = x_j thick forall j in [|1,p|]$. Donc $Im p_F = F$
-  + $E = F operp2 F^perp = F^perp operp (F^perp)^perp$ 
-    
-    $x = p_F (x) + (x-p_F (x)) = p_(F^perp)(x) + underbrace((x - p_(F^perp)(x)),in (F^perp)^perp = F)$
+    $scal2(x, e_j) = x_j thick forall j in [|1,p|]$. Donc $Im p_F = F$
+  + $E = F operp2 F^perp = F^perp operp (F^perp)^perp$
+
+    $x = p_F (x) + (x-p_F (x)) = p_(F^perp)(x) + underbrace((x - p_(F^perp)(x)), in (F^perp)^perp = F)$
 
     Donc $x - p_(F^perp)(x) = p_F (x)$ et $x - p_F (x) = p_(F^perp) (x)$ et $p_F + p_(F^perp) = Id_E$
 
@@ -1068,18 +1059,16 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
     $p_F (x-p_(F^perp)(x)) = p_(F)(p_(F)(x)) = p_(F)(x)$ d'où $p_F compose p_(F^perp) = 0$
 
     De même pour $p_(F^perp) compose p_F$
-  + Si $x in E$, $scal2(x-p_(F)(x),p_(F)(x)) = 0$
+  + Si $x in E$, $scal2(x-p_(F)(x), p_(F)(x)) = 0$
 
-    Donc $scal2(x,p_(F)(x)) = scal2(p_F (x),p_F (x)) = norm(p_F (x))^2$
+    Donc $scal2(x, p_(F)(x)) = scal2(p_F (x), p_F (x)) = norm(p_F (x))^2$
 
-    Ainsi $
-    0 <= norm(x-p_F (x))^2 = scal2(x-p_(F)(x),x-p_(F)(x)) =^pi norm(x)^2 - norm(p_F (x))^2 \
-    <==> norm(x)^2 >= norm(p_F (x))^2
-    $
+    Ainsi $ 0 <= norm(x-p_F (x))^2 = scal2(x-p_(F)(x), x-p_(F)(x)) =^pi norm(x)^2 - norm(p_F (x))^2 \
+    <==> norm(x)^2 >= norm(p_F (x))^2 $
 ]
 
 #definition[
-  Soit $F$ un sev d'un espace euclidien $(E,scal2(.,.))$.
+  Soit $F$ un sev d'un espace euclidien $(E,scal2(., .))$.
 
   On appelle *symétrie orthogonale* par rapport à $F$ l'application linéaire :
   $s_F = p_F - p_(F^perp) = 2 p_F - Id_E = Id_E - 2 p_(F^perp)$
@@ -1097,11 +1086,11 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 #example[
   $F = R v = Vect(v)$, $v != 0 in RR^n$
 
-  $p_F (x) = scal2(x,v)/norm(v)^2 v$
+  $p_F (x) = scal2(x, v)/norm(v)^2 v$
 
-  $p_(F^perp)(x) = x - scal2(x,v)/norm(v)^2 v$
+  $p_(F^perp)(x) = x - scal2(x, v)/norm(v)^2 v$
 
-  $s_F (x) = 2 p_F (x) - Id_E(x) = 2scal2(x,v)/norm(v)^2v-x$
+  $s_F (x) = 2 p_F (x) - Id_E(x) = 2scal2(x, v)/norm(v)^2v-x$
 ]
 
 #remark[
@@ -1110,32 +1099,293 @@ Soit $(E,scal2(.,.))$ un espace euclidien.
 
 = Morphismes adjoints
 
-Soit $(E,scal2(.,.))$ un espace euclidien.
+Soit $(E,scal2(., .))$ un espace euclidien.
 
-Notons $j : application(E, E^*,y,j(y) : application(E,RR,x,scal2(x,y)))$
+Notons $j : application(E, E^*, y, j(y) : application(E, RR, x, scal2(x, y)))$
 
-$j$ est bien définie : $forall y in E, j(y)$ est linéaire car $scal2(.,.)$ est bilinéaire.
+$j$ est bien définie : $forall y in E, j(y)$ est linéaire car $scal2(., .)$ est bilinéaire.
 
 #theorem("de représentation de Riesz")[
-  Soit $(E,scal2(.,.))$ un espace euclidien, l'application $j$ ci-dessus est  un isomorphisme.
+  Soit $(E,scal2(., .))$ un espace euclidien, l'application $j$ ci-dessus est  un isomorphisme.
 ]
 
 #proof[
   $j$ est linéaire (déjà vu) car le produit scalaire est bilinéaire. Comme $dim(E) = dim(E^*)$, il suffit de montrer que $j$ est injective.
 
-  Soit $y in E$ tel que $j(y) = 0_(Lin(E,RR))$
+  Soit $y in E$ tel que $j(y) = 0_(Lin(E, RR))$
 
-  $forall x in E, j(y)(x) = scal2(x,y) = 0$
+  $forall x in E, j(y)(x) = scal2(x, y) = 0$
 
-  En particulier pour $x = y$ : $scal2(x,y) = 0$ càd $y = 0$.
+  En particulier pour $x = y$ : $scal2(x, y) = 0$ càd $y = 0$.
 
   Donc $Ker(j) = {0}$ càd $j$ injective donc bijective.
 ]
 
 #corollary[
-  Si $EEE = (e_1,dots,e_n)$ est une base *orthonormale* d'un espace euclidien $(E,scal2(.,.))$
+  Si $EEE = (e_1,dots,e_n)$ est une base *orthonormale* d'un espace euclidien $(E,scal2(., .))$
 
-  La base duale de $EEE$ est $EEE^* = (scal2(.,e_1),dots,scal2(.,e_n))$ et $forall x in E, x = sum_(i = 1)^n scal2(x,e_i)e_i$
+  La base duale de $EEE$ est $EEE^* = (scal2(., e_1),dots,scal2(., e_n))$ et :
 
-  $forall phi in E^*$, $phi = sum_(i=1)^n phi(e_i) scal2(.,e_i)$
+  $forall x in E, x = sum_(i = 1)^n scal2(x, e_i)e_i$
+
+  $forall phi in E^*$, $phi = sum_(i=1)^n phi(e_i) scal2(., e_i)$
+]
+
+#corollary[
+  Si $u : E --> F$ est une application linéaire entre 2 espaces euclidiens,
+  il existe une *unique* application linéaire $u^* : F --> E$ telle que :
+  $
+    forall (x,y) in E times F, quad scal2(u(x), y)_F = scal2(x, u^*(y))_E
+  $
+  où $scal2(., .)_F$ (resp. $scal2(., .)_E$) désigne le produit scalaire sur $F$ (resp. E)
+]
+#proof[
+  Soit $y in F$, l'application $x in E |--> scal2(u(x), y)_F in RR$ est une forme linéaire, elle appartient à $E^*$, mais par le théorème de représentation de Riesz, il existe un unique vecteur de $E$, notons-le $u^*(y)$, tel que :
+  $
+    scal2(u(x), y)_F = j(u^*(y))(x) = scal2(x, u^*(y))_E
+  $
+  Cela donne l'existence et l'unicité de l'application $u^* : F --> E$, il reste à montrer qu'elle est linéaire.
+
+  $forall y,z im F, forall lambda in RR, forall x in E$ :
+  $
+    scal2(x, u^*(lambda y + z))_E = scal2(u(x), lambda y + z)_F = lambda scal2(u(x), y)_F + scal2(u(x), z)_F = lambda scal2(x, u^*(y))_E + scal2(x, u^*(y))_E
+  $
+  d'où :
+  $
+    forall x in E, quad scal2(x, u^*(lambda y + z) - (lambda u^*(y) + u^*(z)))_E = 0
+  $
+
+  ainsi $u^*(lambda y + z) - (lambda u^*(y) + u^*(z)) in E^ortho = {0}$ d'où $u^*(lambda y + z) - (lambda u^*(y) + u^*(z)) = 0$
+]
+
+#definition[
+  L'application définie ci-dessus est appelé (morphisme) *adjoint* de $u$.
+]
+
+_Remarque : dans le cours, on prendra généralement $E = F$_
+
+#example[
+  Soit l'espace euclidien E = $MMM_n (RR)$ muni de son produit scalaire standard $scal2(M, N) = Tr(transp(M)N)$
+
+  Donnons-nous $A in E, A != 0_E$, considérons l'endomorphisme
+  $
+    f_A : application(E, E, M, M A)
+  $
+
+  $forall M,N in E, quad scal2(f_A (M), N) = scal2(M A, N) = Tr(transp(M A) N) = Tr(transp(A)(transp(M)N)) = Tr(transp(M)(N transp(A))) = scal2(M, N transp(A)) = scal2(M, f_transp(A)(N))$
+
+  Par *unicité* de l'adjoint : $f_A^* = f_(transp(A))$
+]
+
+#property("De l'adjoint")[
+  Soient $E,F,G$ des espaces euclidiens
+  + $Id_E^* = Id_E$ et si $u in Lin(E, F)$, $u^** = u$
+  + $u |-> u^*$ est un isomorphisme entre $Lin(E, F)$ et $Lin(F, E)$
+  + $forall u in Lin(E, F), v in Lin(F, G)$, $(v compose u)^* = u^* compose v^*$.
+
+    Et si $u$ est inversible, $u^*$ aussi. Et $(u^*)^(-1) = (u^(-1))^*$
+  + Si $u in Lin(E, F)$, $Ker(u^*) = (Im u)^ortho$ et $Im(u^*) = (Ker u)^perp$
+  + Si $EEE$ est une base *orthonormale*, $u in Lin(E)$, la matrice de $u^*$ dans $EEE$ est la transposée de la matrice de $u$ dans la base $EEE$.
+]
+
+#proof[
+  + $forall x,y in E, scal2(Id_E (x), y)_E = scal2(x, y)_E = scal2(x, Id_E (y))_E$. Par unicité de l'adjoint, $Id_E^* = Id_E$
+
+    $forall (x,y) in E times F, scal2(y, u(x))_F = scal2(u^*(y), x)_E = scal2(y, u^(**)(x))_F$ donc $u^(**) = u$.
+
+  + $u |-> u^*$ est linéaire. Soient $u,v in Lin(E, F)$.
+    $forall (x,y) in E times F, forall lambda in RR$ :
+    $
+      scal2(x, (lambda u + v)^*(y))_E & = scal2((lambda u + v)(x), y)_F = lambda scal2(u(x), y)_F + scal2(v(x), y)_F \
+                                      & = lambda scal2(x, u^*(y))_E + scal2(x, v^*(y))_E \
+                                      & = scal2(x, (lambda u^* + v^*)(y))
+    $
+
+    donc $(lambda u + v)^* = lambda u^* + v^*$. Et c'est un isomorphisme puisque $u^(**) = u$
+  + $x in E, z in G$ :
+    $
+      scal2((v compose u)(x), z)_G = scal2(v(u(x)), z)_G = scal2(u(x), v^*(z))_F = scal2(x, u^*(z))_E = scal2(x, (u^* compose v^*)(z))
+    $
+
+    On a : $u compose u^(-1) = Id_F$ donc $(u compose u^(-1))^* = (u^(-1))^* compose u^* = Id_F^* = Id_F$
+
+    soit $(u^(-1))^* compose u^* = Id_F$
+
+    $u^(-1) compose u = Id_E$ donnc $u^* compose (u^(-1))^* = Id_E$
+
+    Ainsi $u$ est inversible et $(u^*)^(-1) = (u^(-1))^*$
+  + $Ker u^* subset F, y in Ker(u^*)$ :
+    $forall x in E, scal2(u^*(y), x)_E = 0 = scal2(y, u(x))_F$
+
+    $y$ est orthogonal à tous les $u(x)$ quand $x$ varie dans $E$ : $y in (Im u)^perp$ et $Ker(u^*) subset (Im u)^perp$
+
+    Soit $y in Im(u)^perp$, alors $forall x in E, scal2(y, u(x))_F = 0 = scal2(u^*(y), x)$ donc $u^*(y) = 0_E$
+    et $y in Ker(u^*)$.
+
+    Pour l'autre égalité, on aplique la première égaliteéà $u^*$.
+  + Notons $A = Mat_EEE (u), A^* = Mat_EEE (u^*)$
+
+    $scal2(u(x), y)_E = scal2(x, u^*(y))_E$
+
+    Si $EEE = (e_1,dots,e_n)$, $x = sum_(i = 1)^n x_i e_i, y = sum_(i = 1)^n y_j e_j, X = vec(x_1, vdots, x_n), Y = vec(y_1, vdots, y_n)$
+
+    Matriciellement : $scal2(u(x), y) = transp((A X)) I_n Y$
+
+    ($I_n$ matrie du produit scalaire  dans une base orthonormale)
+
+    $scal2(x, u^*(y))_E = transp(X)A^*Y$ d'où $A^* = transp(A)$
+
+    $⚠️$ si $EEE$ n'est plus orthonormale, notons $M$ la matrice du produit scalaire sur $E$.
+
+    On a : $scal2(u(x), y) = transp((A X)) M Y = transp(X)transp(A)M Y$
+
+    et $scal2(x, u^*(y))_E = transp(X)M A^*Y$ donc $transp(A M) = M A^*$.
+    $M$ est inversible et $A^* = M^(-1)transp(A)M$
+
+]
+
+
+#remark[
+  La dernière assertion permet de voir qe $u$ et $u^*$ ont même trace, même déterminant, même polynôme caractéristique...
+
+]
+
+#proposition[
+  Si $F$ est un sous-espace vectoriel d'un espace euclidien $E$ stable par un endomorphisme de $E$ ($u(F) subset F$)
+
+  Alors $F^perp$ est stable par $u^*$ ($u^*(F^perp) subset F^perp$)
+]
+
+#proof[
+  Soit $x in F^perp$, $y in F$.
+
+  $scal2(x, y) = 0$. On doit montrer $u^*(x) in F^perp$.
+
+  $scal2(u^*(x), y) = scal2(underbrace(x, in F^perp), underbrace(u(y), in F)) = 0$ et $u^*(x) in F^perp$
+]
+
+#definition[
+  Soit $u$ un endomorphisme d'un espace euclidien $E$. On dit que $u$ est :
+  + *auto-adjoint* (ou *symétrique*) si $u^* = u$
+  + *orthogonal* (ou *isométrie*) si $u in G L(E)$ (càd $u$ bijectif) et $u^* = u^(-1)$
+  + *normal* si $u$ et $u^*$ commutent, c'est-à-dire $u^* compose u = u compose u^*$
+]
+
+#remark[
+  Si $u$ est auto-adjoint ou orthogonal, $u$ est normal.
+]
+
+= Endomorphismes des espaces euclidiens
+== Isométries d'un espace euclidien
+On note $O(E)$ l'ensemble des endomorphismes orthogonaux (isométries) d'un espace euclidien $E$. $(O(E),compose)$ est le groupe orthogonal :
+
+Si $u,v,w in O(E)$
++ stabilité par $compose$ : $u compose v in O(E), (u compose v)^* = v^* compose u^* = v^(-1) compose u^(-1) = (u compose v)^(-1)$
++ associativité : $(u compose v) compose w = u compose (v compose w)$
++ élément neutre : $Id_E in O(E), Id_E^* = Id_E = Id_E^(-1)$
++ stabilite par passage à l'inverse : Si $u in O(E), u^(-1) in O(E), (u^(-1))^* = (u^*)^(-1) = (u^(-1))^(-1) = u$
+
+#proposition[
+  Soit $u$ un endomorphisme d'un espace euclidien $(E,scal2(., .))$ de dimension $n$. Les assertions suivantes sont équivalentes :
+  + $u$ est une isométrie ($u in O(E)$)
+  + $forall x in E, norm(u(x)) = norm(x)$
+  + $forall x,y in E, scal2(u(x), u(y)) = scal2(x, y)$
+  + $u$ transforme toute base orthonormale en une base orthonormale :
+
+    Si $(e_1,dots,e_n)$ est orthonormale alors $(u(e_1),dots,u(e_n))$ aussi
+  + Il existe une base orthonormale telle que si $A$ est la matrice de $u$ dans cette base : $ transp(A)A = A transp(A) = I_n $
+]
+_Rermarque : On utilise plutôt les deux dernières_
+
+#proof[
+
+  $(a) => (b)$ :
+
+  $norm(u(x))^2 = scal2(u(x), u(x)) = scal2(x, (u^* compose u)x) = scal2(x, (u^(-1)compose u) x) = norm(x)^2$
+
+  $(b) => (c)$ :
+
+  on utilise une formule de polarisation :
+  $
+    4 scal2(u(x), u(y)) & = norm(u(x) + u(y))^2 - norm(u(x) - u(y))^2 \
+                        & = norm(u(x + y))^2 - norm(u(x-y))^2 =^((b)) norm(x+y)^2-norm(x-y)^2 \
+                        & =^"Polarisation" 4scal2(x, y)
+  $
+
+  $(c) => (d)$ :
+
+  $(e_1,dots,e_n)$ base ortonormale de $E$ : $scal2(e_i, e_j) = delta_(i,j), quad forall i,j in [|1,n|]^2$
+
+  d'aprês $(c)$ : $scal2(u(e_i), u(e_j)) = delta_(i,j)$
+  càd $(u(e_1),dots,u(e_n))$ est orthonormale.
+
+  $(d) => (e)$ :
+  $A = (a_(i j))$ la matrice de $u$ dans une base orthonormale $(e_1,dots,e_n)$. D'après $(d)$ : $(u(e_1),dots,u(e_n))$ est orthonormale.
+
+  $delta_(i j) = scal2(u(e_i), u(e_j)) = transp(A e_i)(A e_j)$ (avec $e_i$ vecteur colonne qui vaut $(delta_(i j))_(1 <= j <= n)$)
+
+  $delta_(i j) = transp(e_i)transp(A)A e_j$
+
+  $scal2(e_i, e_j)=transp(e_i) e_j$ d'où $transp(A)A = I_n$
+
+  $(e) => (a)$ :
+  $A^(-1) = transp(A)$ donc $A$ est inversible, donc $u$ aussi.
+
+  Dans la base orthonormale donnée par $(e)$, $underbrace(transp(A), "matrice de "u^*) = underbrace(A^(-1), "matrice de "u^(-1))$. Et donc $u^* = u^(-1)$
+]
+
+#proposition[
+  Si $u in O(E)$, alors $det(u) = +- 1$
+
+  $⚠️$ la réciproque est fausse.
+]
+#example[
+  $A = mat(2, 5; 1, 3)$
+  $det(A) = 1$
+  $A transp(A) != I_n$ (la base canonique de $RR^2$) est orthonormale pour le produit scalaire standard.
+]
+
+#proof[
+  $det(u compose u^*) = det(u)det(u^*) <==> det(I_n) = det(u)^2$
+  d'où $det(u) = +-1$
+]
+
+#definition[
+  Le groupe spécial orthogonal (ou groupe des rotations vectorielles de $E$) est le groupe :
+  $S O(E) = {u in O(E) | det(u) = 1}$
+]
+#proposition[
+  Soit $F$ un sous-espace vectoriel d'un espace euclidien $E$.
+
+  La symétrie orthogonale $s_F$ par rapport à $F$ est une isométrie (auto-adjointe également).
+
+]
+
+#proof[
+  Une projection orthogonale $p_F$ est auto-adjointe $(p_F^* = p_F)$
+
+  $forall x,y in E, scal2(p_F (x),y) = scal2(p_(F)(x),y-p_(F)(y) + p_(F)(y)) = scal2(p_(F)(x),y-p_F (y)) + scal2(p_F (x),p_F (y)) = scal2(p_F (x),p_F (y))$
+
+  De la même façon: 
+  $
+  scal2(x,p_F (y)) = scal2(x-p_F (x) + p_F(x),p_F(y)) = ... = scal2(p_F (x),p_F (y)) 
+  $
+
+  Donc $forall x,y in E$ : $scal2(p_F (x),y) = scal2(x,p_F (y))$ et $p_F^* = p_F$
+  - $s_F$ est autoadjointe : $s_F = 2p_F - Id_E, s_F^* = 2p_F - Id^*_E = 2p_F - Id_E = s_F$
+  - $s_F$ est une isométrie : $s_F^* compose s_F = s_F compose s_F = Id_E = s_F compose s_F^*$ donc $s_F^* = s_F^(-1)$
+]
+
+#definition[
+  Une symétrie orthogonale par rapport à un hyperplan est appelée *réflexion*.
+
+  (Une symétrie orthogonale par rapport à une droite est appelée *demi-tour* ou *retournement*)
+]
+
+#remark[
+  Si $H$ est un hyperplan, $e$ un vecteur unitaire base de $H^perp$.
+
+  $
+  forall x in E, s_H (x) = x - 2p_(H^perp)(x) = x-2scal2(x,e)e
+  $
 ]
