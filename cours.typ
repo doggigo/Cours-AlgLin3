@@ -990,7 +990,7 @@ Soit $(E,scal2(., .))$ un espace euclidien.
 
   $x = p_F (x) + (x-p_F (x))$
 
-  Le théorème de Pythagore donne $norm(x)^2 - norm(p_F (x))^2 + norm(x-p_F (x))^2$
+  Le théorème de Pythagore donne $norm(x)^2 = norm(p_F (x))^2 + norm(x-p_F (x))^2$
 
   d'où $d(x,F)^2 = norm(x)^2 - norm(p_F (x))^2$
 
@@ -1179,7 +1179,7 @@ _Remarque : dans le cours, on prendra généralement $E = F$_
 
 #property("De l'adjoint")[
   Soient $E,F,G$ des espaces euclidiens
-  + $Id_E^* = Id_E$ et si $u in Lin(E, F)$, $u^** = u$
+  + $Id_E^* = Id_E$ et si $u in Lin(E, F)$, $u^(**) = u$
   + $u |-> u^*$ est un isomorphisme entre $Lin(E, F)$ et $Lin(F, E)$
   + $forall u in Lin(E, F), v in Lin(F, G)$, $(v compose u)^* = u^* compose v^*$.
 
@@ -1389,3 +1389,234 @@ _Rermarque : On utilise plutôt les deux dernières_
   forall x in E, s_H (x) = x - 2p_(H^perp)(x) = x-2scal2(x,e)e
   $
 ]
+
+#theorem[
+  Soit $u$ une isométrie d'un espace euclidien $E$.
+
+  Notons $r = Rg(u-Id_E)$, alors $u$ est la composée d'au plus $r$ réflexions.
+]
+
+#remark[
+  On dit que les réflexions engendrent le groupe orthogonal $O(E)$
+]
+
+#proof[
+  Par récurrence sur $r$.
+  - Si $r = 0$, $u = Id_E$ est la composée de $0$ réflexions.
+  - Supposons le théorème vrai pour tout $0 <= r'< r$ et supposons $u != Id_E$
+
+    Ainsi, il existe $y in E$ tel que $u(y) != y$. Posons $z = u(y) - y$, $F = Vect(z)^perp$ un hyperplan de $E$.
+
+    $norm(z)^2 = norm(u(y)-y)^2 = norm(u(y))^2 + norm(y)^2 - 2 scal2(u(y),y) = 2 norm(y)^2 - 2scal2(u(y),y)$
+
+    Soit $s_F$ la symétrie orthogonale par rapport à $F$ ($s_F$ est une réflexion).
+
+    $ s_F (x) &= (Id_E - 2 p_(F^perp)) (x) = x - 2 scal2(x,z)/norm(z)^2 z \
+    
+    s_F (y) &= y - 2 scal2(y,u(y)-y)/(2 norm(y)^2 - 2 scal2(u(y),y))(u(y)-y) \ &= y - (scal2(y,u(y)) - norm(y)^2)/(norm(y)^2 - scal2(u(y),y))(u(y) - y) = u(y) \
+
+    s_F (z) &= z - 2 scal2(z,z)/norm(z)^2 z = -z $
+
+    Maintenant si $x$ vérifie $u(x) = x$, i.e. $x in Ker(u-Id_E) :$
+
+    $scal2(x,u(y)-y) = scal2(x,u(y))-scal2(x,y) = scal2(u(x),u(y))-scal2(x,y) = 0$ et $s_F (x) = x$
+
+    Considérons $s_F compose u$, si $s_F = Rg(s_F compose  - Id_E)$, on a $r^' <= r = Rg(u-Id_E)$ car $Ker(u - Id_E) subset Ker(s_F compose u - Id_E)$ ($u(x) = x ==> (s_F compose u) (x)$) et donc par le théorème du rang on a le résultat.
+
+    De plus : $(s_F compose u)(y) = (s_F compose s_F)(y) =^"symétrie" y$
+
+    Ainsi $y in Ker((s_F compose u) - Id_E) without Ker(u-Id_E)$
+
+    Donc on a $r' < r$
+
+    Par hypothèse de récurrence, $s_F compose u$ est la composée d'au plus $r'$ réflexions :
+
+    $s_F compose u = s_1 compose dots compose s_k$ avec $k <= r^'$ et $s_i$ des réflexions.
+
+    et $u = s_F compose s_1 compose dots compose s_K$ est la composée de $(k+1) <= r$ réflexions.
+]
+
+#theorem[
+  Soit $u in O(E)$ :
+  + $Sp(u) subset {+- 1}$ et, quand cela a un sens, les sous-espaces propres $E_1 = Ker(u-Id_E)$ et $E_(-1) = Ker(u + Id_E)$ sont orthogonaux
+  + $u$ est diagonalisable *si, et seulement si* $u$ est une symétrie orthogonale.
+  + Soit $F$ un sous-espace vectoriel de $E$. Si $F$ est stable par $u$ alors $F^perp$ aussi et la restruction $restr(u,F)$ de $u$ à $F$ (resp $restr(u,F^perp)$ de $u$ à $F^perp$) est une isométrie de $F$ (resp. $F^perp$)
+  + $E = Ker(u - Id_E) operp2 Im(u-Id_E)$
+  + Si la dimension de $E$ est impaire et si $u in S O(E)$, alors $1$ est valeur propre de $u$.
+]
+
+#proof[
+  + Soient $lambda$ une valeur propre de $u$ et $x != 0$ un vecteur propre associé.
+    $norm(x) = norm(u(x)) = norm(lambda x) = abs(lambda) norm(x) => abs(lambda) = 1 <==> lambda = +- 1$
+
+    Soient $x in E_1, y in E_(-1), scal2(x,y) = scal2(u(x),u(y)) = scal2(x,-y) = -scal2(x,y) <==> scal2(x,y) = 0$
+  + Une symétrie orthogonale est diagonalisable. Réciproquement, si $u in O(E)$ est diagonalisable :
+    $
+    E = Ker(u - Id_E) operp2 Ker(u + Id_E)
+    $
+    et $u$ est la symétrie par rapport à $Ker(u-Id_E)$
+  + Si $F$ est stable par $u$, $F^perp$ est stable par $u^* = u^(-1)$
+    donc $u^(-1)(F^perp) subset F^perp$ et $F^perp subset u(F^perp)$. Comme $u$ est bijective, $F^perp$ et $u(F^perp)$ ont même dimension : $u(F^perp) = F^perp$
+  + On sait que $Ker(u-Id_E)^* = Im(u-Id_E)^perp$, or $(u-Id_E)^* = u^* - Id_E = u^(-1)-Id_E = u^(-1) compose (Id_E - u)$ et $Ker(u-Id_E)^* = Ker(u^(-1) compose (Id_E - u)) = Ker(Id_E - u) = Ker(u - Id_E) = Im(u-Id_E)^perp$
+  + $u - Id_E = u compose (Id_E - u^(-1)) = u compose (Id_E - u^*) = u compose (Id_E - u)*$
+
+    $det(u-Id_E) = det(u compose (Id_E - u)^*) = det(u) cdot det((Id_E - u)*) = det(u) cdot det(Id_E - u)$.
+
+    On a $det(u) = 1$ car $u in S O (E)$ et $det(Id_E - u) = (-1)^dim(E) det(u - Id_E)$ (car $det(lambda u) = lambda^dim(E) det(U)$ pour tout $lambda in RR$)
+
+    Si $dim(E)$ est impaire, $det(u-Id_E) = 0$ et $1$ est valeur propre.
+
+]
+
+== Orientation
+Soit $E$ un espace euclidien de dimension $n$, soient $BBB,BBB^'$ deux bases de $E$, notons $det_BBB (BBB')$ le déterminant de la matrice de passage $P_BBB^(BBB') = Mat_((BBB',BBB)(Id_E))$. 
+
+#remark[
+  On a $det_(BBB^')(B) = 1/(det_BBB (B))$ donc $det_(BBB^')(BBB)$ de même signe que $det_BBB (BBB^')$.
+]
+
+#definition[On définit sur l'ensemble des bases de $E$ la relation :
+$
+BBB tilde BBB' <==> det_BBB (BBB' > 0)
+$]
+
+#property[
+  Cette relation est une relation d'équivalence et il y a exactement deux classes d'équivalence.
+]
+
+#proof[
+  - Réflexivité :
+    $det_BBB (BBB) = det(I_n) = 1 > 0 ==> BBB tilde BBB$
+  - Symétrie : donnée par la remarque suivante
+  - Transitivité :  $BBB,BBB^',BBB^('')$ bases de $E$.
+    Suppsoons que $det_BBB (BBB^') > 0$ et $det_(BBB^')(BBB^('')) > 0$
+
+    Or $det_BBB (BBB^('')) = det_(BBB^')(BBB^'') det_BBB (BBB^') > 0$
+
+    Fixons une base $BBB = (e_1,dots,e_n)$ de $E$ et soit $BBB^'$ une autre base de $E$. On a deux cas :
+
+    + $det_(BBB)(BBB^') > 0 => BBB tilde BBB^', BBB'$ est dans la classe de $BBB$
+    + $det_BBB (BBB^') < 0, BBB^'$ est dans la classe d'équivalence de $(e_1,dots,e_(n-1),-e_n)$
+]
+
+#definition[
+  Orienter un espace euclidien $E$ revient à fixer une base $BBB_0$ de $E$.
+  
+  On dit alors qu'une base $BBB$ de $E$ est directe si $BBB in Cl_tilde (BBB_0)$, indirecte sinon. 
+]
+
+#example[
+  $E = RR^2$, $BBB_0 = (i,j) = (vec(1,0),vec(0,1))$
+
+  - $(j,-i)$ est directe : $matdet(0,-1;1,0) = 1$
+  #v(.5em)
+  - $(i,-j)$ est indirecte : $matdet(1,0;0,-1) = -1$ 
+]
+
+#example[
+  $E = RR^3$, on utilise la règle du tire-bouchon/tourne-vis/bonhomme d'ampère.
+]
+#h(1em)
+Fixons $BBB_0 = (e_1,dots,e_n)$ une base orthonormale qui oriente $E$.
+
+Soient $x_1,dots,x_n$ des vecteurs de $E$ non-nuls et $BBB$ une base de $E$.
+
+$det_(BBB_0)(x_1,dots,x_n) = det_(B_0)(B) det_BBB (x_1,dots,x_n)$
+
+Si $BBB$ est directe, $det_(BBB_0)(x_1,dots,x_n)$ et $det_BBB (x_1,dots,x_n)$ ont même signe.
+
+Le signe de $det_BBB (x_1,dots,x_n)$ ne dépend pas de la base directe choisie.
+
+Notons $[x_1,dots,x_n] = det_(BBB_0)(x_1,dots,x_n)$
+
+L'application $ application(E,RR,x,[x_1,dots,x_(n-1),x]) $ est une forme linéaire ($phi in E^*$). Par le théorème de représentation de Riesz, il existe un unique vecteur $a$ de $E$ tel que :
+$
+[x_1,dots,x_(n-1),x] = scal2(a,x)
+$ 
+
+#definition[
+  Le vecteur $a$ ci-dessus est appelé produit vectoriel (ou exterieur) de $x_1,dots,x_(n-1)$ et est noté $ a = x_1 and dots and x_(n-1)$
+]
+
+#proposition[
+  Avec les mêmes notations, $x_1 and dots and x_(n-1)$ est orthogonal à $x_i$, $i = 1,dots,n-1$
+]
+
+#proof[
+  Pour $i = 1,dots,n-1$, $scal2(x_1 and dots and x_(n-1),x_i) = [x_1,dots,x_(n-1),x_i] = 0$
+]
+
+#remark[
+  $abs(scal2(x_1 and dots and x_(n-1), x_n))$ est un volume.
+]
+
+#corollary[
+  Soit $H$ est un hyperplan de $E$ de base $(x_1,dots,x_(n-1))$.
+  
+  Alors $H^perp = Vect(x_1 and dots and x_(n-1))$ et pour tout $x in E$ :
+  
+  $p_H (x) = x - scal2(x_1 and dots and x_(n-1),x)/norm(x_1 and dots and x_(n-1))^2 x_1 and dots and x_(n-1)$ et $underbrace(d(x,H),=norm(x-p_H (x))) = abs(det_(BBB_0)(x_1,dots,x_(n-1),x))/norm(x_1 and dots x_(n-1))$
+]
+
+#example[
+  $E = RR^3$, $BBB_0 = (i,j,k)$ la base canonique.
+
+  $x_1 = (a,b,c), x_2 = (a^',b^',c^'), u = (x,y,z)$
+
+  $scal2(x_1 and x_2, u) = det M$ où $M = mat(a,a^',x;b,b^',y;c,c^',z)$
+
+  Développons par rapport à $C_11$ :
+  $det M = x(b c^' - b^' c) - y (a c^' - a^' c) + z (a b^' - a^' b) = scal2(x_1 and x_2, u)$
+
+  D'où $x_1 and x_2 = vec(a,b,c) and (a^',b^',c^') = vec(b c^' - b^'c,-(a c^' - a^' c),a b^'-a^' b)$
+]
+
+#pagebreak()
+
+== Groupe orthogonal en petite dimension : $O(RR^n)$ ("$O(n)$")
+
++ En dimension 1 : $O(1) = {+- I_1}$, $S O(1) = {I_1}$
++ En dimension 2 : On considère $RR^2$ orienté par sa base canonique muni de son produit scalaire standard et soit $u in O(2)$ dont la matrice dans la base canonique (orthonormale pour le p.s. standard) est :
+  $
+  A = mat(a,c;b,d)
+  $
+
+  On a : $a^2 + b^2 = 1 = c^2 + d^2$ et $a c + b d = 0$
+
+  Il existe des réels $theta, phi$ tels que $a,b = cos(theta), sin(theta)$ et $c,d = cos(phi), sin(phi)$
+
+  $det(A) = a d - b c = cos(theta)sin(phi)-sin(theta)cos(phi) = sin(phi - theta)$
+
+  D'autre part $0 = a c + b d = cos(theta)cos(phi) + sin(theta)sin(phi) = cos(phi-theta)$
+
+  On a deux cas :
+  + $det(A) = 1 <==> u in S O(2)$
+    
+    $cases(sin(phi-theta) = 1,cos(phi-theta) = 0) ==> phi - theta = pi/2 + 2 k pi, k in ZZ <==> phi = theta + pi/2 + 2 k pi$
+
+    $
+    A = mat(cos(theta),cos(theta + pi/2);sin(theta),sin(theta+pi/2)) = mat(cos(theta),-sin(theta);sin(theta),cos(theta)) 
+    $
+
+    On reconnaît la matriec d'une rotation vectorielle de $theta$.
+
+    #underline([Remarque]): $Tr(A) = 2cos(theta)$
+
+  + $det(A) = -1$
+
+    $cases(sin(phi-theta) = -1,cos(phi-theta) = 0) ==> phi - theta = -pi/2 + 2 k pi, k in ZZ <==> phi = theta - pi/2 + 2 k pi$
+
+    $ A = mat(cos(theta),sin(theta);sin(theta),-cos(theta)) $ dans ce cas, c'est une réflexion.
+
+    En effet, posons $f_1 = cos(theta/2)e_1 + sin(theta/2)e_2$ et $f_2 = -sin(theta/2)e_1 + cos(theta/2)e_2$
+
+    avec $(e_1,e_2)$ base canonique de $RR^2$.
+
+    #underline("Remarque") : $(f_1,f_2)$ est une base orthonormale directe de $RR^2$
+
+    Dans cette nase, la matrice de $u$ est $mat(1,0;0,-1)$ et $u$ est la réflexion par rapport à la droite $Vect(f_1)$
+
+    $A f_1 = mat(cos(theta),sin(theta);sin(theta),-cos(theta))vec(cos(theta/2),sin(theta/2)) = vec(cos(theta)cos(theta/2) + sin(theta)sin(theta/2),sin(theta)cos(theta/2)-cos(theta)sin(theta/2)) = vec(cos(theta/2),sin(theta/2)) = f_1$
+
+    $A f_2 = mat(cos(theta),sin(theta);sin(theta),-cos(theta))vec(-sin(theta/2),cos(theta/2)) = ... vec(sin(theta-theta/2),-cos(theta-theta/2)) = vec(sin(theta/2),-cos(theta/2)) = -f_2$
+    
