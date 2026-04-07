@@ -1109,6 +1109,8 @@ $j$ est bien définie : $forall y in E, j(y)$ est linéaire car $scal2(., .)$ es
   Soit $(E,scal2(., .))$ un espace euclidien, l'application $j$ ci-dessus est  un isomorphisme.
 ]
 
+_Autrement dit, pour toute forme linéaire $phi in Lin(E)$, il existe un unique $y$ tel que $phi (x) = scal2(x,y)$_
+
 #proof[
   $j$ est linéaire (déjà vu) car le produit scalaire est bilinéaire. Comme $dim(E) = dim(E^*)$, il suffit de montrer que $j$ est injective.
 
@@ -1246,7 +1248,7 @@ _Remarque : dans le cours, on prendra généralement $E = F$_
 
 
 #remark[
-  La dernière assertion permet de voir qe $u$ et $u^*$ ont même trace, même déterminant, même polynôme caractéristique...
+  La dernière assertion permet de voir que $u$ et $u^*$ ont même trace, même déterminant, même polynôme caractéristique...
 
 ]
 
