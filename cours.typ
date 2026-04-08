@@ -1148,7 +1148,7 @@ _Autrement dit, pour toute forme linéaire $phi in Lin(E)$, il existe un unique 
   $
   Cela donne l'existence et l'unicité de l'application $u^* : F --> E$, il reste à montrer qu'elle est linéaire.
 
-  $forall y,z im F, forall lambda in RR, forall x in E$ :
+  $forall y,z in F, forall lambda in RR, forall x in E$ :
   $
     scal2(x, u^*(lambda y + z))_E = scal2(u(x), lambda y + z)_F = lambda scal2(u(x), y)_F + scal2(u(x), z)_F = lambda scal2(x, u^*(y))_E + scal2(x, u^*(y))_E
   $
@@ -1185,9 +1185,10 @@ _Remarque : dans le cours, on prendra généralement $E = F$_
   + $u |-> u^*$ est un isomorphisme entre $Lin(E, F)$ et $Lin(F, E)$
   + $forall u in Lin(E, F), v in Lin(F, G)$, $(v compose u)^* = u^* compose v^*$.
 
-    Et si $u$ est inversible, $u^*$ aussi. Et $(u^*)^(-1) = (u^(-1))^*$
+    Si $u$ est inversible, $u^*$ aussi. Et $(u^*)^(-1) = (u^(-1))^*$
   + Si $u in Lin(E, F)$, $Ker(u^*) = (Im u)^ortho$ et $Im(u^*) = (Ker u)^perp$
   + Si $EEE$ est une base *orthonormale*, $u in Lin(E)$, la matrice de $u^*$ dans $EEE$ est la transposée de la matrice de $u$ dans la base $EEE$.
+  + *(En TD)* Si $EEE$ est une base quelconque, pour $U = Mat_EEE (u)$ $exists M in MMM_n (RR), U^* = M^(-1)transp(U) M$ (avec $M = Mat_EEE (scal2(.,.))$) 
 ]
 
 #proof[
@@ -1249,6 +1250,14 @@ _Remarque : dans le cours, on prendra généralement $E = F$_
 
 #remark[
   La dernière assertion permet de voir que $u$ et $u^*$ ont même trace, même déterminant, même polynôme caractéristique...
+
+]
+
+#method("Calculer un adjoint")[
+  Voici trois méthodes pour calculer l'adjoint d'une application linéaire :
+  - Résoudre l'équation $scal2(u(x),y) = scal2(x,u^* (y))$
+  - Au lieu de travailler avec $Q$ quelconque, on cherche à trouver $u^*$ sur une base.
+  - On utilise $U^* = M^(-1)U M$ avec $U = Mat_BBB (u)$ et $M = (scal2(EEE_i,EEE_j))_(1 <= i,j <= n)$, on peut prendre, si c'est plus simple, une base orthonormée.
 
 ]
 
