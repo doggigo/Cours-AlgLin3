@@ -425,7 +425,7 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 
 #pagebreak()
 
-= Réduction de Gauss
+== Réduction de Gauss
 Donnons-nous un $RR$-ev muni d'une base $(e_1,dots,e_n)$. Soient $x = sum_(i = 1)^n x_i e_i, y = sum_(i = 1)^n y_i e_i$
 
 Soit $f$ une forme #underline("bilinéaire") sur $E$.
@@ -643,7 +643,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
 
 #pagebreak()
 
-= Représentation matricielle d'une forme bilinéaire
+== Représentation matricielle d'une forme bilinéaire
 
 Soit $E$ un $RR$-ev de dimension $n$, $B in BBB(E)$, $(e_1,dots,e_n)$ une base de $E$.
 
@@ -812,7 +812,7 @@ Soit $(E,scal2(., .))$ un espace euclidien.
 
 #pagebreak()
 
-= Bases orthonormales
+== Bases orthonormales
 
 
 #definition[
@@ -901,7 +901,9 @@ Soit $(E,scal2(., .))$ un espace euclidien.
   D'après le théorème de récurrence, la propriété est vérifiée pour tout ev de dimension $n >= 1$
 ]
 
-#theorem("Procéde d'orthonormalisation de Gram-Schmidt")[
+=== Procédé d'orthonormalisation
+
+#theorem("Procédé d'orthonormalisation de Gram-Schmidt")[
   Soit $(f_i)_(1<=i<=d)$ une famille libre d'un espace euclidien $(E,scal2(., .))$
 
   Posons $e_1 = f_1$ et pour tout $k = 1,...,d-1$, $e_(k+1) = f_(k+1) - sum_(i=1)^k scal2(e_i, f_(k+1))/norm(e_i)^2 e_i$
@@ -967,7 +969,7 @@ Soit $(E,scal2(., .))$ un espace euclidien.
   Ce procédé redémontre le fait que tout espace euclidien possède des bases orthonormées.
 ]
 
-= Projections et symétries orthogonales
+== Projections et symétries orthogonales
 
 #theorem[
   Soient $(E,scal2(., .))$ un espace euclidien, $x in E$, $F$ un sev de $E$. Il existe un unique vecteur de $F$ noté $p_F (x)$ tel que $x - p_F (x) in F^ortho$. On a de plus :
@@ -1234,7 +1236,7 @@ _Remarque : dans le cours, on prendra généralement $E = F$_
 
     Matriciellement : $scal2(u(x), y) = transp((A X)) I_n Y$
 
-    ($I_n$ matrie du produit scalaire  dans une base orthonormale)
+    ($I_n$ matrive du produit scalaire  dans une base orthonormale)
 
     $scal2(x, u^*(y))_E = transp(X)A^*Y$ d'où $A^* = transp(A)$
 
@@ -1286,8 +1288,8 @@ _Remarque : dans le cours, on prendra généralement $E = F$_
   Si $u$ est auto-adjoint ou orthogonal, $u$ est normal.
 ]
 
-= Endomorphismes des espaces euclidiens
-== Isométries d'un espace euclidien
+== Endomorphismes des espaces euclidiens
+=== Isométries d'un espace euclidien
 On note $O(E)$ l'ensemble des endomorphismes orthogonaux (isométries) d'un espace euclidien $E$. $(O(E),compose)$ est le groupe orthogonal :
 
 Si $u,v,w in O(E)$
@@ -1363,7 +1365,7 @@ _Rermarque : On utilise plutôt les deux dernières_
 
 #definition[
   Le groupe spécial orthogonal (ou groupe des rotations vectorielles de $E$) est le groupe :
-  $S O(E) = {u in O(E) | det(u) = 1}$
+  $ S O(E) = {u in O(E) | det(u) = 1} $
 ]
 #proposition[
   Soit $F$ un sous-espace vectoriel d'un espace euclidien $E$.
@@ -1546,7 +1548,7 @@ $
 $ 
 
 #definition[
-  Le vecteur $a$ ci-dessus est appelé produit vectoriel (ou exterieur) de $x_1,dots,x_(n-1)$ et est noté $ a = x_1 and dots and x_(n-1)$
+  Le vecteur $a$ ci-dessus est appelé produit vectoriel (ou exterieur) de $x_1,dots,x_(n-1)$ et est noté $ a = x_1 and dots and x_(n-1) $
 ]
 
 #proposition[
@@ -1586,48 +1588,232 @@ $
 
 == Groupe orthogonal en petite dimension : $O(RR^n)$ ("$O(n)$")
 
-+ En dimension 1 : $O(1) = {+- I_1}$, $S O(1) = {I_1}$
-+ En dimension 2 : On considère $RR^2$ orienté par sa base canonique muni de son produit scalaire standard et soit $u in O(2)$ dont la matrice dans la base canonique (orthonormale pour le p.s. standard) est :
+=== En dimension 1 
+$O(1) = {+- I_1}$, $S O(1) = {I_1}$
+=== En dimension 2 
+On considère $RR^2$ orienté par sa base canonique muni de son produit scalaire standard et soit $u in O(2)$ dont la matrice dans la base canonique (orthonormale pour le p.s. standard) est :
+$
+A = mat(a,c;b,d)
+$
+On a : $a^2 + b^2 = 1 = c^2 + d^2$ et $a c + b d = 0$
+Il existe des réels $theta, phi$ tels que $a,b = cos(theta), sin(theta)$ et $c,d = cos(phi), sin(phi)$
+$det(A) = a d - b c = cos(theta)sin(phi)-sin(theta)cos(phi) = sin(phi - theta)$
+D'autre part $0 = a c + b d = cos(theta)cos(phi) + sin(theta)sin(phi) = cos(phi-theta)$
+On a deux cas :
++ $det(A) = 1 <==> u in S O(2)$
+  
+  $cases(sin(phi-theta) = 1,cos(phi-theta) = 0) ==> phi - theta = pi/2 + 2 k pi, k in ZZ <==> phi = theta + pi/2 + 2 k pi$
+
   $
-  A = mat(a,c;b,d)
+  A = mat(cos(theta),cos(theta + pi/2);sin(theta),sin(theta+pi/2)) = mat(cos(theta),-sin(theta);sin(theta),cos(theta)) 
   $
 
-  On a : $a^2 + b^2 = 1 = c^2 + d^2$ et $a c + b d = 0$
+  On reconnaît la matrice d'une rotation vectorielle de $theta$.
 
-  Il existe des réels $theta, phi$ tels que $a,b = cos(theta), sin(theta)$ et $c,d = cos(phi), sin(phi)$
+  #remark[$Tr(A) = 2cos(theta)$]
 
-  $det(A) = a d - b c = cos(theta)sin(phi)-sin(theta)cos(phi) = sin(phi - theta)$
++ $det(A) = -1$
 
-  D'autre part $0 = a c + b d = cos(theta)cos(phi) + sin(theta)sin(phi) = cos(phi-theta)$
+  $cases(sin(phi-theta) = -1,cos(phi-theta) = 0) ==> phi - theta = -pi/2 + 2 k pi, k in ZZ <==> phi = theta - pi/2 + 2 k pi$
 
-  On a deux cas :
-  + $det(A) = 1 <==> u in S O(2)$
+  $ A = mat(cos(theta),sin(theta);sin(theta),-cos(theta)) $ dans ce cas, c'est une réflexion.
+
+  En effet, posons $f_1 = cos(theta/2)e_1 + sin(theta/2)e_2$ et $f_2 = -sin(theta/2)e_1 + cos(theta/2)e_2$
+
+  avec $(e_1,e_2)$ base canonique de $RR^2$.
+
+  #remark[$(f_1,f_2)$ est une base orthonormale directe de $RR^2$]
+
+  Dans cette base, la matrice de $u$ est $mat(1,0;0,-1)$ et $u$ est la réflexion par rapport à la droite $Vect(f_1)$
+
+  $A f_1 = mat(cos(theta),sin(theta);sin(theta),-cos(theta))vec(cos(theta/2),sin(theta/2)) = vec(cos(theta)cos(theta/2) + sin(theta)sin(theta/2),sin(theta)cos(theta/2)-cos(theta)sin(theta/2)) = vec(cos(theta/2),sin(theta/2)) = f_1$
+
+  $A f_2 = mat(cos(theta),sin(theta);sin(theta),-cos(theta))vec(-sin(theta/2),cos(theta/2)) = ... vec(sin(theta-theta/2),-cos(theta-theta/2)) = vec(sin(theta/2),-cos(theta/2)) = -f_2$
     
-    $cases(sin(phi-theta) = 1,cos(phi-theta) = 0) ==> phi - theta = pi/2 + 2 k pi, k in ZZ <==> phi = theta + pi/2 + 2 k pi$
+#remark[
+  Une rotation est la composée de deux réflexions.
+]
+#proof[
+  Notons $(e_1,e_2)$ la base canonique de $RR^2$ et $f_1 = cos(theta/2)e_1 + sin(theta/2)e_2$
 
-    $
-    A = mat(cos(theta),cos(theta + pi/2);sin(theta),sin(theta+pi/2)) = mat(cos(theta),-sin(theta);sin(theta),cos(theta)) 
-    $
+  soient $s_e$ la réflexion par rapport à $e_1$, $s_f$ la projection par rapport à $f_1$
 
-    On reconnaît la matriec d'une rotation vectorielle de $theta$.
+  Alors $(s_f compose s_e)(e_1) = s_f (e_1) = e_1 - 2 p_(Vect(f_1)^perp)(e_1)$.
 
-    #underline([Remarque]): $Tr(A) = 2cos(theta)$
+  $Vect(f_1)^perp = Vect(f_2)$ avec $f_2 = -sin(theta/2)e_1 + cos(theta/2)e_2$
 
-  + $det(A) = -1$
+  $p_(Vect(f_1)^perp)$ est la projection orthogonale sur $Vect(f_2)$
 
-    $cases(sin(phi-theta) = -1,cos(phi-theta) = 0) ==> phi - theta = -pi/2 + 2 k pi, k in ZZ <==> phi = theta - pi/2 + 2 k pi$
+  $
+  p_(Vect(f_1)^perp)(e_1) &= scal2(e_1,f_2)f_2, quad scal2(e_1,f_2) = -sin(theta) \
+  &= -sin(theta/2)(-sin(theta/2)e_1 + cos(theta/2)e_2) \
+  (s_f compose s_2)(e_1) &= e_1 - 2 p_(Vect(f_1)^perp)(e_1) = ... = (1-2sin^2(theta/2))e_1 + 2sin(theta/2)cos(theta/2)e_2\
+  &= cos(theta)e_1 + sin(theta)e_2
+  $
 
-    $ A = mat(cos(theta),sin(theta);sin(theta),-cos(theta)) $ dans ce cas, c'est une réflexion.
+  $(s_f compose s_e)(e_2) = -s_f (e_2)$ car $s_e (e_2) = -e_2 = -e_2 + 2p_(Vect(f)^perp)(e_2)$
 
-    En effet, posons $f_1 = cos(theta/2)e_1 + sin(theta/2)e_2$ et $f_2 = -sin(theta/2)e_1 + cos(theta/2)e_2$
+  $
+  p_(Vect(f_₁^perp))(e_2) &= scal2(e_2,f_2)f_2 = cos(theta/2)(-sin(theta/2)e_1 + cos(theta/2)e_2) \
+  (s_f compose s_e)(e_2) &= -e_2 + 2cos(theta/2)(-sin(theta/2)e_1 + cos(theta/2)e_2) \
+  &= -2cos(theta/2)sin(theta/2)e_1 + (2cos^2(theta/2)-1)e_2
+  &= -sin(theta)e_1 + cos(theta)e_2
+  $
+]
 
-    avec $(e_1,e_2)$ base canonique de $RR^2$.
+=== Dimension 3
 
-    #underline("Remarque") : $(f_1,f_2)$ est une base orthonormale directe de $RR^2$
+$u in O(3), E = RR^3$
 
-    Dans cette nase, la matrice de $u$ est $mat(1,0;0,-1)$ et $u$ est la réflexion par rapport à la droite $Vect(f_1)$
+Puisque nous sommes en dimension impaire, $u$ admet une valeur propre réelle.
 
-    $A f_1 = mat(cos(theta),sin(theta);sin(theta),-cos(theta))vec(cos(theta/2),sin(theta/2)) = vec(cos(theta)cos(theta/2) + sin(theta)sin(theta/2),sin(theta)cos(theta/2)-cos(theta)sin(theta/2)) = vec(cos(theta/2),sin(theta/2)) = f_1$
+Notons $H = Ker(u - Id_E) = E_1$ le sous-espace propre associé à la valeur 1 et raisonnons sur sa domension
 
-    $A f_2 = mat(cos(theta),sin(theta);sin(theta),-cos(theta))vec(-sin(theta/2),cos(theta/2)) = ... vec(sin(theta-theta/2),-cos(theta-theta/2)) = vec(sin(theta/2),-cos(theta/2)) = -f_2$
-    
++ $dim H = 3, E_1 = R^3$ et $u = Id_E$
++ $dim H = 2$, $1$ valeur propre de multiplicité $2$ ($u != Id$) et $-1$ de multiplicité $1$
+  $u$ est diagonalisable. Dans une base de vecteurs propres, la matrice de $u$ est $mat(1,0,0;0,1,0;0,0,-1)$ et $u$ est une réflexion par rapport à $H$.
+
++ $dim H = 1$, considérons la restriction de $u$ à $H^perp$ $restr(u,H^perp)$
+
+  $restr(u,H^perp)$ est une isométrie, mais pas une réflexion (car elle n'a pas de point fixe), c'est donc une rotation.
+
+  Dans une base orthonormale adaptée à la décomposition $RR^3 = H^perp operp2 H$, la matrice de $u$ est $mat(cos(theta),-sin(theta),0;sin(theta),cos(theta),0;0,0,1)$. C'est donc une rotation d'angle $theta$ d'axe $H = E_1$
++ $dim(H) = 0$, $-1$ est l'unique valeur propre
+  +  de multiplicité $3$, donc $u = -Id_E$
+  +  $-1$ est valeur propre de multiplicité $1$, considérons $restr(u,E_(-1)^perp)$ la restriction de $u$ à $E^perp_(-1) = Ker(u+Id_e)^perp$
+
+    $restr(u,E_(-1)^perp)$ est une rotation (cf le cas d'avant)
+
+    Dans une base adaptée à la décomposition : $RR^3 = E_(-1)^perp operp2 E_(-1)$
+
+    la matrice de $u$ est $mat(cos(theta),-sin(theta),0;sin(theta),cos(theta),0;0,0,-1)$. $u$ est donc la composée de la rotation d'angle $theta$ et de la réflexion par rapport à $E_(-1)^perp$
+
+*Résumé* : Si $u in O(3)$, il existe une base orthonormale de $RR^3$ dans laquelle la matrice de $u$ est de la forme :
+$
+mat(cos(theta),-sin(theta),0;sin(theta),cos(theta),0;0,0,epsilon) quad "avec" epsilon = +-1, theta in RR
+$
+
+#underline[Premier cas] : $epsilon = 1 = det(u)$, $u$ est une rotation d'angle $theta$ d'axe $E_1 = Ker(u-Id_E)$
+
+Notons $(f_1,f_2)$ une base orthonormale directe de $E_1^perp$ (si $dim E_1 = 1$) et $f_3 = f_1 and f_2$. On a :
+
+$Tr(u) = 2cos(theta) + 1 <==> cos(theta) = (Tr(u)-1)/2$
+
+et $sin(theta) = det(f_1,u(f_1),f_3)$. En effet, $u(f_1) = cos(theta)f_1 + sin(theta)f_2, f_1 and u(f_1) = sin(theta)f_3$
+
+Or $scal2(f_1 and u(f_1), f_3) = det(f,u(f_1),f_3) = sin(theta)$
+
+#underline[Second cas] : $epsilon = -1 = det(u)$, 
+- $u$ est la réflexion par rapport à $E_(-1)^perp$
+- est la composée d'une rotation et d'une réflexion par rapport à $E_(-1)^perp$.
+  On a encore $Tr(u) = 2cos(theta)-1$ et $sin(theta) = det(f_1,u(f_1),f_3)$ avec les mêmes notations que précédemment.
+
+= Théorème spectral
+
+#remark("Rappel")[
+  Un endomorphisme $u in Lin(E)$, avec $E$ euclidien, est *auto-adjoint* (symétrique) si $u^* = u$
+]
+
+#remark[
+  Dans une base orthonormée, la matrice d'un endomorphisme auto-adjoint est symétrique.
+]
+
+#example[
+  Une projection orthogonale est auto-adjointe.
+]
+
+#proposition[
+  Soit $u$ un endomorphisme auto-adjoint de $E$ : 
+  + Les sous-espaces propres de $u$ sont deux-à-deux orthogonaux
+  + Si $F$ est un sous-espace de $E$ stable par $u$ ($u(F) subset F$) alors $F^perp$ l'est aussi.
+]
+
+#proof[
+  + Soient $lambda != mu$ deux valeurs propres distincte de $u$ et $x,y$ deux vecteurs propres associés.
+
+    $mu scal2(x,y) = scal2(x,mu y) = scal2(u^*(x),y) = scal2(u(x),y) = lambda scal2(x,y)$
+
+    Puisque $mu != lambda$, on a forcément $scal2(x,y) = 0$
+  + On sait que $F^perp$ est stable par $u^* = u$
+]
+
+#remark("Rappel sur les polynômes annulateurs")[
+  Soit $P in RR[X]$, on dit que $P$ est annulateur de $u$ si $P(u) = 0$
+
+  $P(X) = sum_(i = 0)^d a_i X_i$, $P(u) = sum_(i = 0)^d a_i u^i$ avec $u^i = underbrace(u compose u compose ... compose u,i "fois")$ et $u^0 = Id$
+
+  Le polynôme caractéristique est un polynôme annulateur (Cayley-Hamilton)
+
+  Il existe un unique polynôme annulateur *unitaire* (de coefficient dominant 1) qui divise tous les polynômes annulateurs, c'est ce que l'on appelle le *polynôme minimal*.
+
+  Le polynôme minimal admet pour racines toutes les valeurs propres de l'endomorphisme considéré (et uniquement les valeurs propres).
+
+  Un endomorphisme est diagonalisable ssi son polynôme minimal est *scindé* et *à racines simples*.
+]
+
+#example[
+  - Si $u = Id_E$, $pi_u (X) = X - 1$
+  - Si $u = p$ une projection non-nulle et != Id, $p compose p = p$ donc $X^2 - X = X(X-1)$ est annulateur et on peut facilement montrer que $pi_u = X(X-1)$
+  - Si $u = s$ une symétrie différente de $-Id, Id, 0$. $s compose s = Id <==> X^2 - 1 = (X-1)(X+1)$ annulateur et facilement, $pi_u = (X-1)(X+1)$ 
+]
+
+#lemma[
+  Soit $E$ un $RR$-espace vectoriel de dimension $n >= 1$. Considérons $u$ un endomorphisme non-nul. Il existe dans $E$ une droite ou un plan stable par $u$.
+]
+
+#proof[
+  Si $x in Sp(u)$, alors $Vect(x)$ stable par $u$ ($u(x) = lambda x in Vect(x)$).
+
+  Supposons que $u$ n'ait pas de vecteur propre.
+
+  Le polynôme minimal $pi_u$ de $u$ est un produit de polynômes de degré 2 à discriminants strictement négatifs.
+
+  $pi_u (X) = (X^2 - a X + b)Q(X)$ avec $a^2 -4b < 0$ et $Q$ polynôme non-annulateur de $u$.
+
+  Il existe donc $y in E$ tel que $Q(u)(y) != 0_E$
+
+  Posons $z = Q(u)(y)$ et soit $P = Vect(z,u(z))$. Montrons que $dim P = 2$ et $P$ est stable par $u$.
+
+  - $dim(P) = 2$ : La famille $(z,u(z))$ est libre car $u$ n'a pas de vecteur propre ($z != 0_E, u(z) != 0_E$ et $u(z) = lambda z => z in Sp u$).
+
+  - $P$ stable par $u$ : il faut et suffit de montrer que $u^2 (z) in P$
+    $0 = pi_u (u(y)) = (u^2 + a u + b Id) compose (Q(u))(y) = (u^2 + a u + b Id)z$
+
+    donc $u^2 (z) = a u(z) - b z in P$
+]
+
+#theorem("Spectral")[
+  Soit $u$ un endomorphisme d'un espace euclidien $E$. Les assertions suivantes sont équivalentes :
+  + $u$ est auto-adjoint
+  + Il existe une base *orthonormale* de $E$ formée des vecteurs propres de $u$ (en particulier, $u$ est diagonalisable)
+]
+#proof[
+  $1) ==> 2)$ :
+    Par récurrence sur $n = dim(E)$
+
+    + Cas $n = 1$, rien à montrer.. 
+      
+      Cas $n = 2$, soit $EEE$ une base orthonormale de $E$ dans laquelle $Mat_EEE (u) = mat(a,b;b,d) = A$
+
+      Le polynôme caractéristique $P_A (X) = X^2 - Tr(A)X + det(A) = X^2 - (a + d)X + (a d - b^2)$
+
+      Son discriminant est $delta = (a+d)^2 - 4 (a d - b^2) = (a-d)^2 + 4b^2 >= 0$
+
+      Si $delta = 0$, alors $a = 0$ et $b = 0$, $u$ est une homothétie, c'est fini
+
+      Sinon, $delta > 0$, $u$ admet deux valeurs propres distinctes et est donc diagonalisable, et comme les sous-espaces propres sont orthogonaux, 
+      on peut facilement trouver une base orthonormale de vecteurs propres.
+    + Pour $n > 2$, supposons l'implication démontrée pour tous les espaces de dimension $<= n-1$.
+      Soit $E$ de dimension $n$. Par le lemme, $E$ admet une droite ou un plan $F$ stable par $u$.
+
+      La restriction $restr(u,F)$ est auto-adjointe, donc par hypothèse de récurrence, il existe une base orthonormale $EEE$ qui diagonalise $restr(u,F)$. Maintenant, $G = F^perp$ est stable par $u$ et la restriction $restr(u,G)$ est autoadjointe. Par hypothèse de récurrence, il existe une base orthonormale $FFF$ de $G$ qui diagonalise $restr(u,G)$. La concaténaton de $EEE$ et $FFF$ est une base de $E$ qui répond à la question ($E = F operp2 G$).
+
+    On conclut par récurrence.
+
+  $2) ==> 1)$ :
+    Évident car une matrice diagonale dans une base *#underline[orthonormale]* est symétrique.
+]
+
+#corollary[
+  Toute matrice symétrique réelle est diagonalisable.
+]
