@@ -412,7 +412,7 @@ Puisque pour tout $x in E$, $scal2(x, x) >= 0$, on note $norm(x) = sqrt(scal2(x,
 ]
 
 #remark("Rappel sur la complétude")[
-  $(F,norm(.))$ est complet si toute suite convergente y est de Cauchy pour $norm(.)$.
+  $(F,norm(.))$ est complet si toute suite de Cauchy dans $F$ y converge pour $norm(.)$.
 ]
 
 #remark[
