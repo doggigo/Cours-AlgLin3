@@ -1582,7 +1582,7 @@ $
   Développons par rapport à $C_11$ :
   $det M = x(b c^' - b^' c) - y (a c^' - a^' c) + z (a b^' - a^' b) = scal2(x_1 and x_2, u)$
 
-  D'où $x_1 and x_2 = vec(a, b, c) and (a^',b^',c^') = vec(b c^' - b^'c, -(a c^' - a^' c), a b^'-a^' b)$
+  D'où $x_1 and x_2 = vec(a, b, c) and vec(a^',b^',c^') = vec(b c^' - b^'c, -(a c^' - a^' c), a b^'-a^' b)$
 ]
 
 #pagebreak()
@@ -2027,4 +2027,205 @@ On rappelle que $transp(A)A in M_n (RR)$ est symétrique positive.
   + Les valeurs singulières sont les racines carrées positives des valeurs propres strictement positives de $transp(A)A$ et de $transp(A)A$
   + $U$ est la matrice des vecteurs propres de $A transp(A)$
   + $V$ est la matrice des vecteurs propres de $transp(A)A$
+]
+
+#proof("du théorème")[
+  Soit $A in M_(m,n)(RR)$
+
+  $transp(A)A in M_(n)(RR)$, $transp(A)A$ symétrique positive donc diagonalisable.
+
+  Supposons $Sp(transp(A)A) = {lambda_1,dots,lambda_n}$
+
+  On suppose que $lambda_1 >= lambda_2 >= ... >= lambda_r > 0$ et $lambda_(r+1), dots,lambda_n = 0$
+
+  Prenons $(v_1,dots,v_n)$ une base #underline[orthonormale] de vecteurs propres (théorème spectral).
+
+  C'est-à-dire : $forall i = 1,dots,n$, $transp(A)A v_i = lambda_i v_i$
+
+  #underline[Remarque :] $transp(v_i)transp(A)A v_j = scal2(v_i,transp(A)A v_j) = scal2(v_i,lambda_j v_j) = lambda_j delta_(i j)$
+
+  On pose $sigma_i = sqrt(lambda_i)$ et $u_i = 1/sigma_i A v_i$ pour $i in [|1,r|]$
+
+  $(u_1,dots,u_r)$ est une famille orthonormée de $RR^n$
+
+  En effet, $forall i,j in [|1,r|]$ :
+  $
+  scal2(u_i,u_j) = 1/(sigma_i sigma_j) scal2(A v_i,A v_j) = 1/(sigma_i sigma_j) scal2(transp(A)A v_i, v_j) = lambda_i/(sigma_i sigma_j) scal2(v_i,v_j) = sigma_i/sigma_j delta_(i j)
+  $
+
+  Qui est bien orthonormée.
+
+  Complétons la famille $(u_1,dots,u_r)$ en une base $(u_1,dots,u_n)$ orthonormée de $RR^n$.
+
+  Notons $U$ la matrice de passage de la base canonique de $RR^n$ à $(u_1,dots,u_n)$, 
+  
+  ainsi que $V$ la matrice de passage de la b.c. à $(v_1,dots,v_n)$
+
+  #underline[Remarque :] $U$ et $V$ sont orthogonales.
+
+  Considérons la matrice $underbrace(transp(U), (n times m))underbrace(A,(m times n)) underbrace(V,(n times n)) in M_(m,n)(RR)$
+
+  $(transp(U) A V)_(i j) = transp(u_i) (A v_j)$
+
+  Si $j <= r$, $A v_j = sigma_j u_j$ donc $transp(u_i) A v_j = 1/sigma_i transp((A v_i))A v_j$
+
+  $transp(u_i)A v_j = 1/sigma_i transp(v_i)transp(A)A v_j = lambda_j/sigma_i transp(v_i)v_j = lambda_j/sigma_i lambda_(i j)$
+
+  soit si $i = j$, $transp(u_i)A v_i = sigma_i^2/sigma_i = sigma_i$ et si $i != j, transp(u_i)A v_j = 0$
+
+  Si $j > r$ :
+
+  #underline[Remarque :] on a $Ker f = Ker (f^* compose f)$ pour $f$ une application linéaire (ici $f : RR^n --> RR^m$)
+
+  On a clairement que $Ker f subset Ker(f^* compose f)$
+
+  Pour l'inclusion inverse : Soit $x in Ker(f^* compose f)$, alors :
+  $
+  0 = scal2((f^* compose f)(x),x) = scal2(f(x),f(x)) = norm(f(x))^2
+  $ donc $x in Ker f$
+
+  Si $j > r$, $transp(A)A v_j = 0$ donc $A v_j = 0$, ainsi $transp(u_i)A v_j = 0$
+
+  On a bien que $transp(U)A V = Sigma$ diagonale donnée dans le théorème.
+
+]
+
+= Formes quadratiques
+
+Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Disons $K$ = $RR$ ou $CC$)
+
+== Généralités et Orthogonalité
+
+#property("Rappel")[
+  À toute forme bilinéaire $f : E times E --> K$, on associe une unique application linéaire de $E$ dans $E^*$ ($E$ est un $K$-espace vectoriel)
+
+  $L : application(E,E^*,y,L(f)(y) : application(E,K,x,L(f)(y)(x) = f(x,y))
+  )$
+]
+
+#remark[
+  On pouvait aussi définir
+  $
+  R(f) : application(E,E^*,x,R(f)(x) : application(E,K,y,f(x,y)))
+  $
+]
+
+#definition[
+  Soit $E$ un $K$-espace vectoriel muni d'une forme bilinéaire $f$.
+  + On appelle noyau (à droite) de $f$ l'ensemble 
+    $
+    E^perp = {y in E | f(x,y) = 0 quad forall x in E}
+    $
+  + On appelle noyau à gauche de $f$ l'ensemble
+    $
+    lperp(E) = {x in E | f(x,y) = 0 quad forall y in E}
+    $
+]
+
+#remark[
+  + $E^perp$ et $lperp(E)$ sont des $K$-espaces vectoriels
+  + Si $E$ est de dimension finie, muni d'une base $EEE = (e_1,dots,e_n)$, notons $A = (f(e_i,e_j))_(1<=i,j<=n)$ sa matrice. Si $X$ et $Y$ sont les vecteurs colonne représentant respectivement des vecteurs $x,y$ de $E$ (dans la base $EEE$)
+
+    $f(x,y) = transp(X)A Y$
+    - Si $x in lperp(E)$, $forall y in E$, $transp(X)A Y = 0 <==> transp(A) X = 0$
+  
+    Le noyau à gauche est le noyau de la matrice $transp(A)$ (c'est le noyau de l'application $R(f)$)
+    - Si $y in E^perp$, $forall x in E$ : $transp(X)A Y = 0 <==> A Y = 0$
+
+      Le noyau à droite est le noyau de la matrice A (c'est le noyau de l'application $L(f)$)
+  + Si $f$ est symétrique, $E^perp = lperp(E)$
+]
+
+#definition[
+  Une forme bilinéaire $f$ sur $E$ est dite non-dégénérée à droite (resp. à gauche) si $E^perp = {0_E}$ (resp. $lperp(E) = {0_E}$). 
+  
+  Elle est dite non-dégénérée si elle est non-dégénérée à droite et à gauche.
+]
+
+#remark[
+  + "$f$ est non-dégénérée à droite" équivaut à dire que $L(f)$ est injective
+  + Si $f$ est symétrique, non-dégénérée à droite équivaut à non-dégénérée à gauche, et en dimension finie ($det A = det(transp(A))$)
+  + ⚠️ même si $f$ est symétrique positive ($K = RR$), dire que $f$ est non-dégénérée n'implique pas que $f$ est un produit scalaire.
+]
+#definition[
+  Si $E$ est un $KK-$espace vectoriel et $f$ une forme bilinéaire symétrique, on appelle *rang de $f$*, noté $Rg f$, le rang de la matrice de $f$ dans une base quelconque de $E$.
+
+  On a montre le théorème suivant :
+]
+
+#theorem[
+  Soit $f$ une forme bilinéaire sur un $K$-espace vectoriel $E$ de dimension finie, 
+  
+  $f$ est non-dégénérée ssi le déterminant de sa matrice dans une base quelconque est non-nul.
+]
+
+#definition[
+  Soit $F$ un sous-espace vectoriel de $E$. On appelle :
+  - Orthogonal à droite de $F : F^perp = {y in E | f(x,y) = 0 quad forall x in F}$
+  - Orthogonal à gauche de $F$ : $lperp(F) = {x in E | f(x,y) = 0 quad forall y in F}$
+]
+
+#remark[
+  $F^perp$ et $lperp(F)$ sont des sous-espaces vectoriels de $E$.
+]
+
+#theorem[
+  Soit $f$ une forme bilinéaire #underline[non-dégénérée] sur $E$, $E$ étant de dimension finie $n$. Alors $dim F + dim F^perp = dim E$
+]
+
+#proof[
+  Dire que $y in F^perp$ signifie que $L(f)(y) in E^*$ s'annule sur $F$.
+
+  Réciproquement, si $phi in E^*$ s'annule sur $F$, comme $L(f)$ est un isomorphisme, il existe $y in E$ tel que $phi = L(f)(y)$ ($L(f)$ est injective car $f$ est non-degénérée)
+
+  On conclut que $F^perp$ est en bijection avec l'ensemble des formes linéaires s'annulant sur $F$ et $dim F^perp = n - dim F$
+
+  Attention : même si $f$ est non-dégénérée, $F$ et $F^perp$ ne sont pas toujours en somme directe.
+]
+
+#example[
+  $E = RR^2, f$ définie par sa matrice $mat(1,0;0,-1) = A$. $det(A) != 0$ donc $f$ est symétrique non-dégénérée.
+
+  #underline[Remarque :] Si $x = (x_1,x_2), y = (y_1,y_2)$, alors $f(x,y = x_1 y_1 - x_2 y_2)$
+
+  Soit $F = Vect((1,1))$
+
+  $F^perp = {x in RR^2 | f(x,y) = 0 quad forall y in F} = {(x_1, x_2) in RR^2 | x_1 - x_2 = 0} = F$
+
+  on a bien $dim F + dim F^perp = 1 + 1 = 2$ mais $f(1,1) = 0$ donc $F inter F^perp != {0_E}$
+]
+
+#theorem[
+  Soit $f$ une forme bilinéaire non-dégénérée sur un espace $E$ de dimension finie et soit $F$ un sous-espace vectoriel de $E$. Les assertions sont équivalentes :
+  + $F inter F^perp = {0}$
+  + $E = F osum F^perp$
+  + la restriction $restr(f,F)$ de $f$ à $F times F$ est #underline[non-dégénérée].
+]
+#proof[
+
+  $a) <==> b)$ est immédiat.
+
+  Montrons $a) ==> c)$ par contraposée. Si $restr(L(f),F) : F --> F^*$ n'est pas injective, il existe $y in F$ non-nul tel que pour tout $x in F$ $restr(L(F),F)(y)(x) = 0$ donc c$y in F inter F^perp$ ce qui contredit $a)$.
+
+  Montrons $c) ==> b)$. Soit $y in E$, considérons la forme linéaire $phi_y : application(F,K,x,f(x,y))$
+  
+  Comme $L(restr(f,F))$ est bijective ($restr(f,F)$ est non-dégénérée), il existe un unique $y^' in F$ tel que $phi_y = L(restr(f,F)(y^'))$
+
+  $forall x in F, L(restr(f,F))(y^') = f(x,y^') = f(x,y) = phi_y (x)$, $forall x in F$.
+
+  Donc $f(x,y-y^') = 0$, $forall x in F$ et $y-y^' in F$, et $y - y^' in F^perp$ et $y = (y - y^') + y^'$
+
+  Cette décomposition est unique car si $y = u + v$ avec $u in F, v in F^perp$
+
+  $forall x in F, f(x,y) = f(x,u + v) = f(x,u) + cancel(f(x,v)) = f(x,u) = f(x,y^')$
+
+  donc $L(restr(f,F))(u) = L(restr(f,F))(y^')$ donc $u = y^'$ par injectivité de $L(restr(f,F))$
+
+]
+
+_De manière générale, on a :_ 
+#proposition(["Pour la culture"])[
+  Soit $f$ une forme bilinéaire #underline[symétrique] sur $E$ un espace de dimension finie et soit $F$ un sous-espace vectoriel de $E$.
+
+  $dim E = dim F + dim F^perp - dim(E^perp inter F)$
 ]
