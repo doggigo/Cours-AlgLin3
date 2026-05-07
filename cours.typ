@@ -553,7 +553,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
     - Si le terme est un rectangle $x_i x_j$, utiliser l'identité (B) : $x_i x_j = 1/4 (x_i + x_j)^2 - 1/4 (x_i - x_j)^2$ puis développer la partie négative et continuer
   + Répéter sur les termes qui ne sont pas isolés.
 
-]
+] <methode_reduction_gauss>
 
 #proof([Pt. 1 : Énonciation de la récurrence et cas avec terme carré])[
   La démonstration se fait par récurrence sur $n = dim E$.
@@ -1582,7 +1582,7 @@ $
   Développons par rapport à $C_11$ :
   $det M = x(b c^' - b^' c) - y (a c^' - a^' c) + z (a b^' - a^' b) = scal2(x_1 and x_2, u)$
 
-  D'où $x_1 and x_2 = vec(a, b, c) and vec(a^',b^',c^') = vec(b c^' - b^'c, -(a c^' - a^' c), a b^'-a^' b)$
+  D'où $x_1 and x_2 = vec(a, b, c) and vec(a^', b^', c^') = vec(b c^' - b^'c, -(a c^' - a^' c), a b^'-a^' b)$
 ]
 
 #pagebreak()
@@ -1821,7 +1821,7 @@ Or $scal2(f_1 and u(f_1), f_3) = det(f, u(f_1), f_3) = sin(theta)$
 
 #remark[
   Pour tout matrice symétrique réelle $A in SSS_n (RR)$
-  , il existe une matrice orthogonale $P in O(n)$ telle que $transp(P)A P$ soit diagonale. 
+  , il existe une matrice orthogonale $P in O(n)$ telle que $transp(P)A P$ soit diagonale.
   En effet, on sait qu'il existe une base orthonormale de $RR^n$ constituée de vecteurs propres.
 
   (rappel : $P^(-1) = transp(P)$ pour $P$ orthogonale)
@@ -1832,7 +1832,7 @@ Or $scal2(f_1 and u(f_1), f_3) = det(f, u(f_1), f_3) = sin(theta)$
 ]
 
 #example[
-  Pour $A = mat(0,1;1,2i)$, $P_A (X) = X^2 - 2i X - 1 = (X-i)^2$ $A$ n'est pas diagonalisable.
+  Pour $A = mat(0, 1; 1, 2i)$, $P_A (X) = X^2 - 2i X - 1 = (X-i)^2$ $A$ n'est pas diagonalisable.
 ]
 
 == Réduction des endomorphismes antisymétriques
@@ -1847,83 +1847,83 @@ _$v in Lin(E)$ est antisymétrique si $v^* = -v$_
 #proof[
   Soit $lambda in Sp v$ et $x$ vecteur propre associé à $lambda$.
 
-  On a : $lambda scal2(x,x) = scal2(lambda x,x) = scal2(v(x),x) = scal2(x,v^*(x)) = scal2(x,-v(x)) = scal2(x,-lambda x) = -lambda scal2(x,x)$
+  On a : $lambda scal2(x, x) = scal2(lambda x, x) = scal2(v(x), x) = scal2(x, v^*(x)) = scal2(x, -v(x)) = scal2(x, -lambda x) = -lambda scal2(x, x)$
 
-  Et comme $scal2(x,x) = norm(x)^2 != 0$, on a $lambda = 0$.
+  Et comme $scal2(x, x) = norm(x)^2 != 0$, on a $lambda = 0$.
 ]
 
 #theorem[
   Soit $v$ un endomorphisme antisymétrique d'un espace euclidien $E$, il existe une base orthonormale de $E$ dans laquelle la matrice de $v$ est de la forme :
 
   $
-    mat(0,,,,,;,ddots,,0;,,0;,,,BBB_1;,,,,ddots;,,,,,BBB_n)
+    mat(0, , , , , ; , ddots, , 0; , , 0; , , , BBB_1; , , , , ddots; , , , , , BBB_n)
   $
 
-  avec $BBB_i = mat(0,alpha_i;-alpha_i,0)$ avec $alpha_i in RR^*$
+  avec $BBB_i = mat(0, alpha_i; -alpha_i, 0)$ avec $alpha_i in RR^*$
 ]
 
 #proof[
   Par récurrence sur $dim E = n$
 
   + Si $n = 1$, rien à dire $v = 0$
-  + Si $n = 2$, dans une base orthogonale de $E$, la matrice de $v$ est antisymétrique donc de la forme $mat(0,alpha;-alpha,0)$, $alpha in RR$
+  + Si $n = 2$, dans une base orthogonale de $E$, la matrice de $v$ est antisymétrique donc de la forme $mat(0, alpha; -alpha, 0)$, $alpha in RR$
   + Soit $n > 2$ tel que l'on suppose le résultat vrai pour tout espace euclidien de dimension inférieure à $n$.
 
     On sait qu'il existe un sous-espace $F subset E$ de dimension $1$ ou $2$ stable par $v$ (@lemme_sev_stable).
 
-    - Si $dim F = 1$, $restr(v,F)$ est l'application nulle : $restr(v,F) = 0$
-    - Si $dim F = 2$, dans une base orthonormale de $E$, la matrice de la restriction $restr(v,F)$ de $v$ à $F$ est de la forme $mat(0,alpha;-alpha,0)$ avec $alpha in RR^*$
+    - Si $dim F = 1$, $restr(v, F)$ est l'application nulle : $restr(v, F) = 0$
+    - Si $dim F = 2$, dans une base orthonormale de $E$, la matrice de la restriction $restr(v, F)$ de $v$ à $F$ est de la forme $mat(0, alpha; -alpha, 0)$ avec $alpha in RR^*$
 
     $E = F operp2 F^perp$, $F^perp$ est stable par $v^* = -v$ donc stable par $v$
 
-    par hypothèse de récurrence, comme $dim F^perp <= n-1$, il existe une base $BBB$ orthogonale de $F^perp$ dans laquelle la matrice de $restr(v,F^perp)$ est du type donné dans le théorème. En concaténant $BBB$ avec une base orthonormale de $F$, on obtient le résultat
+    par hypothèse de récurrence, comme $dim F^perp <= n-1$, il existe une base $BBB$ orthogonale de $F^perp$ dans laquelle la matrice de $restr(v, F^perp)$ est du type donné dans le théorème. En concaténant $BBB$ avec une base orthonormale de $F$, on obtient le résultat
 ]
 
 == Réduction des endomorphismes orthogonaux
 #theorem[
   Soit $u in O(n)$, il existe des entiers positifs $p,q$ et $r$ tels que $p + q + 2 r = n$ et une base orthonormée de $RR^n$ dans laquelle la matrice de $u$ est du type :
   $
-  mat(
-    I_p,0,dots,,0;0,-I_q,ddots,,vdots;vdots,ddots,R_(theta_1),ddots;,,ddots,ddots,0;0,dots,dots,0,R_(theta_r)
-  )
+    mat(
+      I_p, 0, dots, , 0; 0, -I_q, ddots, , vdots; vdots, ddots, R_(theta_1), ddots; , , ddots, ddots, 0; 0, dots, dots, 0, R_(theta_r)
+    )
   $
-  où : $forall i in [|1,r|]$, $R_(theta_i) = mat(cos(theta_i),-sin(theta_i);sin(theta_i),cos(theta_i))$, $theta_i in RR without pi ZZ$
+  où : $forall i in [|1,r|]$, $R_(theta_i) = mat(cos(theta_i), -sin(theta_i); sin(theta_i), cos(theta_i))$, $theta_i in RR without pi ZZ$
 ]
 
 #proof[
   On sait déjà que les sous-espaces propres (s'ils existent) $E_1$, $E_(-1)$ associés aux valeurs propres $1$ et $-1$ sont en somme directe orthogonale $(dim E_1 = p, dim E_(-1) = q)$
 
   Posons $F_0 = (E_1 osum E_(-1))^perp$
-  - Si $F_0 = {0}$, c'est fini, il existe une b.o.o dans laquelle la matrice de $u$ est $mat(I_p,0;0,-I_q)$ et $u$ est une symétrie orthogonale (par rapport à $E_1$)
+  - Si $F_0 = {0}$, c'est fini, il existe une b.o.o dans laquelle la matrice de $u$ est $mat(I_p, 0; 0, -I_q)$ et $u$ est une symétrie orthogonale (par rapport à $E_1$)
   - Sinon, comme $E_1 operp2 E_(-1)$ est stable par $u$, $F_0$ aussi.
-    
-    La restriction $restr(u,F_0)$ n'admet pas de valeur propre.
 
-    Posons $v_0 = restr(u,F_0) + restr(u^*,F_0)$, on a $v^*_0 = v_0$ et $v_0$ est auto-adjoint donc diagonalisable dans une base orthonormale par le théorème spéctral.
+    La restriction $restr(u, F_0)$ n'admet pas de valeur propre.
 
-    Soit $omega in F_0$ un vecteur propre dwe $V_0$ associé à une valeur propre $lambda$. Considérons $P_1 = (omega, restr(u,F_0)(omega))$. Considérons $P_1 = (omega,restr(u,F_0)(omega))$. 
-    
-    $P_1$ est un plan car $restr(u,F_0)$ n'a pas de valeur propre réelle ($omega$ et $restr(u,F_0)(omega)$ ne sont pas colinéaires car $u$ n'admet pas de valeurs propres.)
+    Posons $v_0 = restr(u, F_0) + restr(u^*, F_0)$, on a $v^*_0 = v_0$ et $v_0$ est auto-adjoint donc diagonalisable dans une base orthonormale par le théorème spéctral.
 
-    $P_1$ est stable par $restr(u,F_0)$ :
+    Soit $omega in F_0$ un vecteur propre dwe $V_0$ associé à une valeur propre $lambda$. Considérons $P_1 = (omega, restr(u, F_0)(omega))$. Considérons $P_1 = (omega,restr(u, F_0)(omega))$.
 
-    On a $v_0(omega) = restr(u,F_0)(omega) + restr(u^*,F_0)(omega)$. Appliquons $restr(u,F_0)$ à cette équation :
+    $P_1$ est un plan car $restr(u, F_0)$ n'a pas de valeur propre réelle ($omega$ et $restr(u, F_0)(omega)$ ne sont pas colinéaires car $u$ n'admet pas de valeurs propres.)
 
-    $restr(u,F_0)(lambda omega) = lambda restr(u,F_0)(omega) = restr(u^2,F_0)(omega) + (restr(u,F_0) compose restr(u^*,F_0))(omega) quad (*)$
+    $P_1$ est stable par $restr(u, F_0)$ :
 
-    Mais $restr(u,F_0) compose restr(u^*,F_0) = restr(Id,F_0)$ car $restr(u^*,F_0) = u^(-1)(F_0)$ (car $u in O(n)$) 
+    On a $v_0(omega) = restr(u, F_0)(omega) + restr(u^*, F_0)(omega)$. Appliquons $restr(u, F_0)$ à cette équation :
 
-    $(*)$ donne $restr(u^2,F_0)(omega) = lambda restr(u,F_0)(omega) - omega in P_1$
+    $restr(u, F_0)(lambda omega) = lambda restr(u, F_0)(omega) = restr(u^2, F_0)(omega) + (restr(u, F_0) compose restr(u^*, F_0))(omega) quad (*)$
 
-    La restriction $restr(u,P_1)$ est un endomorphisme orthogonal de $P_1$ sans valeur propre réelle, $restr(u,P_1)$ est une rotation d'angle $theta_1 in.not pi ZZ$. On considère ensuite $P_1^perp$ dans $F_0$ et on itère le processus. On continue ainsi jusqu'à épuisement de la dimension de $F_0$.
+    Mais $restr(u, F_0) compose restr(u^*, F_0) = restr(Id, F_0)$ car $restr(u^*, F_0) = u^(-1)(F_0)$ (car $u in O(n)$)
+
+    $(*)$ donne $restr(u^2, F_0)(omega) = lambda restr(u, F_0)(omega) - omega in P_1$
+
+    La restriction $restr(u, P_1)$ est un endomorphisme orthogonal de $P_1$ sans valeur propre réelle, $restr(u, P_1)$ est une rotation d'angle $theta_1 in.not pi ZZ$. On considère ensuite $P_1^perp$ dans $F_0$ et on itère le processus. On continue ainsi jusqu'à épuisement de la dimension de $F_0$.
 ]
 
 == Décomposition polaire et valeurs singulières
 
 #definition[
-  Soit $E$ un espace euclidien, un endomorphisme $u in Lin(E)$ *symétrique* est dit positif si : $forall x in E$, $scal2(u(x),x) >= 0$
+  Soit $E$ un espace euclidien, un endomorphisme $u in Lin(E)$ *symétrique* est dit positif si : $forall x in E$, $scal2(u(x), x) >= 0$
 
-  Il est dit #underline[défini positif] si $forall x != 0_E in E$, $scal2(u(x),x) > 0$
+  Il est dit #underline[défini positif] si $forall x != 0_E in E$, $scal2(u(x), x) > 0$
 ]
 
 #proposition[
@@ -1936,16 +1936,16 @@ _$v in Lin(E)$ est antisymétrique si $v^* = -v$_
   + Soit $BBB = (e_1, dots, e_n)$ une base orthomormale de vecteurs propres diagonalisant $u$. Notons $lambda_i$ la valeur propre associée à $e_i$ pour $i = 1, dots, n$.
     Si $x = sum_(i = 1)^n x_i e_i$, alors $u(x) = sum_(i = 1)^n x_i u(e_i) = sum_(i = 1)^n lambda_i x_i e_i$. On a :
 
-    $scal2(u(x),x) = scal2(sum_(i=1)^n x_i e_i, sum_(j=1)^n x_j e_j) = sum_(i,j = 1)^n lambda_i x_i x_j underbrace(scal2(e_i,e_j),=delta_(i j)) = sum_(i=1)^n lambda_i x_i^2$
+    $scal2(u(x), x) = scal2(sum_(i=1)^n x_i e_i, sum_(j=1)^n x_j e_j) = sum_(i,j = 1)^n lambda_i x_i x_j underbrace(scal2(e_i, e_j), =delta_(i j)) = sum_(i=1)^n lambda_i x_i^2$
 
-    Si toutes les valeurs propres $lambda_i$ sont positives, $scal2(u(x),x) >= 0$. Réciproquement, s'il existe une valeur propre strictement négative, par exemple $lambda_1$, alors $scal2(u(e_1),e_1) = lambda_1 < 0$ et $u$ n'est pas positif.
+    Si toutes les valeurs propres $lambda_i$ sont positives, $scal2(u(x), x) >= 0$. Réciproquement, s'il existe une valeur propre strictement négative, par exemple $lambda_1$, alors $scal2(u(e_1), e_1) = lambda_1 < 0$ et $u$ n'est pas positif.
   + Le raisonnement est analogue avec le cas strictement positif.
 ]
 
 #proposition[
   Soit $u$ un endomorphisme auto-adjoint défini positif d'un espace euclidien $E$.
 
-  Il existe un #underline[unique] endomorphisme auto-adjoint #underline[défini positif] tel que $v^2 = v compose v = u$. 
+  Il existe un #underline[unique] endomorphisme auto-adjoint #underline[défini positif] tel que $v^2 = v compose v = u$.
 
   On dit que $v$ est la #underline[racine carrée] positive de $u$.
 ]
@@ -1953,9 +1953,9 @@ _$v in Lin(E)$ est antisymétrique si $v^* = -v$_
 #proof[
   Soit $(e_1,dots,e_n)$ une base orthonormale  de $E$ diagonalisant $u$, $Sp u = (lambda_1,dots,lambda_n)$ (rq : on peut avoir $lambda_i = lambda_j$ avec $i != j$).
 
-  On a $lambda_i > 0$ pour tout $i in [|1,n|]$. Définissons $v$ par sa matrice dans la base $(e_1,dots,e_n)$. 
+  On a $lambda_i > 0$ pour tout $i in [|1,n|]$. Définissons $v$ par sa matrice dans la base $(e_1,dots,e_n)$.
   $
-    Mat_(e_i)(v) = mat(sqrt(lambda_1),dots,0;vdots,ddots,vdots;0,dots,sqrt(lambda_n))
+    Mat_(e_i)(v) = mat(sqrt(lambda_1), dots, 0; vdots, ddots, vdots; 0, dots, sqrt(lambda_n))
   $
 
   On a $v^2 = v compose v = u$ et $v$ est auto-adjoint défini positif.
@@ -1966,13 +1966,13 @@ _$v in Lin(E)$ est antisymétrique si $v^* = -v$_
 #proposition[
   Soit $f$ in $GL(E)$ ($f$ est un automorphisme de $E$)
 
-  Alors $f^* compose f$ est auto-adjoint et défini positif.  
+  Alors $f^* compose f$ est auto-adjoint et défini positif.
 ]
 
 #proof[
   $(f^* compose f)^* = f^* compose f^(**) = f^* compose f, f^* compose f$ est symétrique.
 
-  $forall x in E without {0}, scal2((f^* compose f)(x),x) = scal2(f(x),f(x)) = norm(f(x))^2 > 0$ car $Ker f = {0}$
+  $forall x in E without {0}, scal2((f^* compose f)(x), x) = scal2(f(x), f(x)) = norm(f(x))^2 > 0$ car $Ker f = {0}$
 ]
 
 #theorem("Décomposition polaire")[
@@ -1990,11 +1990,11 @@ _$v in Lin(E)$ est antisymétrique si $v^* = -v$_
   Montrons que $u in O(E)$. On aura le résultat car $f = u compose h$.
 
   $
-  u^* compose u &= (f compose h^(-1))^* compose (f compose h^(-1)) = (h^*)^(-1) compose f^* compose f compose h^(-1) = h^(-1) compose (f^* compose f) compose h^(-1) \ 
-  &= h^(-1) compose h^2 compose h^(-1) = Id_E 
+    u^* compose u &= (f compose h^(-1))^* compose (f compose h^(-1)) = (h^*)^(-1) compose f^* compose f compose h^(-1) = h^(-1) compose (f^* compose f) compose h^(-1) \
+    &= h^(-1) compose h^2 compose h^(-1) = Id_E
   $
 
-  #underline[Unicité] : Si $f = u compose h$, $f^* compose f = (u compose h)^* compose (u compose h) = h^* compose (u^* compose u) compose h = h compose Id_E compose h = h^2$ et $h$ est l'unique racine carrée positive de $f^* compose f$. Du coup $u = f compose h^(-1)$ est uniquement défini. 
+  #underline[Unicité] : Si $f = u compose h$, $f^* compose f = (u compose h)^* compose (u compose h) = h^* compose (u^* compose u) compose h = h compose Id_E compose h = h^2$ et $h$ est l'unique racine carrée positive de $f^* compose f$. Du coup $u = f compose h^(-1)$ est uniquement défini.
 ]
 
 == Décomposition en valeurs singulières
@@ -2011,15 +2011,15 @@ On rappelle que $transp(A)A in M_n (RR)$ est symétrique positive.
 ]
 
 #theorem[
-  Soit $A in M_(m,n)(RR)$, il existe $U in O(m), V in O(n)$ et $Sigma$ une matrice "diagonale", $Sigma in M_(m,n)(RR)$ formée par les valeurs singulières de $A$ telles que $A = underbrace(U,in M_(m,m)(RR)) underbrace(sigma,in M_(m,n)(RR)) underbrace(transp(V),in M_(n,n)(RR))$
+  Soit $A in M_(m,n)(RR)$, il existe $U in O(m), V in O(n)$ et $Sigma$ une matrice "diagonale", $Sigma in M_(m,n)(RR)$ formée par les valeurs singulières de $A$ telles que $A = underbrace(U, in M_(m,m)(RR)) underbrace(sigma, in M_(m,n)(RR)) underbrace(transp(V), in M_(n,n)(RR))$
 
   "diagonale" signifie que dans $Sigma$, les valeurs singulières sont les premiers éléments de la diagonale, les autres étant nuls
 ]
 
 #example[
-  Avec $m < n$, $mat(1,0,0;0,2,0)$, $mat(1,0,0;0,0,0)$ sont diagonales
+  Avec $m < n$, $mat(1, 0, 0; 0, 2, 0)$, $mat(1, 0, 0; 0, 0, 0)$ sont diagonales
 
-  Avec $m > n$, $mat(1,0;0,2;0,0)$, $mat(1,0;0,0;0,0)$ sont diagonales
+  Avec $m > n$, $mat(1, 0; 0, 2; 0, 0)$, $mat(1, 0; 0, 0; 0, 0)$ sont diagonales
 ]
 
 #remark[
@@ -2042,7 +2042,7 @@ On rappelle que $transp(A)A in M_n (RR)$ est symétrique positive.
 
   C'est-à-dire : $forall i = 1,dots,n$, $transp(A)A v_i = lambda_i v_i$
 
-  #underline[Remarque :] $transp(v_i)transp(A)A v_j = scal2(v_i,transp(A)A v_j) = scal2(v_i,lambda_j v_j) = lambda_j delta_(i j)$
+  #underline[Remarque :] $transp(v_i)transp(A)A v_j = scal2(v_i, transp(A)A v_j) = scal2(v_i, lambda_j v_j) = lambda_j delta_(i j)$
 
   On pose $sigma_i = sqrt(lambda_i)$ et $u_i = 1/sigma_i A v_i$ pour $i in [|1,r|]$
 
@@ -2050,20 +2050,20 @@ On rappelle que $transp(A)A in M_n (RR)$ est symétrique positive.
 
   En effet, $forall i,j in [|1,r|]$ :
   $
-  scal2(u_i,u_j) = 1/(sigma_i sigma_j) scal2(A v_i,A v_j) = 1/(sigma_i sigma_j) scal2(transp(A)A v_i, v_j) = lambda_i/(sigma_i sigma_j) scal2(v_i,v_j) = sigma_i/sigma_j delta_(i j)
+    scal2(u_i, u_j) = 1/(sigma_i sigma_j) scal2(A v_i, A v_j) = 1/(sigma_i sigma_j) scal2(transp(A)A v_i, v_j) = lambda_i/(sigma_i sigma_j) scal2(v_i, v_j) = sigma_i/sigma_j delta_(i j)
   $
 
   Qui est bien orthonormée.
 
   Complétons la famille $(u_1,dots,u_r)$ en une base $(u_1,dots,u_n)$ orthonormée de $RR^n$.
 
-  Notons $U$ la matrice de passage de la base canonique de $RR^n$ à $(u_1,dots,u_n)$, 
-  
+  Notons $U$ la matrice de passage de la base canonique de $RR^n$ à $(u_1,dots,u_n)$,
+
   ainsi que $V$ la matrice de passage de la b.c. à $(v_1,dots,v_n)$
 
   #underline[Remarque :] $U$ et $V$ sont orthogonales.
 
-  Considérons la matrice $underbrace(transp(U), (n times m))underbrace(A,(m times n)) underbrace(V,(n times n)) in M_(m,n)(RR)$
+  Considérons la matrice $underbrace(transp(U), (n times m))underbrace(A, (m times n)) underbrace(V, (n times n)) in M_(m,n)(RR)$
 
   $(transp(U) A V)_(i j) = transp(u_i) (A v_j)$
 
@@ -2080,9 +2080,7 @@ On rappelle que $transp(A)A in M_n (RR)$ est symétrique positive.
   On a clairement que $Ker f subset Ker(f^* compose f)$
 
   Pour l'inclusion inverse : Soit $x in Ker(f^* compose f)$, alors :
-  $
-  0 = scal2((f^* compose f)(x),x) = scal2(f(x),f(x)) = norm(f(x))^2
-  $ donc $x in Ker f$
+  $ 0 = scal2((f^* compose f)(x), x) = scal2(f(x), f(x)) = norm(f(x))^2 $ donc $x in Ker f$
 
   Si $j > r$, $transp(A)A v_j = 0$ donc $A v_j = 0$, ainsi $transp(u_i)A v_j = 0$
 
@@ -2099,26 +2097,25 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
 #property("Rappel")[
   À toute forme bilinéaire $f : E times E --> K$, on associe une unique application linéaire de $E$ dans $E^*$ ($E$ est un $K$-espace vectoriel)
 
-  $L : application(E,E^*,y,L(f)(y) : application(E,K,x,L(f)(y)(x) = f(x,y))
-  )$
+  $L : application(E, E^*, y, L(f)(y) : application(E, K, x, L(f)(y)(x) = f(x,y)))$
 ]
 
 #remark[
   On pouvait aussi définir
   $
-  R(f) : application(E,E^*,x,R(f)(x) : application(E,K,y,f(x,y)))
+    R(f) : application(E, E^*, x, R(f)(x) : application(E, K, y, f(x,y)))
   $
 ]
 
 #definition[
   Soit $E$ un $K$-espace vectoriel muni d'une forme bilinéaire $f$.
-  + On appelle noyau (à droite) de $f$ l'ensemble 
+  + On appelle noyau (à droite) de $f$ l'ensemble
     $
-    E^perp = {y in E | f(x,y) = 0 quad forall x in E}
+      E^perp = {y in E | f(x,y) = 0 quad forall x in E}
     $
   + On appelle noyau à gauche de $f$ l'ensemble
     $
-    lperp(E) = {x in E | f(x,y) = 0 quad forall y in E}
+      lperp(E) = {x in E | f(x,y) = 0 quad forall y in E}
     $
 ]
 
@@ -2128,7 +2125,7 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
 
     $f(x,y) = transp(X)A Y$
     - Si $x in lperp(E)$, $forall y in E$, $transp(X)A Y = 0 <==> transp(A) X = 0$
-  
+
     Le noyau à gauche est le noyau de la matrice $transp(A)$ (c'est le noyau de l'application $R(f)$)
     - Si $y in E^perp$, $forall x in E$ : $transp(X)A Y = 0 <==> A Y = 0$
 
@@ -2137,8 +2134,8 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
 ]
 
 #definition[
-  Une forme bilinéaire $f$ sur $E$ est dite non-dégénérée à droite (resp. à gauche) si $E^perp = {0_E}$ (resp. $lperp(E) = {0_E}$). 
-  
+  Une forme bilinéaire $f$ sur $E$ est dite non-dégénérée à droite (resp. à gauche) si $E^perp = {0_E}$ (resp. $lperp(E) = {0_E}$).
+
   Elle est dite non-dégénérée si elle est non-dégénérée à droite et à gauche.
 ]
 
@@ -2154,8 +2151,8 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
 ]
 
 #theorem[
-  Soit $f$ une forme bilinéaire sur un $K$-espace vectoriel $E$ de dimension finie, 
-  
+  Soit $f$ une forme bilinéaire sur un $K$-espace vectoriel $E$ de dimension finie,
+
   $f$ est non-dégénérée ssi le déterminant de sa matrice dans une base quelconque est non-nul.
 ]
 
@@ -2184,7 +2181,7 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
 ]
 
 #example[
-  $E = RR^2, f$ définie par sa matrice $mat(1,0;0,-1) = A$. $det(A) != 0$ donc $f$ est symétrique non-dégénérée.
+  $E = RR^2, f$ définie par sa matrice $mat(1, 0; 0, -1) = A$. $det(A) != 0$ donc $f$ est symétrique non-dégénérée.
 
   #underline[Remarque :] Si $x = (x_1,x_2), y = (y_1,y_2)$, alors $f(x,y = x_1 y_1 - x_2 y_2)$
 
@@ -2199,19 +2196,19 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
   Soit $f$ une forme bilinéaire non-dégénérée sur un espace $E$ de dimension finie et soit $F$ un sous-espace vectoriel de $E$. Les assertions sont équivalentes :
   + $F inter F^perp = {0}$
   + $E = F osum F^perp$
-  + la restriction $restr(f,F)$ de $f$ à $F times F$ est #underline[non-dégénérée].
+  + la restriction $restr(f, F)$ de $f$ à $F times F$ est #underline[non-dégénérée].
 ]
 #proof[
 
   $a) <==> b)$ est immédiat.
 
-  Montrons $a) ==> c)$ par contraposée. Si $restr(L(f),F) : F --> F^*$ n'est pas injective, il existe $y in F$ non-nul tel que pour tout $x in F$ $restr(L(F),F)(y)(x) = 0$ donc c$y in F inter F^perp$ ce qui contredit $a)$.
+  Montrons $a) ==> c)$ par contraposée. Si $restr(L(f), F) : F --> F^*$ n'est pas injective, il existe $y in F$ non-nul tel que pour tout $x in F$ $restr(L(F), F)(y)(x) = 0$ donc c$y in F inter F^perp$ ce qui contredit $a)$.
 
-  Montrons $c) ==> b)$. Soit $y in E$, considérons la forme linéaire $phi_y : application(F,K,x,f(x,y))$
-  
-  Comme $L(restr(f,F))$ est bijective ($restr(f,F)$ est non-dégénérée), il existe un unique $y^' in F$ tel que $phi_y = L(restr(f,F)(y^'))$
+  Montrons $c) ==> b)$. Soit $y in E$, considérons la forme linéaire $phi_y : application(F, K, x, f(x,y))$
 
-  $forall x in F, L(restr(f,F))(y^') = f(x,y^') = f(x,y) = phi_y (x)$, $forall x in F$.
+  Comme $L(restr(f, F))$ est bijective ($restr(f, F)$ est non-dégénérée), il existe un unique $y^' in F$ tel que $phi_y = L(restr(f, F)(y^'))$
+
+  $forall x in F, L(restr(f, F))(y^') = f(x,y^') = f(x,y) = phi_y (x)$, $forall x in F$.
 
   Donc $f(x,y-y^') = 0$, $forall x in F$ et $y-y^' in F$, et $y - y^' in F^perp$ et $y = (y - y^') + y^'$
 
@@ -2219,13 +2216,221 @@ Dans ce chapitre, $K$ sera un corps de caractéristique différente de $2$. (Dis
 
   $forall x in F, f(x,y) = f(x,u + v) = f(x,u) + cancel(f(x,v)) = f(x,u) = f(x,y^')$
 
-  donc $L(restr(f,F))(u) = L(restr(f,F))(y^')$ donc $u = y^'$ par injectivité de $L(restr(f,F))$
+  donc $L(restr(f, F))(u) = L(restr(f, F))(y^')$ donc $u = y^'$ par injectivité de $L(restr(f, F))$
 
 ]
 
-_De manière générale, on a :_ 
+_De manière générale, on a :_
 #proposition(["Pour la culture"])[
   Soit $f$ une forme bilinéaire #underline[symétrique] sur $E$ un espace de dimension finie et soit $F$ un sous-espace vectoriel de $E$.
 
   $dim E = dim F + dim F^perp - dim(E^perp inter F)$
+]
+
+#proof[
+  Considérons la restriction à $F$ de l'application linéaire $L(f) : E --> E^*$, $restr(L(f), F) : F --> E^*$.
+
+  Par le théorème du rang, $dim F = dim Ker(restr(L(f), F)) + dim Im(restr(L(f), F))$
+  $
+    Ker(restr(L(f), F)) = {y in F | f(x,y) = 0 quad forall x in E} =E^perp inter F
+  $
+
+  Comme nous sommes en dimension finie, $E$ est isomorphe à $E^(**)$. $restr(L(f), F)(F)$ est un sous-espace vectoriel de $E^*$, sa dimension est égale à $dim(E^*) - dim(A)$ où $A$ est le sous-espace vectoriel de $E^(**)$ des formes linéaires sur $E^*$ s'annulant sur $restr(L(f), F)(F)$
+
+  $
+    A = {x in E^** isommorphic E | phi(x) = 0, forall phi in restr(L(f), F)(F)} = {x in E | f(x,y) = 0 quad forall y in F} = F^perp
+  $
+  Donc $dim Im(restr(L(f), F)) = dim E - dim F^perp$
+
+  D'où le résultat : $dim F = dim(E^perp inter F) + dim E - dim F^perp$ et $dim E = dim F + dim F^perp - dim(E^perp inter F)$
+]
+
+== Généralités sur les formes quadratiques
+
+#definition[
+  Une application $q : E --> K$ est appelée forme quadratique sur $E$ si il existe une forme bilinéaire *symétrique* $f$ sur $E$ telle que $forall x in E, q(x) = f(x,x)$
+]
+
+La formule de polarisation nous montre que la forme bilinéaire symétrique, qu'on appelle #underline[forme polaire], associée à une forme quadratique est unique.
+
+Rappel :
+#proposition("Formules de polarisation")[
+  Soit $q$ une forme quadratique sur $E$ de forme polaire $f$. Alors pour tout $x,y in E$ :
+  + $f(x,y) = 1/2 (q(x+y) - q(x) - q(y))$
+  + $f(x,y) = 1/4 [q(x+y)-q(x-y)]$
+]
+
+#remark[
+  Une forme quadratique est donnée par un polynôme homogène de degré 2
+]
+
+
+#definition[
+  Si $E$ est de dimension finie, muni d'une forme quadratique $q$, on appelle matrice de $q$ la matrice de sa forme polaire et si $(e_1,dots,e_n)$ est une base de $E$, $A = (f(e_i,e_j))_(1<=i,j<=n) in M_n (K)$ la matrice e $f$, $e = sum_(i=1)^n x_i e_i$, $X = vec(x_1, vdots, x_n)$, $q(x) = transp(X)A X$
+]
+
+#example[
+  $E = RR^3$, $q(x_1,x_2,x_3) = 7x_1^2 + 6x_1 x_2 + 5 x_2 x_3$
+
+  La matrice de $q$ dans la base canonique de $RR^3$ est $mat(7, 3, 0; 3, 0, 5/2; 0, 5/2, 0)$
+]
+
+#remark[
+  L'application qui associe à une forme quadratique sa forme polaire est un isomorphisme de $K$-espace vectoriel.
+]
+
+#exercice[ Faire la preuve ]
+
+#definition[
+  Soit $q$ une forme quadratique sur $E$ et $f$ sa forme polaire.
+  + - On appelle *noyau* de $q$ le noyau de $f$
+    - $q$ est dite *non-dégénérée* si $f$ est non-dégénérée
+    - Si $E$ est de dimension finie, Le rang de $q$ est $Rg q = Rg f = dim E - dim Ker q$.
+  + On vecteur $x$ de $E$ est dit *isotrope* si $q(x) = 0$. L'ensemble des vecteurs isotropes de $E$ pour $q$ est appelé #underline[cône isotrope] $C(q)$.
+  + $q$ est *définie* si $C(q) = {0_E}$
+]
+
+#remark[
+  On a $Ker q subset C(q)$ mais on n'a généralement pas égalité.
+
+  De plus, $C(q)$ n'est, en général, pas un espace vectoriel.
+
+  On a : $q$ défini $==> q$ non-dégénéré, mais pas l'inverse.
+]
+
+#example[
+  + Un produit scalaire $f$ est défini (et non-dégénéré). Pour $q$ la forme quadratique associé à $f$,
+    $
+      Ker(q) = C(q) = {0_E}
+    $
+  + $E = RR^2$, $q(x_1,x_2) = x_1^2 - x_2^2$. $M(q) = mat(1, 0; 0, -1)$
+
+    $Ker q = {0_E}$, $q$ est non-dégénérée.
+
+    $C(q) = {(x_1,x_2) in RR^2 | x_1^2 - x_2^2 = 0} = {(x_1,x_2) in RR^2 | x_1 = x_2 or x_1 = -x_2}$ est la réunion de deux droites vectorielles (on voit aussi qu'il n'est pas un espace vectoriel). $q$ est #underline[non-définie].
+  + $E = RR^3$, $q(x_1,x_2,x_3) = 2x_1^2 + x_2^2 + x_3^2 + x_1x_2$
+    $
+      Mat(q) = mat(2, 1/2, 0; 1/2, 1, 0; 0, 0, 1)
+    $
+    $Ker q = {0_E}$, $q$ est non-dégénérée.
+  + $E = RR^3$, $q(x_1,x_2,x_3) = x_1^2 - x_3^2$, $M(q) = mat(1, 0, 0; 0, 0, 0; 0, 0, -1)$
+
+    $Ker q = Vect((0,1,0))$, $q$ est dégénérée.
+
+    $C(q) = {(x_1,x_2,x_3) in RR^3 | x_1^2 - x_3^2 = 0} = {(x_1,x_2,x_3) in RR^3 | x_1 = x_3 or x_1 = -x_3}$ est la réunion de deux plans. $q$ dégénérée $==>$ $q$ non-définie.
+]
+
+#definition[
+  On dit qu'une famille $(e_1,dots,e_p)$ de vecteurs de $E$ est orthogonale si $f(e_i,e_j) = 0$, $forall i!=j$ avec $1<= i,j <= p$ 
+  
+  (Rq : pas besoin d'avoir $f(e_i,e_i) != 0$)
+]
+#theorem[
+  Soit $f$ une forme bilinéaire symétrique sur $E$ de dimension finie.
+
+  Alors $E$ admet une base orthogonale pour $f$.
+]
+
+#proof[
+  Soit $q$ la forme quadratique associée à $f$.
+
+  Si $q = 0$, toute base de $E$ est orthogonale pour $f$.
+
+  Supposons $q != 0$, faisons une récurrence sur $dim E = n$
+  + Si $n = 1$, rien à dire.
+  + Supposons que tout $K$-espace vectoriel muni d'une forme quadratique de dimension $<=n$ admet une base orthogonale pour $q$.
+    Soit $E$ de dimension $n+1$ muni d'une forme quadratique $q$ non nulle de forme polaire $f$.
+    + Si $Ker f != {0_E}$, on choisit $F$ un supplémentaire de $Ker f$ dans $E$, que l'on munit de la forme quadratique $restr(q, F)$
+      Par hypothèse de récurrence, $F$ admet une base orthogonale pour $restr(q, F)$, que l'on complète par une base de $Ker f$. C'est une base orthogonale de $E$.
+    + Si $Ker f = {0_E}$, prenons $e_1 in.not C(q)$ (possible car $q != 0$). On note $F = Vect(e_1)^perp$. Comme $q$ est non-dégénérée, $dim F + dim Vect(e_1) = dim E = n+1$.
+
+      On a même que $E = F osum Vect(e_1)$ car $e_1 in.not Vect(e_1)^perp$  ($e_1 in.not C(q)$)
+
+      On applique l'hypothèse de récurrence à $F$ muni de $restr(q, F)$ : il existe une base $(e_2,dots,e_(n+1))$ de $F$ orthogonale pur $restr(q, F)$. $(e_1,dots,e_(n+1))$ est une base de $E$ orthogonale pour $q$.
+
+
+  D'où le résultat.
+]
+
+#corollary[
+  Soit $A in M_n (K)$ symétrique, il existe une matrice $P in GL_n (K)$ telle que $transp(P)A P$ soit diagonale.
+]
+
+L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de trouver des bases orthogonales pour $q$. _Voir les exemples ci-dessous, ainsi que la méthode de Gauss expliquée plus haut, #underline[@methode_reduction_gauss]_
+
+#example[
+
+  E = $RR^3$, $q(x,y,z) = x^2 - 2y^2 + 6z^2 + 2x y - 4 x z + 4 y z$.
+  On a $M(q) = mat(1, 1, -2; 1, -2, 2; -2, 2, 6)$.
+  $
+    q(x,y,z) & = (x^2 + 2 x y - 4 x z) - 2y^2 + 6z^2 + 4 y z \
+             & = [(x+ (y-2z))^2 - (y-2z)^2]-2y^2 + 6z^2 + 4 y z \
+             & = (x+y-2z)^2 - 3y^2 + 2z^2 + 8y z \
+             & = (x+y-2z)^2 + 2(z^2 + 4 y z)^2 - 3 y^2 \
+             & = (x+y-2z)^2 + 2[(z+2y)^2 - 4y^2]- 3y^2 \
+             & = (x+y-2z)^2 + 2[(z+2y)^2 - 11y^2
+  $
+
+  En posant respectivement $X,Z,Y$, les 3 formes linéaires mises carré, on trouve $q(X,Y,Z) = X^2 - 11Y^2 + Z^2$. Donc $M(q) = mat(1, 0, 0; 0, -11, 0; 0, 0, 2)$
+
+  On résout le système
+  $
+    cases(X = x + y - 2z, Y = y, Z = z + 2y) <==> cases(x = X - Y + 2Z - 4Y = X - 5Y + 2Z, y = Y, z = Z - 2Y)
+  $
+
+  Si un vecteur $u$ a pour coordonnées $(x,y,z)$ dans la base canonique et $(X,Y,Z)$ dans la base orthogonalecherchée, si $P$ désigne la matrice de passage de la base canonique à la base orthogonale, on a :
+  $vec(x,y,z) = P cdot (X,Y,Z)$
+
+  Ici, $P = mat(1,-5,2;0,1,0;0,-2,1)$, $u_1 = (1,0,0)$, $u_2 = (-5,1,-2)$, $u_3 = (2,0,1)$, $(u_1,u_2,u_3)$ est orthogonale à $q$.
+
+  #underline[Autre méthode]. Notons $(e_1,e_2,e_3)$ la base canonique de $RR^3$, 
+  
+  $cases(l_1(x,y,z) = x+y-2z,l_2(x,y,z) = y)$. $(l_1,l_2,l_3)$ est une base de $(RR^3)^*$
+
+  Écrivons : $cases(l_1 = e_1^* + e_2^* - 2e_3^*,l_2=e_2^*,l_3=2e_2^* + e_3^*)$. 
+  
+  Notons $Q = mat(1,0,0;1,1,2'-2,0,1)$ la matrice de passage de $(e_1^*,e_2^*,e_3^*)$ à $(l_1,l_2,l_3)$.
+
+  La base orthogonale cherchée est la base antéduale de $(l_1,l_2,l_3)$.
+
+  La matrice $P$ est donnée par $P = transp(Q^(-1)) = 1/det(Q) Comat(Q) = 1 cdot mat(+1,-5,+2;-0,+1,-0;+0,-2,+1)$
+
+]
+
+#example[
+  $E = RR^3$, $q(x,y,z) = x^2 + 2y^2 + 8z^2 - 2x y + 4 x z$, 
+  
+  $M(q) = mat(1,-1,2;-1,2,0;2,0,5)$ $q$ est dégénérée (on résout le système ou on prend le déterminant).
+
+  $
+  q(x,y,z) &= (x^2-2x y + 4 x z) + 2 y^2 + 8z^2 \
+  &= [(x+(-y+2z))^2 - (-y+2z)^2]+2y^2 + 8z^2 \
+  &= (x - y + 2z)^2 + y^2 + 4 z^2 + 4 y z \
+  &= (x-y+2z)^2 + (y+2z)^2
+  $
+  On a $P^(-1) = (1,-1,2;0,1,2;0,0,1)$
+  Et :
+  $
+  cases(
+    X = x-y+2z, Y = y + 2 z,Z=z
+  )
+  <==> cases(
+    x = X + Y - 2Z - 2Z = X + Y - 4Z, y = Y - 2Z, z = Z
+  )
+  $
+  donc $P = mat(1,1,-4;0,1,-2;0,0,1)$
+
+  $cases(u_1 = (1,0,0),u_2 = (1,1,0),u_3 = (-4,-2,1))$ on a $(u_1,u_2,u_3)$ qui forme une base orthogonale pour $q$.
+
+  #underline[Autre méthode :]
+  
+  $l_1(x,y,z) = x-y+2z ==> l+1 = e_1^* - e_2^* + 2e_3^*$
+
+  $l_2(x,y,z) = y + 2 z ==> l_2 = e_2^* + 2e_3^*$
+
+  $(l_1,l_2)$ est libre, on la complète en une base de $(RR^3)^*$ en posant $l_3 = e_3^*$
+
+  $Q = mat(1,0,0;-1,1,0;2,2,1)$ et $det(Q) = 1$
+
+  $P = transp(Q^(-1)) 1/det(Q) Comat(Q)$
 ]
