@@ -2442,7 +2442,7 @@ L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de
 
 _Cette page méthode ne provient pas d'un recopiage du cours mais de la synthèse que j'ai tiré des exemples_
 
-#method("Trouver une base orthogonale pour une forme quadratique, vision algébrique pure")[
+#method("Trouver une base orthogonale pour une forme quadratique, vision matricielle")[
   - Appliquer la réduction de Gauss à $q$.
   - Puisque l'on a $q(x_1,dots,x_n) = (c_1 l_1^2 + ... + c_n l_n^2)(x_1,dots,x_n)$, on peut écrire :
     $
