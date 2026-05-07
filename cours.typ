@@ -632,7 +632,7 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
   Soit $f$ une forme bilinéaire symétrique sur un $RR$-ev de dimension finie $n$. Alors :
 
   $f$ est définie positive (i.e. produit scalaire) sur $E$ si, et seulement si la réduction de Gauss de $f$ est une combinaison linéaire de $n$ carrés de formes linéaires (indépendantes) à coefficients strictement positifs.
-]
+]<critere_def_pos_gauss>
 
 #proof[
   Notons qu'il est nécessaire d'avoir un terme carré à chaque étape de la réduction pour que $f$ soit positive. Si la réduction de Gauss donne une combinaison linéaire de $n$ carrés à coefficients strictement positifs, $f$ sera positive et $f(x,x) = 0$ donne un système homogène de $n$ équations à $n$ inconnues qui est échelonné (puisqu'on enlève une variable à chaque étape). Ce système admet une unique solution qui va être nulle. Donc $f$ est définie.
@@ -2351,6 +2351,7 @@ Rappel :
 
   D'où le résultat.
 ]
+// À dmd à la prof..? : Pourquoi on ne peut pas simplement faire la preuve en disant que M(q) est diagonalisable sur une base B orthogonale par f puisqu'elle est symétrique ?
 
 #corollary[
   Soit $A in M_n (K)$ symétrique, il existe une matrice $P in GL_n (K)$ telle que $transp(P)A P$ soit diagonale.
@@ -2371,25 +2372,27 @@ L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de
              & = (x+y-2z)^2 + 2[(z+2y)^2 - 11y^2
   $
 
-  En posant respectivement $X,Z,Y$, les 3 formes linéaires mises carré, on trouve $q(X,Y,Z) = X^2 - 11Y^2 + Z^2$. Donc $M(q) = mat(1, 0, 0; 0, -11, 0; 0, 0, 2)$
+  En posant respectivement $X,Z,Y$, les 3 formes linéaires mises carré, on trouve $q(X,Y,Z) = X^2 - 11Y^2 + Z^2$. Donc $M_((X,Y,Z))(q) = mat(1, 0, 0; 0, -11, 0; 0, 0, 2)$
 
   On résout le système
   $
     cases(X = x + y - 2z, Y = y, Z = z + 2y) <==> cases(x = X - Y + 2Z - 4Y = X - 5Y + 2Z, y = Y, z = Z - 2Y)
   $
 
-  Si un vecteur $u$ a pour coordonnées $(x,y,z)$ dans la base canonique et $(X,Y,Z)$ dans la base orthogonalecherchée, si $P$ désigne la matrice de passage de la base canonique à la base orthogonale, on a :
-  $vec(x,y,z) = P cdot (X,Y,Z)$
+  Si un vecteur $u$ a pour coordonnées $(x,y,z)$ dans la base canonique et $(X,Y,Z)$ dans la base orthogonale cherchée, si $P$ désigne la matrice de passage de la base canonique à la base orthogonale, on a :
+  $vec(x,y,z) = P cdot vec(X,Y,Z)$
 
   Ici, $P = mat(1,-5,2;0,1,0;0,-2,1)$, $u_1 = (1,0,0)$, $u_2 = (-5,1,-2)$, $u_3 = (2,0,1)$, $(u_1,u_2,u_3)$ est orthogonale à $q$.
 
-  #underline[Autre méthode]. Notons $(e_1,e_2,e_3)$ la base canonique de $RR^3$, 
+  #underline[Autre méthode]. 
+  
+  Notons $(e_1,e_2,e_3)$ la base canonique de $RR^3$, 
   
   $cases(l_1(x,y,z) = x+y-2z,l_2(x,y,z) = y)$. $(l_1,l_2,l_3)$ est une base de $(RR^3)^*$
 
   Écrivons : $cases(l_1 = e_1^* + e_2^* - 2e_3^*,l_2=e_2^*,l_3=2e_2^* + e_3^*)$. 
   
-  Notons $Q = mat(1,0,0;1,1,2'-2,0,1)$ la matrice de passage de $(e_1^*,e_2^*,e_3^*)$ à $(l_1,l_2,l_3)$.
+  Notons $Q = mat(1,0,0;1,1,2;-2,0,1)$ la matrice de passage de $(e_1^*,e_2^*,e_3^*)$ à $(l_1,l_2,l_3)$.
 
   La base orthogonale cherchée est la base antéduale de $(l_1,l_2,l_3)$.
 
@@ -2408,7 +2411,7 @@ L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de
   &= (x - y + 2z)^2 + y^2 + 4 z^2 + 4 y z \
   &= (x-y+2z)^2 + (y+2z)^2
   $
-  On a $P^(-1) = (1,-1,2;0,1,2;0,0,1)$
+  On a $P^(-1) = mat(1,-1,2;0,1,2;0,0,1)$
   Et :
   $
   cases(
@@ -2424,7 +2427,7 @@ L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de
 
   #underline[Autre méthode :]
   
-  $l_1(x,y,z) = x-y+2z ==> l+1 = e_1^* - e_2^* + 2e_3^*$
+  $l_1(x,y,z) = x-y+2z ==> l_1 = e_1^* - e_2^* + 2e_3^*$
 
   $l_2(x,y,z) = y + 2 z ==> l_2 = e_2^* + 2e_3^*$
 
@@ -2432,5 +2435,33 @@ L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de
 
   $Q = mat(1,0,0;-1,1,0;2,2,1)$ et $det(Q) = 1$
 
-  $P = transp(Q^(-1)) 1/det(Q) Comat(Q)$
+  $P = transp(Q^(-1)) = 1/det(Q) Comat(Q)$
 ]
+
+#pagebreak()
+
+_Cette page méthode ne provient pas d'un recopiage du cours mais de la synthèse que j'ai tiré des exemples_
+
+#method("Trouver une base orthogonale pour une forme quadratique, vision algébrique pure")[
+  - Appliquer la réduction de Gauss à $q$.
+  - Puisque l'on a $q(x_1,dots,x_n) = (c_1 l_1^2 + ... + c_n l_n^2)(x_1,dots,x_n)$, on peut écrire :
+    $
+    cases(X_1 = l_1(x_1,dots,x_n),vdots,X_n = l_n (x_1,dots,x_n))
+    $ en complétant le système si $q$ est dégénérée (= il y a moins de formes linéaires que dans la variable, cf @critere_def_pos_gauss), c'est-à-dire rajouter des équations de la forme $X_i = x_i$
+
+  - Cela équivaut à écrire $vec(X_1,vdots,X_n) = P^(-1)vec(x_1,vdots,x_n)$ où $P$ est la matrice de passage de la base canonique à la base orthogonale cherchée dans laquelle les composantes des vecteurs sont les $X_i$.
+  
+    Ainsi, on inverse $P$ en trouvant les $x_i$ à partir des $X_j$, ou on inverse simplementent $P$ à la main.
+
+  #v(1em)
+  On a le résultat de l'orthogonalité car $q(X_1,dots,X_n) = c_1 X_1^2 + dots + c_n X_n^2$, donc : 
+  
+  $M(q) = mat(c_1, ,(0);,ddots, ; (0),,c_n)$ qui correspond bien à une base orthogonale pour $q$.
+
+]
+
+#method("2nde méthode, par une vision duale")[
+  La méthode de Gauss nous donne une famille libre de formes linéaires $(l_1,dots,l_r)$ dans $E^*$ que l'on vient compléter par $(e_i^*)_(r+1<=i<=n)$ pour obtenir $BBB^*$, qui nous donne une base de $E^*$. On cherche donc $BBB$ l'antéduale de $BBB^*$, en utilisant $M_((e_i^*),(BBB^*))(Id_(E^*)) = transp((M_((e_i),BBB)(Id)^(-1)))$.
+]
+
+_Remarquons que la vision matricielle ne transpose pas alors que la vision duale le fait, c'est tout simplement car dans la première, on écrit naturellement le système $X = P^(-1)x$ avec les vecteurs en ligne, alors que pour correspondre à une vision duale on les range en colonne._
