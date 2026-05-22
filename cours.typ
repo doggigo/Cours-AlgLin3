@@ -1109,7 +1109,7 @@ $j$ est bien définie : $forall y in E, j(y)$ est linéaire car $scal2(., .)$ es
 
 #theorem("de représentation de Riesz")[
   Soit $(E,scal2(., .))$ un espace euclidien, l'application $j$ ci-dessus est  un isomorphisme.
-]
+] <riesz>
 
 _Autrement dit, pour toute forme linéaire $phi in E^*$, il existe un unique $y$ tel que $phi (x) = scal2(x, y)$_
 
@@ -2321,8 +2321,8 @@ Rappel :
 ]
 
 #definition[
-  On dit qu'une famille $(e_1,dots,e_p)$ de vecteurs de $E$ est orthogonale si $f(e_i,e_j) = 0$, $forall i!=j$ avec $1<= i,j <= p$ 
-  
+  On dit qu'une famille $(e_1,dots,e_p)$ de vecteurs de $E$ est orthogonale si $f(e_i,e_j) = 0$, $forall i!=j$ avec $1<= i,j <= p$
+
   (Rq : pas besoin d'avoir $f(e_i,e_i) != 0$)
 ]
 #theorem[
@@ -2380,60 +2380,56 @@ L'algorithme de réduction de Gauss appliqué à une forme quadratique permet de
   $
 
   Si un vecteur $u$ a pour coordonnées $(x,y,z)$ dans la base canonique et $(X,Y,Z)$ dans la base orthogonale cherchée, si $P$ désigne la matrice de passage de la base canonique à la base orthogonale, on a :
-  $vec(x,y,z) = P cdot vec(X,Y,Z)$
+  $vec(x, y, z) = P cdot vec(X, Y, Z)$
 
-  Ici, $P = mat(1,-5,2;0,1,0;0,-2,1)$, $u_1 = (1,0,0)$, $u_2 = (-5,1,-2)$, $u_3 = (2,0,1)$, $(u_1,u_2,u_3)$ est orthogonale à $q$.
+  Ici, $P = mat(1, -5, 2; 0, 1, 0; 0, -2, 1)$, $u_1 = (1,0,0)$, $u_2 = (-5,1,-2)$, $u_3 = (2,0,1)$, $(u_1,u_2,u_3)$ est orthogonale à $q$.
 
-  #underline[Autre méthode]. 
-  
-  Notons $(e_1,e_2,e_3)$ la base canonique de $RR^3$, 
-  
-  $cases(l_1(x,y,z) = x+y-2z,l_2(x,y,z) = y)$. $(l_1,l_2,l_3)$ est une base de $(RR^3)^*$
+  #underline[Autre méthode].
 
-  Écrivons : $cases(l_1 = e_1^* + e_2^* - 2e_3^*,l_2=e_2^*,l_3=2e_2^* + e_3^*)$. 
-  
-  Notons $Q = mat(1,0,0;1,1,2;-2,0,1)$ la matrice de passage de $(e_1^*,e_2^*,e_3^*)$ à $(l_1,l_2,l_3)$.
+  Notons $(e_1,e_2,e_3)$ la base canonique de $RR^3$,
+
+  $cases(l_1(x,y,z) = x+y-2z, l_2(x,y,z) = y)$. $(l_1,l_2,l_3)$ est une base de $(RR^3)^*$
+
+  Écrivons : $cases(l_1 = e_1^* + e_2^* - 2e_3^*, l_2=e_2^*, l_3=2e_2^* + e_3^*)$.
+
+  Notons $Q = mat(1, 0, 0; 1, 1, 2; -2, 0, 1)$ la matrice de passage de $(e_1^*,e_2^*,e_3^*)$ à $(l_1,l_2,l_3)$.
 
   La base orthogonale cherchée est la base antéduale de $(l_1,l_2,l_3)$.
 
-  La matrice $P$ est donnée par $P = transp(Q^(-1)) = 1/det(Q) Comat(Q) = 1 cdot mat(+1,-5,+2;-0,+1,-0;+0,-2,+1)$
+  La matrice $P$ est donnée par $P = transp(Q^(-1)) = 1/det(Q) Comat(Q) = 1 cdot mat(+1, -5, +2; -0, +1, -0; +0, -2, +1)$
 
 ]
 
 #example[
-  $E = RR^3$, $q(x,y,z) = x^2 + 2y^2 + 8z^2 - 2x y + 4 x z$, 
-  
-  $M(q) = mat(1,-1,2;-1,2,0;2,0,5)$ $q$ est dégénérée (on résout le système ou on prend le déterminant).
+  $E = RR^3$, $q(x,y,z) = x^2 + 2y^2 + 8z^2 - 2x y + 4 x z$,
+
+  $M(q) = mat(1, -1, 2; -1, 2, 0; 2, 0, 5)$ $q$ est dégénérée (on résout le système ou on prend le déterminant).
 
   $
-  q(x,y,z) &= (x^2-2x y + 4 x z) + 2 y^2 + 8z^2 \
-  &= [(x+(-y+2z))^2 - (-y+2z)^2]+2y^2 + 8z^2 \
-  &= (x - y + 2z)^2 + y^2 + 4 z^2 + 4 y z \
-  &= (x-y+2z)^2 + (y+2z)^2
+    q(x,y,z) & = (x^2-2x y + 4 x z) + 2 y^2 + 8z^2 \
+             & = [(x+(-y+2z))^2 - (-y+2z)^2]+2y^2 + 8z^2 \
+             & = (x - y + 2z)^2 + y^2 + 4 z^2 + 4 y z \
+             & = (x-y+2z)^2 + (y+2z)^2
   $
-  On a $P^(-1) = mat(1,-1,2;0,1,2;0,0,1)$
+  On a $P^(-1) = mat(1, -1, 2; 0, 1, 2; 0, 0, 1)$
   Et :
   $
-  cases(
-    X = x-y+2z, Y = y + 2 z,Z=z
-  )
-  <==> cases(
-    x = X + Y - 2Z - 2Z = X + Y - 4Z, y = Y - 2Z, z = Z
-  )
+    cases(X = x-y+2z, Y = y + 2 z, Z=z)
+    <==> cases(x = X + Y - 2Z - 2Z = X + Y - 4Z, y = Y - 2Z, z = Z)
   $
-  donc $P = mat(1,1,-4;0,1,-2;0,0,1)$
+  donc $P = mat(1, 1, -4; 0, 1, -2; 0, 0, 1)$
 
-  $cases(u_1 = (1,0,0),u_2 = (1,1,0),u_3 = (-4,-2,1))$ on a $(u_1,u_2,u_3)$ qui forme une base orthogonale pour $q$.
+  $cases(u_1 = (1,0,0), u_2 = (1,1,0), u_3 = (-4,-2,1))$ on a $(u_1,u_2,u_3)$ qui forme une base orthogonale pour $q$.
 
   #underline[Autre méthode :]
-  
+
   $l_1(x,y,z) = x-y+2z ==> l_1 = e_1^* - e_2^* + 2e_3^*$
 
   $l_2(x,y,z) = y + 2 z ==> l_2 = e_2^* + 2e_3^*$
 
   $(l_1,l_2)$ est libre, on la complète en une base de $(RR^3)^*$ en posant $l_3 = e_3^*$
 
-  $Q = mat(1,0,0;-1,1,0;2,2,1)$ et $det(Q) = 1$
+  $Q = mat(1, 0, 0; -1, 1, 0; 2, 2, 1)$ et $det(Q) = 1$
 
   $P = transp(Q^(-1)) = 1/det(Q) Comat(Q)$
 ]
@@ -2445,18 +2441,16 @@ _Cette page méthode ne provient pas d'un recopiage du cours mais de la synthès
 #method("Trouver une base orthogonale pour une forme quadratique, vision matricielle")[
   - Appliquer la réduction de Gauss à $q$.
   - Puisque l'on a $q(x_1,dots,x_n) = (c_1 l_1^2 + ... + c_n l_n^2)(x_1,dots,x_n)$, on peut écrire :
-    $
-    cases(X_1 = l_1(x_1,dots,x_n),vdots,X_n = l_n (x_1,dots,x_n))
-    $ en complétant le système si $q$ est dégénérée (= il y a moins de formes linéaires que dans la variable, cf @critere_def_pos_gauss), c'est-à-dire rajouter des équations de la forme $X_i = x_i$
+    $ cases(X_1 = l_1(x_1,dots,x_n), vdots, X_n = l_n (x_1,dots,x_n)) $ en complétant le système si $q$ est dégénérée (= il y a moins de formes linéaires que dans la variable, cf @critere_def_pos_gauss), c'est-à-dire rajouter des équations de la forme $X_i = x_i$
 
-  - Cela équivaut à écrire $vec(X_1,vdots,X_n) = P^(-1)vec(x_1,vdots,x_n)$ où $P$ est la matrice de passage de la base canonique à la base orthogonale cherchée dans laquelle les composantes des vecteurs sont les $X_i$.
-  
+  - Cela équivaut à écrire $vec(X_1, vdots, X_n) = P^(-1)vec(x_1, vdots, x_n)$ où $P$ est la matrice de passage de la base canonique à la base orthogonale cherchée dans laquelle les composantes des vecteurs sont les $X_i$.
+
     Ainsi, on inverse $P$ en trouvant les $x_i$ à partir des $X_j$, ou on inverse simplementent $P$ à la main.
 
   #v(1em)
-  On a le résultat de l'orthogonalité car $q(X_1,dots,X_n) = c_1 X_1^2 + dots + c_n X_n^2$, donc : 
-  
-  $M(q) = mat(c_1, ,(0);,ddots, ; (0),,c_n)$ qui correspond bien à une base orthogonale pour $q$.
+  On a le résultat de l'orthogonalité car $q(X_1,dots,X_n) = c_1 X_1^2 + dots + c_n X_n^2$, donc :
+
+  $M(q) = mat(c_1, , (0); , ddots, ; (0), , c_n)$ qui correspond bien à une base orthogonale pour $q$.
 
 ]
 
@@ -2465,3 +2459,234 @@ _Cette page méthode ne provient pas d'un recopiage du cours mais de la synthès
 ]
 
 _Remarquons que la vision matricielle ne transpose pas alors que la vision duale le fait, c'est tout simplement car dans la première, on écrit naturellement le système $X = P^(-1)x$ avec les vecteurs en ligne, alors que pour correspondre à une vision duale on les range en colonne._
+
+== Classification des formes quadratiques sur $CC$ et $RR$
+
+#theorem[
+  Soit $E$ un $CC$-espace vectoriel de dimension $n$ muni d'une forme quadratique $q$. Il existe un entier $r in [|0,n|]$ et une base $BBB = (epsilon_1,dots,epsilon_n)$ de $E$ orthogonale pour $q$ tels que : $q(epsilon_i) = 1$ pour $1 <= i <= r$ et $q(epsilon_i) = 0$ pour $r+1 <= i <= n$. L'entier $r$ est le rang de $q$ et ne dépend pas de $BBB$. Dans cette base, la matrice de $q$ est $mat(I_r, 0; 0, 0)$
+]
+
+#proof[
+  Soit $EEE = (e_1,dots,e_n)$ une base $q$-orthogonale de $E$ et on pose $q(e_i) = a_i in CC$ pour $i = 1,...,n$
+
+  Il est clair que le rang de $q$ est le nombre de scalaires $a_i$ non nuls. Supposons alors que $a_i != 0$ pour $1 <= i <= r$ et $a_i = 0$ pour $r+1 <= i <= n$.
+
+  Pour $i = 1,dots,r$, on note $b_i$ une racine carrée de $a_i$. On pose $epsilon_i = 1/(b_i) e_i$ pour $1 <= i <= r$ et $epsilon_i = e_i$ pour $r+1 <= i <= n$. $(epsilon_1,dots,epsilon_n)$ est une base de $E$ orthogonale pour $q$ et $q(epsilon_i) = 1$ pour $1 <= i <= r$ et $q(epsilon_i) = 0$ pour $r+1 <= i <= n$.
+]
+
+#corollary[
+  Soit $E$ un $CC$-espace vectoriel de dimension fini muni d'une forme quadratique $q$, $E$ admet une base orthonormale si $q$ est non-dégénérée (donc de rang maximal).
+]
+
+#theorem("Loi d'inertie de Sylvester")[
+  Soit $E$ un $RR$-espace vectoriel de dimension $n$ muni d'une forme quadratique $q$. Il existe un couple d'entiers $(s,t) in NN^2$ et une base $BBB = (epsilon_1,dots,epsilon_n)$, $q$-orthogonale de $E$ tels que : $q(epsilon_i) = 1$ pour $1 <= i <= s$, $q(epsilon_i) = -1$ pour $s+1 <= i <= s+t$ et $q(epsilon_i) = 0$ pour $s+t+1 <= i <= n$.
+
+  Le couple $(s,t)$ ne dépend pas de la base orthogonale choisie et $s+t = Rg q$.
+
+  Dans la base $BBB$, la matrice de $q$ est $mat(I_s, 0, 0; 0, -I_t, 0; 0, 0, 0)$
+]
+
+#definition("Signature d'une forme quadratique")[
+  Le couple $(s,t)$ est appelé signature de $q$ et est noté $sgn q = (s,t)$
+]
+
+#proof[
+  Soit $EEE = (e_1,dots,e_n)$ une base $q$-orthogonale de $E$ et on pose $q(e_i) = a_i in RR, i = 1,...,n$.
+
+  Supposons que $a_i > 0$, $i = 1,dots,s$, $a_i < 0$, $i = s+1,dots,s+t$, $a_i = 0, i = s+t+1,dots,n$
+
+  On pose : $ cases(epsilon_i = 1/sqrt(a_i)e_i\, quad &1 <= i <= s, epsilon_i = 1/sqrt(-a_i)e_i\, quad &s+1 <= i <= s+t, epsilon_i = e_i\, quad &i > s+t) $
+
+  Il reste à prouver l'unicité du couple $(s,t)$. Donnons une base $(f_1,dots,f_n)$, $q$-orthogonale de $E$ telle que :
+  - $q(f_i) = 1, i = 1,dots,s^'$ et $q(f_i) = -1, i = s^'+1,dots,s^'+t^'$
+  - $q(f_i) = 0, i > s^' + t^'$
+
+  On pose : $F = Vect(epsilon_1, dots, epsilon_n)$, $G = Vect(f_(s+1), dots, f_n)$
+
+  On a $F inter G = {0_E}$.
+
+  En effet, si $x in F inter G$, $x = sum_(i=1)^s x_i epsilon_i = sum_(s^'+1)_{i=s^'+1}^{s^'+t^'} y_i f_i$
+
+  $q(x) = sum_(i=1)^n x_i^2 = sum_(i=1)^n x_i^2 = sum_(j=s^'+1)^(s^'+t^') - y_j^2$, donc $q(x) = 0$, ainsi $x_i = 0$ pour tout $i=1,dots,n$ et donc $x = 0_E$.
+
+  On a $F osum G$.
+
+  $dim(F + G) = dim F + dim G <= n$. Soit $s + n - s^' <= n$ ou encore $s <= s^'$
+
+  en faisant de même pour $F = Vect(f_1, dots, f_s)$ et $G = Vect(epsilon_(s+1), dots, epsilon_n)$, on trouve $s^' <= s$. Au final $s = s^'$. Comme $Rg q = s+t = s^' + t^'$, on a $t = t^'$. D'où le résultat.
+]
+
+#corollary[
+  $E$, un $RR$-espace vectoriel muni d'une forme quadratique $q$ admet une base orthonormale si, et seulement si, $sgn(q) = (n,0)$. (i.e. est un produit scalaire).
+]
+
+#remark[
+  + $q$ est positive si $sgn(q) = (r,0)$, $r <= n$
+  + $q$ est negative si $sgn(q) = (0,r)$, $r <= n$
+  + $q$ est définie positive si $sgn(q) = (n,0)$
+  + $q$ est définie négative si $sgn(q) = (0,n)$
+]
+
+== Groupe orthogonal associé à une forme quadratique
+
+#proposition[
+  Soit $E$ un $K$-espace vectoriel de dimension finie muni d'une forme quadratique $q$ non-dégénérée (de forme polaire $f$). Soit $u$ un endomorphisme de $E$, il existe un unique endomorphisme $u^*$ de $E$, appelé adjoint de $u$ tel que $forall x,y in E, f(u(x),y) = f(x,u^*(y))$
+]
+
+#proof[
+  cf théorème de représentation de Riesz @riesz
+
+  $L(f) : application(E, E^*, y, L(f)(y) : application(E, K, x, f(x,y)))$ est un isomorphisme si $f$ est non-dégénérée.
+
+  Attention : Nous n'avons pas de base orthonormale, matriciellement, notons :
+
+  $EEE = (e_1,dots,e_n)$ une base de $E$, $A$ la matrice de $q$ dans la base $EEE$, $M$ la matrice de $u$ dans la base $EEE$, $M^*$ la matrice de $u^*$ dans la base $EEE$.
+
+  Posons $x = sum_(i = 1)^n x_i e_i$, $y = sum_(i=1)^n y_i e_i$, $X = vec(x_1, vdots, x_n)$, $Y = vec(y_1, vdots, y_n)$
+
+  L'équation $(*) : f(u(x),y) = f(x,u^*(y))$ donne :
+  $
+    transp((M X)) A Y = transp(X) A M^* Y
+    <==> transp(X) (transp(M)A) Y = transp(X) (A M^*) Y
+  $
+  soit $transp(M) A = A M^*$ ou encore $A^(-1)transp(M)A = M^*$.
+
+  L'isomorphisme $L(f)$ garantit l'unicité de l'endomorphisme, et cette relation matricielle assure son existence.
+]
+
+On a les mêmes propriétés que précédemment pour l'adjoint d'un endomorphisme.
+
+On peut donc définir le groupe orthogonal associé à $q$ non-dégénérée, c'est-à-dire l'ensemble des endomorphismes vérifiant $q(u(x)) = q(x), forall x in E$.
+
+#remark[
+  Dans le cadre de la relativité d'Einstein, $q(x) = x_1^2 + x_2^2 + x_3^2 - x_4^2$. Le groupe orthogonal associé à $q$ s'appelle groupe de Lorentz.
+]
+
+#proposition[
+  Soient $E$ un $K$-espace vectoriel de dimension finie, $q$ une forme quadratique non-dégénérée de forme polaire $f$ sur $E$, $u$ un endomorphisme de $E$, on a équivalence entre :
+  + $u$ est orthogonal pour $q$, i.e. $q(u(x)) = q(x), forall x in E$.
+  + $f(u(x),u(y)) = f(x,y)$
+  + $u^* compose u = Id_E$
+]
+
+_Les 2 équivalences restantes dans la proposition précédente nécessitaient une base orthonormale, que l'on n'a pas ici._
+
+#proof[
+  cf espaces euclidiens.
+]
+#remark[
+  Soient $EEE = (e_1,dots,e_n)$ une base de $E$, $A$ la matrice de $q$ dans la base $EEE$, $M$ la matrice de $u$ dans la base $EEE$. Alors $u in O(q) <==> transp(M) A M = A$
+]
+
+#proof[
+  En effet, écrivons $f(u(x),u(y)) = f(x,y)$ :
+  $
+    transp((M X))A M Y = transp(X)A Y <==> transp(X) (transp(M) A M) Y = transp(X)A Y
+  $
+]
+
+= Espaces hermitiens
+
+Mettons en lumière le problème :
+
+Soit $B : application(E times E, CC, (x,y), sum_(i=1)^n x_i y_i)$
+
+Mais $B(x,x) = sum_(i=1)^n x_i^2$, cela n'a pas de sens car $x_i^2$ n'est pas un nombre réel, et $B(x,x)$ peut valoir $0$ sans que $x$ ne valle $0$. Donc on n'a pas du tout de produit scalaire.
+
+Par contre en posant $B(x,y) = sum_(i=1)^n bar(x_i) y_i$, on trouve des propriétés bien plus proches du produit scalaire puisque $B(x,x) = sum_(i=1)^n abs(x_i)$.
+
+Dans ce chapitre, $E$ sera un $CC$-espace vectoriel de dimension finie.
+
+== Produit scalaire hermitien
+
+#definition[
+  On dit que $f : E times E --> CC$ est une forme *sesquilinéaire* si :
+  + $f$ est antilinéaire (ou semi-linéaire) par rapport à sa première variable, i.e. :
+    $forall y in E, forall x_1,x_2 in E, forall lambda in CC$,
+    $
+      f(lambda x_1 + x_2, y) = bar(lambda) f(x_1,y) + f(x_2,y)
+    $
+  + $f$ est linéaire par rapport à sa seconde variable, i.e. :
+    $forall x in E, forall y_1,y_2 in E, forall mu in CC$,
+    $
+      f(x, mu y_1 + y_2) = mu f(x,y_1) + f(x,y_2)
+    $
+]
+
+#example[
+  $E = CC^3$, $s(x,y) = bar(x_1)y_1 + 2 i bar(x_2)y_2 + (4-2i)bar(x_1)y_3 + 5 bar(x_2)y_3$ est sesquilinéaire
+
+  _Rq : elle n'est pas hermitienne, voir plus loins_
+]
+
+Soit $EEE = (e_1,dots,e_n)$ une base de $E$, on note $a_(i j) = f(e_i, e_j), forall i,j = 1,dots,n$, $A = (a_(i j))_(1<=i,j<=n) in M_n (CC)$ est la matrice associée à la forme sesquilinéaire $f$ dans la base $EEE$.
+
+Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i$ et $X = vec(x_1,vdots,x_n)$, on note $bar(X) = vec(bar(x_1),vdots,bar(x_n))$
+
+
+#theorem("changement de bases")[
+  Supposons $E$ muni des bases $EEE$ et $EEE^'$, notons $P$ la matrice de passage de $EEE$ à $EEE^'$, soit $f$ une forme sesquilinéaire sur $E$, de matrice $A$ dans la base $E$ et $A^'$ dans la base $EEE^'$, alors $A^' = transp(bar(P))A P$, où, pour $P = (p_(i j))_(1<=i,j<=n)$, $bar(P) = (bar(p_(i j)))_(1<=i,j<=n)$
+]
+
+#proof[
+  Soit $EEE = (e_1,dots,e_n)$ et $EEE^' = (e_1',dots,e_n')$, $x = sum_(i=1)^n x_i e_i = sum_(i=1)^n x_i' e_i'$, $X = vec(x_1,vdots,x_n)$, $X^' = vec(x_1^',vdots,x^'_n)$
+
+  alors : $forall x,y in E, f(x,y) = transp(bar(X))A Y = transp(bar(X^'))A^' Y^'$. 
+  
+  De plus, $X = P X^'$, $Y = P Y^'$. Donc :
+
+  $f(x,y) = transp((bar(P X^')))A P Y^' = transp(bar(P)bar(X^'))A P Y^' = transp(bar(X^'))(transp(bar(P))A P)Y^'$
+]
+
+#definition("Caractère hermitien")[
+  On dit qu'une forme sesquilinéaire $f$ est *hermitienne* si :
+  $
+  forall x,y in E, f(x,y) = bar(f(y,x))
+  $
+]
+
+#example[
+  + $E = CC^3,$
+    
+    $h(x,y) = bar(x_1)y_1 + 3 bar(x_2)y_2 + 2 bar(x_3)y_3 + (2+3i)bar(x_1)y_2 + (2-3 i)bar(x_2)y_1 + (1-5i)bar(x_2)y_3 + (1+5i)bar(x_3)y_2$ est hermitienne
+  + $E = M_n (CC)$, $h(A,B) = tr(transp(bar(A))B)$
+]
+
+#remark[
+  + Matriciellement, une forme sesquilinéaire $f$ est hermtienne si, et seulement si, sa matrice $A$ dans une base de $E$ vérifie $transp(bar(A)) = A$. On dit qu'une telle matrice est *hermitienne*.
+
+    Puisque $transp(bar(A)) = A$, les éléments de la diagonale de $A$ sont réels.
+  + Si $f$ est une forme hermitienne, $bar(f(x,x)) = f(x,x)$ pour tout $x in E$, donc $f(x,x) in RR, forall x in E$.
+]
+
+#proposition("Formule de polarisation")[
+  L'application qui associe à toute forme hermitienne $f$ sur $E$, la forme quadratique $q$ définie par $q(x) = f(x,x)$ bijective et $f$ est appelée forme polaire.
+
+  $
+  f(x,y) = (q(x + y) - q(x - y))/4 - i (q(x + i y) - q(x - i y))/4
+  $
+]
+
+#proof[
+  $q(x+y) = f(x+y,x+y) = f(x,x) + f(x,y) + f(y,x) + f(y,y) = q(x) + f(x,y) + bar(f(x,y)) + q(y) = q(x) + 2 Re(f(x,y)) + q(y)$
+
+  $q(x-y) = f(x-y,x-y) = f(x,x) - f(x,y) - f(y,x) + f(y,y) = q(x) - f(x,y) - bar(f(x,y)) + q(y) = q(x) - 2 Re(f(x,y)) + q(y)$
+
+  $q(x+y) - q(x-y) = 4 Re(f(x,y))$
+
+  $
+  q(x + i y) &= f(x + i y, x + i y) = f(x,x + i y) - i f(y, x+ i y) \ 
+  &= f(x,x) + i f(x,y) - i f(y,x) + f(y,y)  \ &= q(x) + i(f(x,y)-bar(f(x,y))) + q(y) \
+  &= q(x) + i (2i Im(f(x,y))) + q(y)
+  $
+  
+  $q(x - i y) &= f(x - i y, x - i y) = f(x,x - i y) + i f(y, x- i y)  \
+  &= f(x,x) - i f(x,y) + i f(y,x) + f(y,y) \
+  &= q(x) - i(f(x,y)-bar(f(x,y))) + q(y) \ 
+  &= q(x) - i (2i Im(f(x,y))) + q(y)$
+
+  $q(x+i y) - q(x-i y) = - 4 Im(f(x,y))$
+
+  Donc $q(x+y) - q(x-y) -i (q(x+i y) + q(x-i y)) = 4 f(x,y)$
+
+]
