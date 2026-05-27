@@ -550,7 +550,9 @@ Il faut choisir en priorité les termes carrés, et si possible de coefficient $
       Puis remarquer l'identité $(A)$ :
       $ a[x_i^2 + (2x_i L)/a] = a[(x_i + L/a)^2 - (L/a)^2] = a(x_i+L/a)^2 - L^2/a $ et enfin, développer la partie négative
 
-    - Si le terme est un rectangle $x_i x_j$, utiliser l'identité (B) : $x_i x_j = 1/4 (x_i + x_j)^2 - 1/4 (x_i - x_j)^2$ puis développer la partie négative et continuer
+    - Si le terme est un rectangle $x_i x_j$, on cherche à isoler ces deux variables dans une expression de la forme $x_i x_j + alpha x_i + beta x_j$
+      + Factoriser sous la forme : $x_i x_j + alpha x_i + beta x_j = (x_i + beta)(x_j + alpha) - alpha beta$
+      + Utiliser l'identité (B) : $a b = 1/4 (a + b)^2 - 1/4 (a - b)^2$ puis continuer
   + Répéter sur les termes qui ne sont pas isolés.
 
 ] <methode_reduction_gauss>
