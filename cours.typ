@@ -2623,7 +2623,7 @@ Dans ce chapitre, $E$ sera un $CC$-espace vectoriel de dimension finie.
 
 Soit $EEE = (e_1,dots,e_n)$ une base de $E$, on note $a_(i j) = f(e_i, e_j), forall i,j = 1,dots,n$, $A = (a_(i j))_(1<=i,j<=n) in M_n (CC)$ est la matrice associée à la forme sesquilinéaire $f$ dans la base $EEE$.
 
-Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i$ et $X = vec(x_1,vdots,x_n)$, on note $bar(X) = vec(bar(x_1),vdots,bar(x_n))$
+Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i$ et $X = vec(x_1, vdots, x_n)$, on note $bar(X) = vec(bar(x_1), vdots, bar(x_n))$
 
 
 #theorem("changement de bases")[
@@ -2631,10 +2631,10 @@ Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i
 ]
 
 #proof[
-  Soit $EEE = (e_1,dots,e_n)$ et $EEE^' = (e_1',dots,e_n')$, $x = sum_(i=1)^n x_i e_i = sum_(i=1)^n x_i' e_i'$, $X = vec(x_1,vdots,x_n)$, $X^' = vec(x_1^',vdots,x^'_n)$
+  Soit $EEE = (e_1,dots,e_n)$ et $EEE^' = (e_1',dots,e_n')$, $x = sum_(i=1)^n x_i e_i = sum_(i=1)^n x_i' e_i'$, $X = vec(x_1, vdots, x_n)$, $X^' = vec(x_1^', vdots, x^'_n)$
 
-  alors : $forall x,y in E, f(x,y) = transp(bar(X))A Y = transp(bar(X^'))A^' Y^'$. 
-  
+  alors : $forall x,y in E, f(x,y) = transp(bar(X))A Y = transp(bar(X^'))A^' Y^'$.
+
   De plus, $X = P X^'$, $Y = P Y^'$. Donc :
 
   $f(x,y) = transp((bar(P X^')))A P Y^' = transp(bar(P)bar(X^'))A P Y^' = transp(bar(X^'))(transp(bar(P))A P)Y^'$
@@ -2643,13 +2643,13 @@ Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i
 #definition("Caractère hermitien")[
   On dit qu'une forme sesquilinéaire $f$ est *hermitienne* si :
   $
-  forall x,y in E, f(x,y) = bar(f(y,x))
+    forall x,y in E, f(x,y) = bar(f(y,x))
   $
 ]
 
 #example[
   + $E = CC^3,$
-    
+
     $h(x,y) = bar(x_1)y_1 + 3 bar(x_2)y_2 + 2 bar(x_3)y_3 + (2+3i)bar(x_1)y_2 + (2-3 i)bar(x_2)y_1 + (1-5i)bar(x_2)y_3 + (1+5i)bar(x_3)y_2$ est hermitienne
   + $E = M_n (CC)$, $h(A,B) = tr(transp(bar(A))B)$
 ]
@@ -2665,7 +2665,7 @@ Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i
   L'application qui associe à toute forme hermitienne $f$ sur $E$, la forme quadratique $q$ définie par $q(x) = f(x,x)$ bijective et $f$ est appelée forme polaire.
 
   $
-  f(x,y) = (q(x + y) - q(x - y))/4 - i (q(x + i y) - q(x - i y))/4
+    f(x,y) = (q(x + y) - q(x - y))/4 - i (q(x + i y) - q(x - i y))/4
   $
 ]
 
@@ -2677,18 +2677,439 @@ Matriciellement, $f(x,y) = transp(bar(X))A Y$, où pour $x = sum_(i=1)^n x_i e_i
   $q(x+y) - q(x-y) = 4 Re(f(x,y))$
 
   $
-  q(x + i y) &= f(x + i y, x + i y) = f(x,x + i y) - i f(y, x+ i y) \ 
-  &= f(x,x) + i f(x,y) - i f(y,x) + f(y,y)  \ &= q(x) + i(f(x,y)-bar(f(x,y))) + q(y) \
-  &= q(x) + i (2i Im(f(x,y))) + q(y)
+    q(x + i y) & = f(x + i y, x + i y) = f(x,x + i y) - i f(y, x+ i y) \
+               & = f(x,x) + i f(x,y) - i f(y,x) + f(y,y) \
+               & = q(x) + i(f(x,y)-bar(f(x,y))) + q(y) \
+               & = q(x) + i (2i Im(f(x,y))) + q(y)
   $
-  
-  $q(x - i y) &= f(x - i y, x - i y) = f(x,x - i y) + i f(y, x- i y)  \
+
+  $q(x - i y) &= f(x - i y, x - i y) = f(x,x - i y) + i f(y, x- i y) \
   &= f(x,x) - i f(x,y) + i f(y,x) + f(y,y) \
-  &= q(x) - i(f(x,y)-bar(f(x,y))) + q(y) \ 
+  &= q(x) - i(f(x,y)-bar(f(x,y))) + q(y) \
   &= q(x) - i (2i Im(f(x,y))) + q(y)$
 
   $q(x+i y) - q(x-i y) = - 4 Im(f(x,y))$
 
   Donc $q(x+y) - q(x-y) -i (q(x+i y) + q(x-i y)) = 4 f(x,y)$
 
+]
+
+#definition[
+  Soit $f$ une forme hermitienne sur $E$. On la dit :
+  + positive (resp. négative) si $f(x,x) >= 0$ (resp. $f(x,x) <= 0$) pour tout $x in E$
+  + définie positive (resp. définie négative) si $f(x,x) = 0 ==> x = 0_E$
+]
+
+#definition[
+  On appelle produit scalaire (hermitien) sur $E$ toute forme hermitienne définie positive. On dit que $E$ est un espace hermitien.
+]
+
+#example[
+  $E = CC^n$, $x = (x_1,dots,x_n)$, $y = (y_1,dots,y_n)$
+
+  $scal2(x, y) = bar(x_1)y_1 + dots + bar(x_n)y_n$
+]
+
+#notation("Norme")[
+  Si $(E,scal2(., .))$ est un espace hermitien, on note $norm(x) = sqrt(scal2(x, x))$, $forall x in E$
+]
+
+#proposition[
+  + $forall x in E, forall lambda in CC$, $norm(lambda x) = underbrace(|lambda|, "module") norm(x)$
+  + $forall x,y in E$, $norm(x+y)^2 = norm(x)^2 + 2 Re(scal2(x, y)) + norm(y)^2$
+  + identité du parallélogramme : $norm(x+y)^2+norm(x-y)^2 = 2(norm(x)^2 + norm(y)^2)$
+]
+
+#theorem("Inégalité de Cauchy-Schwarz")[
+  Soit $(E,scal2(., .))$ un espace hermitien, alors :
+
+  $forall x,y in E$, $abs(scal2(x, y)) <= norm(x) norm(y)$
+
+  avec égalité si, et seulement si, $(x,y)$ est liée.
+]
+
+#proof[
+
+  Si $scal2(x, y) = 0$, l'inégalitée est vérifiée (en particulier, si $y = 0$, on a l'égalité).
+
+  On suppose $scal2(x, y) != 0$
+
+  Alors : pour tout $lambda in CC$, $0 <= scal2(x + lambda y, x + lambda y) = norm(x)^2 + bar(lambda) scal2(y, x) + lambda scal2(x, y) + norm(y)^2 = norm(x)^2 + 2 Re(lambda scal2(y, x)) + abs(lambda)^2norm(y)^2$
+
+  Posons $lambda = mu bar(scal2(x, y))/abs(scal2(x, y))$ avec $mu in RR$.
+
+  l'équation devient : $norm(x)^2 + 2mu abs(scal2(x, y)) + mu^2 norm(y)^2 >= 0$
+
+  En tant que polynôme en $mu$, le discriminant de ce polynôme doit être négatif ou nul, soit $4 abs(scal2(x, y))^2 - 4 norm(x)^2 norm(y)^2 <= 0 <==> abs(scal2(x, y))^2 <= norm(x)^2 norm(y)^2$, d'où l'inégalité de Cauchy-Schwarz.
+
+  Maintenant, si $x + lambda y = 0$, on a égalité.
+
+  Réciproquement, avoir égalité signifie que le polynôme admet une racine double.
+
+  C'est-à-dire qu'il existe $lambda$ tel que $x + lambda y = 0$
+
+]
+
+#theorem("Inégalité triangulaire")[
+  Soit $(E,scal2(., .))$ hermitien.
+
+  $forall x,y in E, norm(x+y)<=norm(x)+norm(y)$
+
+  avec égalité si, et seulement si, il existe $lambda in RR_+$ tel que $y = lambda x$
+]
+
+#proof[
+
+  $
+    norm(x+y)^2 & = norm(x)^2 + 2 Re(scal2(x, y)) + norm(y)^2 <= norm(x^2) + 2 abs(scal2(x, y))+ norm(y)^2 \
+                & <=^"CS" norm(x)^2 + 2 norm(x)norm(y) + norm(y)^2 = (norm(x)+norm(y))^2
+  $
+  Si $y = lambda x$, $lambda in RR_+$ :
+  $norm(x+lambda x) = (1+lambda) norm(x)$
+
+  $norm(x) + norm(lambda x) = norm(x)+lambda norm(x)$
+
+  Réciproquement, si on a égalité : $abs(scal2(x, y)) = norm(x)norm(y)$, donc $x,y$ sont liés et $Re(scal2(x, y)) = abs(scal2(x, y))$
+
+]
+
+== Bases orthonormales
+
+Soit $E$ un $CC$-espace vectoriel muni d'une forme hermitienne $f$.
+
+Si $EEE = (e_1,dots,e_n)$ est une base de $E$, $x = sum_(i=1)^n x_i e_i$, $y = sum_(i=1)^n y_i e_i$, $f(x,y) = sum_(i,j=1)^n a_(i j) bar(x_i) y_j$
+
+Il existe une réduction de Gauss permettant d'écrire $f(x,x) = c_1 abs(l_1(x))^2 + ... + c_r abs(l_r (x))^2$ avec $l_1,...,l_r in E^*$ des formes linéaires indépendantes.
+
+_La démonstration se fera éventuellement à la fin du dernier cours, sinon voir Griffonne_
+
+#definition[
+  Une base $(e_1,dots,e_n)$ d'un espace hermitien est dite orthogonale si $scal2(e_i, e_j) = 0$ pour tout $i != j$ et orthonormale si $scal2(e_i, e_j) = delta_(i j)$ pour tout $i,j in [|1,n|]$
+
+  Dans une base orthogonale, la matrice du produit scalaire est diagonale, et dans une base orthonormale, c'est $I_n$.
+]
+
+#theorem[
+  Tout espace hermitien admet des bases orthonormales.
+]
+
+#remark[
+  Il existe un procédé d'orthonormalisation de Gram-Schmidt.
+
+  ⚠️ Si $F$ est un sous-espace vectoriel de $E$ muni d'une base orthonormale, $(e_i,dots,e_p)$, la projection orthogonale de $x$ sur $F$ s'écrit :
+
+  $p_F (x) = sum_(i=1)^p scal2(e_i, x) e_i$.
+
+  (l'ordre dans le produit scalaire importe, cette fois-ci).
+]
+
+#definition[
+  Soit $A$ une partie non-vide de $E$ hermitien, on appelle orthogonal de $A$ le sous-espace vectoriel :
+  $
+    A^perp = {x in E | scal2(x, a) = 0, forall in A}
+  $
+]
+
+#proposition[
+  Soit $F$ un sous-espace vectoriel de $E$ hermitien.
+  + $dim E = dim F + dim F^perp$
+  + $E = F operp2 F^perp$
+  + $F^(perp perp) = F$
+]
+
+== Endomorphismes adjoints
+
+#proposition[
+  Soient $E$ un espace hermitien et un endomorphisme de $E$.
+
+  Il existe un unique endomorphisme $u^*$ de $E$ tel que :
+
+  $
+    forall x,y in E, scal2(u(x), y) = scal2(x, u^*(y)) quad (*)
+  $
+
+  $u^*$ est l'adjoint de $u$ et si $EEE = (e_1,dots,e_n)$ est une base orthonormale de $E$, $A$ la matrice de $u$ dans la base $EEE$, la matrice de $u^*$ dans cette même base est $transp(bar(A))= A^*$
+]
+
+#proof[
+  C'est sensiblement la même que dans le cas euclidien
+
+  $h : application(E, E^*, x, scal2(x, .) : application(E, CC, y, scal2(x, y)))$
+  est un isomorphime #underline[antilinéaire]
+
+  En effet, $h$ est injectif : $forall y in E, scal2(x, y) = 0$. En particulier, $scal2(x, x) = 0$. Donc $x = 0$.
+
+  Soit maintenant $x in E$ l'application $y |-> scal2(x, u(y))$ est une forme linéaire sur $E$, il existe un vecteur $u^* (x)$ de $E$ tel que : $scal2(x, u(y)) = scal2(u^*(x), y)$. Ceci monter l'existence et l'unicité de $u^*$. Il reste à montrer que $u^*$ est linéaire.
+
+  $forall x,y,z in E, forall lambda in CC$ :
+  $
+    scal2(x, u^*(lambda y + z)) = scal2(u(x), lambda y + z) = lambda scal2(u(x), y) + scal2(u(x), z) = scal2(x, lambda u^*(y) + u^*(z))
+  $
+
+
+  Dans une base orthonormale de $E$, $(*)$ se traduit matriciellement :
+
+  $transp(bar(A X))Y = transp(bar(X))A^* Y$
+
+  Donc $transp(bar(A)) = A^*$
+
+]
+
+#remark[
+  Dans une base orthonormale de $E$, $(*)$ se traduit matriciellement par :
+
+  $
+    transp(bar(A X))Y = transp(bar(X))A^* Y
+  $
+]
+
+#proposition[
+  Soient $u,v$ des endomorphismes de $E$ hermitien soit, soit $lambda in CC$
+
+  + $u^(**) = u$, $Id^* = Id$
+  + $(u+v)^* = u^* + v^*$, $(lambda u)^* = lambda u^*$
+  + $Rg u^* = Rg u$, $det u^* = det u$
+]
+
+== Groupe unitaire
+
+Les endomorphismes unitaires sont les équivalents des endomorphismes orthogonaux (ou isométries) dans le cadre euclidien.
+
+#definition[
+  Un endomorphisme $u$ d'un espace hermitien est dit unitaire s'il est bijectif et si $u^* = u^(-1)$
+
+  Une matrice $A in M_n (CC)$ est dite unitaire si $A$ est inversible et $transp(bar(A)) = A^(-1)$
+
+  On note $U(n) subset GL_n (CC)$ le groupe formé des endomorphismes unitaires 
+
+  Si $A$ est une matrice unitaire, $|det(A)|^2 = 1$
+
+  On appelle *groupe spécial unitaire* le sous-groupe $S U(n) = {A in U(n) | det(A) = 1}$
+]
+
+#remark[
+  $O_n (RR) = U(n) inter M_n (RR)$
+]
+
+#proposition[
+  Soient $E$ un espace hermitien de dimension $n$ et $n$ un endomorphisme de $E$. On a équivalence entre les propositions suivantes :
+  + $u in U(n)$
+  + $norm(u(x)) = norm(x)$, $forall x in E$
+  + $scal2(u(x),u(y)) = scal2(x,y), forall x,y in E$
+  + Si $(e_1,dots,e_n)$ est une base orthonormée de $E$, $(u(e_1),dots,u(e_n))$ aussi.
+  + La matrice de $u$ dans toute #underline[base orthonormale] est unitaire.
+]
+
+#example[
+  $A in S U(2)$,
+  $A = mat(a,c;b,d)$,
+  $transp(bar(A)) = transp(bar(A)) = mat(bar(a),bar(b);bar(c),bar(d))$
+
+  $transp(A)A = I_2 <==> casesn(a bar(a) + b bar(b) = 1,c bar(c) + d bar(d) = 1,a bar(c) + b bar(d) = 0)$
+
+  $(1)-(4) : a (bar(a)-d)+b(bar(b)+c) = 0$ donc $exists lambda in CC, bar(a)-d = lambda b$, $bar(b) + c = -lambda a$
+
+  En reportant dans $(3)$ : $-bar(lambda) (a bar(a) + b bar(b)) = 0$ donc $lambda = 0$ et $d = bar(a), c = -bar(b)$
+
+  $A = mat(a,b;-bar(b),a)$ avec $abs(a)^2 + abs(b)^2 = 1$ ($a,b in CC$)
+
+  Supposons $a,b != 0$, posons $a = rho_1 e^(i theta), b = rho_2 e^(i phi)$. On a $rho_1^2 + rho_2^2 = 1$ donc $exists alpha in RR$ tel que $rho_1 = cos(alpha), rho_2 = -sin(alpha)$
+
+  Ainsi $A = mat(cos(alpha) e^(i theta), -sin(alpha)e^(i phi);sin(alpha)e^(-i phi),cos(alpha)e^(-i theta))$
+]
+
+#proposition[
+  Soient $u$ un endomorphisme unitaire d'un espace hermitien $E$ et $F$ un sous-espace vectoriel de $E$.
+
+  + Si $F$ est stable par $u$, $F^perp$ aussi
+  + Les valeurs propres de $u$ sont de module $1$.
+]
+#proof[
+  + Déjà vu
+  + Soit $lambda$ une valeur propre de $u$ et $x$ un vecteur propre associé.
+    $norm(u(x)) = norm(lambda x) = abs(lambda)norm(x)$ donc $abs(lambda) = 1$
+]
+
+#theorem[
+  Soit $u$ un endomorphisme unitaire d'un espace hermitien $E$.
+
+  Alors $u$ est diagonalisable dans une base orthonormale (et ses valeurs propres sont de module $1$)
+]
+
+#proof[
+  Les sous-espaces propres d'un endomorphisme unitaire sont orthogonaux deux-à-deux.
+
+  Soient $e^(i theta),e^(i phi)$ des valeurs propres de $u$ unitaire et $x,y$ des vecteurs propres associés.
+
+  $scal2(x,y) = scal2(u(x),u(y)) = scal2(e^(i theta)x,e^(i phi)y) = e^(-i theta)e^(i phi) scal2(x,y)$
+
+  Si $theta != phi mod(2 pi)$, alors $scal2(x,y) = 0$
+
+  Preuve par de l'existence d'une base orthonormale se fait par récurrence sur la dimension de $E$.
+
+  + $n = 1$ : rien à dire
+  + Supposons que tout endomorphisme unitaire sur un espace hermitien de dimension strictement inférieure à $n$ en une base orthonormale soit unitaire sur $E$, $dim E = n$
+
+    $u$ admet toujours une valeur propre $lambda$ grâce au théorème de d'Alembert-Gauss.
+
+    Considérons $E_lambda$ le sous-espace propre associé.
+    - Si $E = E_lambda$, le résultat est clair.
+    - Sinon, $dim(E_lambda) < n$. On sait que $E_lambda$ est stable par $u$, la restriction $restr(u,E_lambda)$ de $u$ à $E_lambda$ vérifie l'hypothèse de récurence, notons $EEE$ une base orthonormale qui diagonalise $restr(u,E_lambda)$
+      
+      On a $E = E_lambda operp2 E_lambda^perp$, $E_lambda^perp$ est stable par $u$, la restriction $restr(u,E_lambda^perp)$ vérifie elle aussi l'hypothèse de récurrence.
+
+      On note $FFF$ une base orthonormale de $E_lambda^perp$ qui diagonalise $restr(u,E_lambda^perp)$.
+
+      La concaténation de $EEE$ et $FFF$ est une base orthonormale de $E$ qui diagonalise $u$.
+
+  D'ou le résultat.
+]
+
+= Endomorphismes hermitiens (ou auto-adjoints)
+
+#definition("Endomorphisme hermitien")[
+  Un endomorphisme $u$ d'un espace hermitien est lui-même hermitien (ou auto-adjoint) si $u^* = u$
+
+  Une matrice $A in M_n (CC)$ est dite hermitienne si $transp(bar(A)) = A$
+]
+
+#proposition[
+  Un endomorphisme hermitien n'a que des valeurs propres #underline[réelles].
+]
+
+#proof[
+  Soient $u$ hermitien, $lambda$ valeur propre, $x$ vecteur propre associé.
+
+  $
+  scal2(u(x),x) &= scal2(lambda x,x) = bar(lambda) = bar(lambda) norm(x)^2 \
+  &= scal2(x,u^*(x)) = scal2(x,u(x)) = scal2(x, lambda x) = lambda norm(x)^2
+  $
+
+  d'ou $lambda = bar(lambda)$, soit $lambda in RR$
+]
+
+#theorem[
+  Soit $u$ un endomorphisme d'un espace hermitien $E$.
+
+  On a équivalence entre les assertions suivantes :
+  + $u$ est hermitien
+  + La matrice de $u$ dans toute base orthonormale de $E$ est hermitienne
+  + $forall x in E$, $scal2(u(x),x) in RR$
+  + Il existe une base orthonormale de $E$ formée de vecteurs propres de $u$ #underline[et] les valeurs propres sont réelles.
+]
+
+#corollary("Théorème Spectral")[
+  Tout endomorphisme hermitien dans un espace hermitien est diagonalisable en une base orthonormale.
+
+  Attention, dans le cadre euclidien, le théorème spectral était une équivalence. Ici, non, sauf si l'on ajoute l'hypothese des valeurs propres réelles.
+]
+
+#example[
+  $mat(0,1;-1,0)$ est diagonalisable en une base orthonormale sur $CC$, mais n'est pas hermitienne.
+]
+
+#proof[
+  + $1 <==> 2$ clair
+  + $1 <==> 3$ 
+    Supposons que $u$ soit hermitien. Alors $scal2(u(x),x) = bar(scal2(x,u(x)))$, mais $scal2(u(x),x) = scal2(x,u^* (x)) = scal2(x,u(x))$
+
+    Donc $scal2(x,u(x)) = bar(scal2(x,u(x)))$, soit $scal2(x,u(x)) in RR$.
+
+    Supposons que $scal2(u(x),x) in RR$ pour tout $x in E$. Alors de la même manière, pour tout $x in E$, $scal2(u(x),x) = bar(scal2(u(x),x)) = scal2(x,u(x))$, soit $u^* = u$.
+  + $1 <==> 4$ : La preuve est identique à celle donnée dans le cadre euclidien en plus simple grâce à d'Alembert-Gauss. De plus, nous avons vu qu'un endomorphisme hermitien a toutes ses valeurs propres réelles (condition nécessaire pour avoir $(4) ==> (1)$).
+]
+
+#corollary[
+  Soit $A in M_n (CC)$ une matrice hermitienne, il existe une matrice unitaire $U$ telle que $transp(bar(U))A U$ soit diagonale.
+]
+
+#definition[
+  On dit qu'un endomorphisme hermitien (ou une matrice hermitienne) est positif si ses valeurs propres sont positives (ou nulles).
+]
+
+== Endomorphismes normaux
+
+Un endomorphisme $u$ d'un espace euclidien (ou hermitien) est dit normal si $u compose u^* = u^* compose u$
+
+Une matrice $A in M_n (CC)$ (resp $A in M_n (RR)$) est normale si $transp(bar(A))A = A transp(bar(A))$ (resp $transp(A)A = A transp(A)$)
+
+#example[
+  - Les matrices réelles symétriques, antisymétriques, orthogonales sont normales
+
+  - Les matrices complexes hermitiennes, unitaires sont normales
+
+  - $A = mat(i,-1;1,i)$ est normale
+]
+
+#remark[
+  $u^* compose u = u compose u^* <==> forall x,y in E, scal2(u(x),u(y)) = scal2(u^*(x),u^*(y))$
+]
+
+#proof[
+  $#underline[==>]$ : $scal2(u(x),u(y)) = scal2(x,(u^* compose u) (y)) = scal2(x,(u compose u^*) (y)) = scal2(u^*(x),u^*(y))$
+  #v(.5em)
+  $#underline[<==]$ : $cases(scal2(u(x),u(y)) = scal2(x,(u^* compose u) (y)),scal2(u^*(x),u^*(y)) = scal2(x,(u compose u^*)(y)))$
+]
+
+#theorem[
+  Soit $u$ un endomorphisme d'un espace hermitien $E$. Les assertions suivantes sont équivalentes :
+
+  + $u$ est normal
+  + $u$ admet une base orthonormale de vecteurs propres
+]
+
+#proof[
+  $2 ==> 1$, évident
+
+  $1 ==> 2$, par récurrence sur $dim E = n$ :
+
+  + Si $n = 1$, rien à dire
+  + Supposons que tout endomorphisme normal sur un espace hermitien de dimension $< n$ soit diagonalisable dans une base orthonormale de vecteurs propres
+
+    Soient $E$ hermitien de dimension $n$, $u in Lin(E)$ normal. Comme $CC$ est algébriquement clos (théorème de d'Alembert-Gauss) :
+    
+    Soient $lambda in Sp u, E_lambda$ le sous-espace associé à $lambda$.
+
+    $forall x in E_lambda$, $(u compose u^*) (x) = (u^* compose u)(x) = lambda u^*(x)$. Donc $u^*(E_lambda) subset E_lambda$.
+
+    $E_lambda$ est stable par $u$ et $u^*$, donc $E_lambda^perp$ est stable par $u^*$ et par $u^(**) = u$. Les restrictions $restr(u,E_lambda), restr(u,E_lambda^perp)$ vérifient l'hypothèse de récurrence.
+
+    On trouve la base orthonormale cherchée en concaténant les bases trouvées.
+
+    (#underline[Remarque :] si $E_lambda = E$, c'est évident)
+]
+
+#theorem[
+  Soit $u$ un endomorphisme normal d'un espace eucldien $E$ de dimension $n$. Il existe une base orthonormale $EEE$ de $E$, un couple d'entiers $(r,s) in NN^2$, des réels $lambda_1,dots,lambda_r in RR$, des réels $a_i, i = 1,...,s$ et des réels $b_i,i=1, dots, s$ #underline[non-nuls]  tels que :
+
+  La matrice de $u$ dans la base $EEE$ soit :
+  $
+  mat(lambda_1,,,,,;,vdots,,,,;,,lambda_r,,,;,,,B_1,,;,,,,ddots,;,,,,,B_s)
+  $
+
+  où $B_i = mat(a_i,-b_i;b_i,a_i)$ pour tout $i = 1,dots,s$
+]
+
+#proof[
+  Décomposons $u$ de manière standard en $u = f + g$ avec :
+
+  $f = 1/2 (u + u^*)$ un endomorphisme symétrique
+  
+  $g = 1/2 (u-u^*)$ un endomorphisme antisymétrique
+
+  Par le théorème spectral, $f$ est diagonalisable et $E$ est somme directe orthogonale des sous-espaces propres de $f$.
+
+  Comme $u$ commute avec $u^*$, $f$ et $g$ commutent, tout sous-espace propre de $f$ est stable par $g$.
+
+  Soit $E_lambda$ un sous-espace propre de $f$. Considérons les restrictions $restr(f,E_lambda)$,$restr(g,E_lambda)$. 
+  
+  $restr(f,E_lambda)$ est une homothétie de rapport $lambda$
+
+  $restr(g,E_lambda)$ est un endomorphisme antisymétrique dont on a vu le théorème de réduction.
+
+  On sait qu'il existe une base orthonormale de $E$ dans laquelle la matrice de $restr(g,E_lambda)$ est diagonale par blocs avec des blocs de taille $1$ formés de zéros et des blocs de taille $2$ de la forme $mat(0,-alpha;alpha,0)$ avec $alpha in RR^*$
+
+  Quitte à permutter les vecteurs de la base, la matrice de la restriction $restr(u,E_lambda)$ de $u$ à $E_lambda$ est du type $mat(lambda,,,,,;,ddots,,,,;,,lambda,,,;,,,A_1,,;,,,,ddots,;,,,,,A_k)$ avec $A_i = mat(lambda,-alpha_i;alpha_i,lambda)$, $lambda_i in RR^*$
+
+  On fait de même pour tous les sous-espaces propres de $f$  est on concatène les bases (quitte à changer l'ordre des vecteurs).
 ]
